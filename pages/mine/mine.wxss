@@ -1,0 +1,73 @@
+/* pages/mine/mine.wxss */
+
+.container {
+  background-color: #efefef;
+}
+
+/* 登录 */
+
+.login-wrap {
+  background-color: #fff;
+  padding: 40rpx 30rpx;
+  align-items: center;
+  border-top: 1px solid #e0dede;
+  height: 110px;
+}
+
+.avatar-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.avatar-name {
+  color: #333;
+  font-size: 18px;
+}
+
+.login-btn {
+  background-color: transparent;
+  width: 100%;
+  text-align: center;
+  outline: none !important;
+  color: #666;
+}
+
+.login-btn::after {
+  content: '';
+  border: 0 !important;
+}
+
+/* 操作列表 */
+
+.operation-part {
+  margin-top: 30rpx;
+  background-color: #fff;
+}
+
+.operation-item {
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx;
+  border-bottom: 1px solid #efefef;
+}
+
+.operation-item-left {
+  align-items: center;
+}
+
+.operation-icon {
+  width: 18px;
+  height: 20px;
+  margin-right: 20rpx;
+}
+
+.operation-text {
+  font-size: 16px;
+}
+
+.operation-icon-arrow {
+  width: 8px;
+  height: 18px;
+}
