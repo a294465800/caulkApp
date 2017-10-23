@@ -1,0 +1,42 @@
+<!--pages/shop/shop.wxml-->
+<view class='container'>
+  <!--轮播  -->
+  <swiper indicator-dots autoplay interval="5000" duration="1000">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image mode='aspectFill' src="{{item}}" class="slide-image" class='order-img-item' />
+      </swiper-item>
+    </block>
+  </swiper>
+  <!--/轮播  -->
+
+  <!--搜索  -->
+  <view class='search-wrap'>
+    <label class='input-label'>
+      <icon type='search' color='#047911' size='20'></icon>
+      <input class='input-view' placeholder='请输入搜索内容'></input>
+    </label>
+  </view>
+  <!--/搜索  -->
+
+  <view class='shop-list flex-row'>
+    <block wx:if="{{shops.length}}">
+      <view class='shop-item' wx:for="{{shops}}" wx:for-item="shopItem" wx:key="id" hover-class='hover-class' hover-stay-time='150' bindtap='goToShopItem' data-id='{{shopItem.id}}'>
+        <image mode='aspectFit' class='shop-item-img' src='{{shopItem.url}}'></image>
+        <view class='shop-item-content'>
+          <view class='shop-item-title text-overflow'>{{shopItem.name}}</view>
+          <view class='shop-item-info flex-row'>
+            <view class='shop-item-sell flex-row'>
+              <view class='shop-item-price'>￥ {{shopItem.price}}</view>
+              <view class='shop-item-sold'>已售{{shopItem.sell>999?999:shopItem.sell}}</view>
+            </view>
+            <image class='cart-icon' mode='aspectFit' src='/images/icon/cart.png'></image>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='tips'>暂无商品</view>
+    </block>
+  </view>
+</view>

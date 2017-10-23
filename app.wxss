@@ -13,6 +13,18 @@ view {
   min-height: 100%;
 }
 
+.tips {
+  width: 100%;
+  color: #333;
+  text-align: center;
+  font-size: 15px;
+  padding-top: 20rpx;
+}
+
+.hover-class {
+  background-color: #efefef!important;
+}
+
 /* flex 通用  */
 
 .flex-column {
@@ -37,7 +49,6 @@ view {
 /* input */
 
 .input-label {
-  width: 100%;
   display: flex;
 }
 
@@ -49,4 +60,10 @@ view {
 .input-view {
   flex: 1;
   color: #333;
+}
+
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

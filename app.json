@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/shop/shop",
     "pages/index/index",
     "pages/logs/logs"
   ],
@@ -18,7 +19,7 @@
         "selectedIconPath": "/images/tab/orders_selected.png"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/shop/shop",
         "text": "商城",
         "iconPath": "/images/tab/shop.png",
         "selectedIconPath": "/images/tab/shop_selected.png"
