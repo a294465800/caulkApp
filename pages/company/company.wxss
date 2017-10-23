@@ -1,0 +1,31 @@
+/* pages/company/company.wxss */
+
+.container {
+  background-color: #efefef;
+}
+
+/* 导航条 */
+
+.tab-wrap {
+  background-color: #fff;
+  border-bottom: 1px solid #e0dede;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 16px;
+}
+
+.active {
+  color: #047911;
+  border-bottom: 2px solid #047911;
+}
+
+/* 公司展示 */
+
+.company-show-img {
+  width: 100%;
+  display: none;
+}

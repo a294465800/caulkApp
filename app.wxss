@@ -22,7 +22,18 @@ view {
 }
 
 .hover-class {
-  background-color: #efefef!important;
+  background-color: #efefef !important;
+}
+
+/* 通用轮播 */
+
+.swiper-images-wrap {
+  height: 200px;
+}
+
+.order-img-item {
+  width: 100%;
+  height: 200px;
 }
 
 /* flex 通用  */
@@ -43,7 +54,7 @@ view {
 }
 
 .block {
-  display: block;
+  display: block !important;
 }
 
 /* input */

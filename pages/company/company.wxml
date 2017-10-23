@@ -1,0 +1,27 @@
+<!--pages/company/company.wxml-->
+<view class='container'>
+  <!--轮播  -->
+  <swiper indicator-dots autoplay interval="5000" duration="1000" class='swiper-images-wrap'>
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image mode='aspectFill' src="{{item}}" class="slide-image" class='order-img-item' />
+      </swiper-item>
+    </block>
+  </swiper>
+  <!--/轮播  -->
+
+  <!--导航条  -->
+  <view class='tab-wrap flex-row' bindtap='switchTab'>
+    <view class="tab-item {{tabItem.id == currentPage? 'active': ''}}" wx:for="{{tabText}}" wx:for-item="tabItem" wx:key="id" id='{{tabItem.id}}'>{{tabItem.name}}</view>
+  </view>
+  <!--/导航条  -->
+
+  <!--公司展示页面  -->
+  <image mode='widthFix' class='company-show-img {{currentPage == 1? "block": ""}}' src='http://www.web191.com/uploads/allimg/151126/2345313562-0.jpg'></image>
+  <!--/公司展示页面  -->
+
+
+  <!--关于我们页面  -->
+  <image mode='widthFix' class='company-show-img {{currentPage == 2? "block": ""}}' src='http://www.web191.com/uploads/allimg/151126/234KUF5-0.jpg'></image>
+  <!--/关于我们页面  -->
+</view>
