@@ -25,6 +25,12 @@ view {
   background-color: #efefef !important;
 }
 
+.text-flow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* 通用轮播 */
 
 .swiper-images-wrap {
@@ -77,4 +83,11 @@ view {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* icon */
+
+.book-icon {
+  width: 22px;
+  height: 22px;
 }

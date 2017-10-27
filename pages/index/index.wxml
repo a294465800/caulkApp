@@ -27,7 +27,7 @@
         </label>
         <view class='flex-row order-form-item' bindtap='getLocation'>
           <view class='input-title'>详细地址</view>
-          <view class='order-form-address'>{{address}}</view>
+          <input disabled class='order-form-address text-flow' name="address" value='{{address}}'></input>
           <image class='location-icon' mode='aspectFit' src='/images/icon/location.png'></image>
         </view>
         <!-- <label class='order-form-item block'>

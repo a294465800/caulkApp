@@ -1,0 +1,64 @@
+/* pages/book/book.wxss */
+
+.container {
+  height: 100%;
+  background-color: #eee;
+  justify-content: space-between;
+  padding-bottom: 30rpx;
+}
+
+/* 接单成功 */
+
+.book-success {
+  padding: 40rpx 30rpx;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  font-size: 16px;
+  color: #16ccb5;
+  justify-content: center;
+  margin-bottom: 30rpx;
+}
+
+.book-success>.book-icon {
+  margin-right: 20rpx;
+}
+
+/* 接单内容 */
+
+.book-content {
+  background-color: #fff;
+  padding: 20rpx 30rpx;
+}
+
+.book-content>view {
+  line-height: 1.5em;
+}
+
+.book-content-title {
+  font-size: 14pt;
+}
+
+.book-content-item {
+  font-size: 16px;
+  margin-top: 20rpx;
+}
+
+/* 按钮 */
+
+.order-submit {
+  background-color: #047911;
+  color: #fff;
+  width: 90%;
+  border-radius: 50rpx;
+  margin-top: 10rpx;
+  border: 0 !important;
+  position: absolute;
+  bottom: 30rpx;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.submit-hover {
+  background-color: #046d0f;
+}

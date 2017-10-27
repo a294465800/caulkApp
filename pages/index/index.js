@@ -22,6 +22,9 @@ Page({
 
   submit(e) {
     console.log(e)
+    wx.navigateTo({
+      url: '/pages/book/book',
+    })
   },
 
 

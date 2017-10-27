@@ -1,9 +1,10 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/book/book",
     "pages/mine/mine",
     "pages/company/company",
     "pages/shop/shop",
-    "pages/index/index",
     "pages/logs/logs"
   ],
   "window": {

@@ -45,6 +45,8 @@
 
 .order-form-address {
   flex: 1;
+  margin-right: 20rpx;
+  max-width: 440rpx;
 }
 
 .location-icon {

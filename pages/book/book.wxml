@@ -1,0 +1,21 @@
+<!--pages/book/book.wxml-->
+<view class='container flex-column'>
+  <view>
+    <view class='book-success flex-row'>
+      <image class='book-icon' mode='aspectFit' src='/images/icon/booked.png'></image>
+      <view>接单成功</view>
+    </view>
+
+    <!--确认订单内容  -->
+    <view class='book-content'>
+      <view class='book-content-title'>确认订单内容：</view>
+      <view class='book-content-item'>姓名：黄小姐</view>
+      <view class='book-content-item'>联系方式：13546154215</view>
+      <view class='book-content-item'>地址：广州XX区XXXXX街道XXX栋XXX号403</view>
+    </view>
+    <!--/确认订单内容  -->
+    <view class='tips'>正在为您处理订单中...</view>
+  </view>
+
+  <button type='button' class='order-submit' hover-class='submit-hover' catchtap='goBack'>回到首页</button>
+</view>
