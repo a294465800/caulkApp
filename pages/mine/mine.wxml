@@ -3,8 +3,8 @@
   <!--用户登录  -->
   <view class='login-wrap flex-row' hover-class='hover-class' hover-stay-time='150'>
     <block wx:if="{{userInfo}}">
-      <image mode='aspectFit' class='avatar-img' src='http://img.135q.com/2015-06/21/14348839770004.jpg'></image>
-      <view class='avatar-name'>吴彦祖</view>
+      <image mode='aspectFit' class='avatar-img' src='{{userInfo.avatarUrl}}'></image>
+      <view class='avatar-name'>{{userInfo.nickName}}</view>
     </block>
     <block wx:else>
       <button open-type='getUserInfo' class='login-btn' bindgetuserinfo="login">请登录</button>

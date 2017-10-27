@@ -8,9 +8,9 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "美缝剂小程序",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#047911",
+    "navigationBarTitleText": "美缝剂",
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "list": [

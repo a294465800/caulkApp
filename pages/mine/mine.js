@@ -1,4 +1,5 @@
 // pages/mine/mine.js
+const app = getApp()
 Page({
 
   /**
@@ -35,10 +36,13 @@ Page({
       }
     ],
   },
-  login(e) {
-    const userInfo = JSON.parse(e.detail.rawData)
-    this.setData({
-      userInfo
+
+  // 登录
+  login() {
+    app.getUserInfo(userInfo => {
+      this.setData({
+        userInfo
+      })
     })
-  }
+  },
 })
