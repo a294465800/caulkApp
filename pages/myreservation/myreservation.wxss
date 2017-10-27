@@ -1,0 +1,81 @@
+/* pages/myreservation/myreservation.wxss */
+
+.container {
+  background-color: #eee;
+  padding-bottom: 60rpx;
+}
+
+/* 导航 */
+
+.nav-wrap {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.nav-item {
+  text-align: center;
+  flex: 1;
+  font-size: 16px;
+  padding: 20rpx 0 30rpx;
+}
+
+.nav-item.active {
+  border-bottom: 3px solid #047911;
+  color: #047911;
+}
+
+/* 预约信息 */
+
+.reservation-item {
+  margin-bottom: 30rpx;
+  background-color: #fff;
+  padding: 20rpx 30rpx 0;
+}
+
+.reservation-item:last-child {
+  margin-bottom: 0;
+}
+
+.reservation-wrap {
+  display: none;
+}
+
+.reservation-content-item {
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 20rpx;
+}
+
+.reservation-content-item >image {
+  margin-right: 20rpx;
+}
+
+.reservation-content {
+  border-bottom: 1px solid #ddd;
+}
+
+.reservation-info {
+  padding: 14rpx 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reservation-info-time {
+  font-size: 13px;
+  color: #999;
+}
+
+.reservation-info-btn {
+  font-size: 14px;
+  color: #333;
+  border: 1px solid #333;
+  border-radius: 3px;
+  padding: 15rpx 20rpx;
+  margin-left: 20rpx;
+}
+
+.reservation-info-btn-hover {
+  background-color: #333;
+  color: #fff;
+}

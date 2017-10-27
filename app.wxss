@@ -91,3 +91,8 @@ view {
   width: 22px;
   height: 22px;
 }
+
+.people-icon, .address-icon, .phone-icon {
+  width: 13px;
+  height: 15px;
+}

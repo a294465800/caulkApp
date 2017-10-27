@@ -1,0 +1,37 @@
+<!--pages/myreservation/myreservation.wxml-->
+<view class='container'>
+
+  <!--导航  -->
+  <view class='nav-wrap flex-row' catchtap='switchNav'>
+    <view class='nav-item {{index == currentNav?"active":""}}' wx:for="{{navs}}" wx:for-item="navItem" wx:key="type" data-type='{{navItem.type}}' data-index='{{index}}'>{{navItem.name}}</view>
+  </view>
+  <!--/导航  -->
+
+  <!--已指派  -->
+  <view class='reservation-wrap {{0 == currentNav?"block":""}}'>
+    <view class='reservation-item' wx:for="{{sents}}" wx:for-item="sentItem" wx:key="id">
+      <view class='reservation-content'>
+        <view class='reservation-content-item flex-row'>
+          <image class='people-icon' mode='aspectFit' src='/images/icon/people.png'></image>
+          <view class='reservation-content-item-name'>{{sentItem.name}}</view>
+        </view>
+        <view class='reservation-content-item flex-row'>
+          <image class='phone-icon' mode='aspectFit' src='/images/icon/phone.png'></image>
+          <view class='reservation-content-item-name'>{{sentItem.phone}}</view>
+        </view>
+        <view class='reservation-content-item flex-row'>
+          <image class='address-icon' mode='aspectFit' src='/images/icon/address.png'></image>
+          <view class='reservation-content-item-name'>{{sentItem.address}}</view>
+        </view>
+      </view>
+      <view class='reservation-info flex-row'>
+        <view class='reservation-info-time'>{{sentItem.time}}</view>
+        <view class='reservation-info-btns flex-row' data-id='{{sentItem.id}}' catchtap='operationFnc' data-type='sent'>
+          <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='checkMaster'>查看指派师傅</view>
+          <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='cancel'>取消订单</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--/已指派  -->
+</view>

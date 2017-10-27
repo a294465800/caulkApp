@@ -66,12 +66,12 @@
 }
 
 .shop-item-sold {
-  font-size: 14px;
+  font-size: 12px;
   color: #ffac34;
   border: 1px solid #ffac34;
   border-radius: 4px;
-  padding-left: 2px;
-  padding-right: 2px;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
 }
 
 .cart-icon {
