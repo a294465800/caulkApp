@@ -11,7 +11,7 @@
   <!--/轮播  -->
 
   <!--form表单  -->
-  <view class='order-form-wrap'>
+  <view class='order-form-wrap flex-column'>
     <view class='order-from-title flex-row flex-center'>
       <image mode='aspectFit' src='/images/icon/order-icon.png'></image>下单
     </view>
@@ -26,13 +26,14 @@
           <input class='input-view' type='number' name="phone"></input>
         </label>
         <view class='flex-row order-form-item' bindtap='getLocation'>
-          <view>你的位置</view>
-          <image mode='aspectFit' src='/images/icon/location.png' class='location-icon'></image>
+          <view class='input-title'>详细地址</view>
+          <view class='order-form-address'>{{address}}</view>
+          <image class='location-icon' mode='aspectFit' src='/images/icon/location.png'></image>
         </view>
-        <label class='order-form-item block'>
-          <view>详细位置补充</view>
+        <!-- <label class='order-form-item block'>
+          <view>详细位置</view>
           <textarea maxlength='200' class='order-textarea'></textarea>
-        </label>
+        </label> -->
         <button form-type="submit" class='order-submit' hover-class='submit-hover'>一键下单</button>
       </form>
     </view>
