@@ -4,6 +4,9 @@ Page({
 
   data: {
 
+    showMaster: false,
+    currentMaster: null,
+
     //导航
     currentNav: 0,
     navs: [
@@ -74,7 +77,7 @@ Page({
     const that = this
     switch (operation) {
       case 'checkMaster':
-        that.checkMaster()
+        that.checkMaster(e)
         break
       case 'cancel':
         that.cancel()
@@ -83,12 +86,33 @@ Page({
     }
   },
 
-  checkMaster() {
-    console.log('checkMaster')
+  //显示、关闭师傅面板 
+  checkMaster(e) {
+    const master = e.target.dataset.master
+    console.log(e)
+    this.setData({
+      showMaster: true,
+      currentMaster: master
+    })
+  },
+
+  hideMaster() {
+    this.setData({
+      showMaster: false
+    })
+  },
+
+  //拨打师傅电话
+  callMaster(e) {
+    const phone = e.currentTarget.dataset.phone
+    wx.makePhoneCall({
+      phoneNumber: phone + '',
+    })
   },
 
   cancel() {
     console.log('cancel')
-  }
+  },
+
 
 })

@@ -27,7 +27,7 @@
       <view class='reservation-info flex-row'>
         <view class='reservation-info-time'>{{sentItem.time}}</view>
         <view class='reservation-info-btns flex-row' data-id='{{sentItem.id}}' catchtap='operationFnc' data-type='sent'>
-          <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='checkMaster'>查看指派师傅</view>
+          <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='checkMaster' data-master='{{sentItem}}'>查看师傅</view>
           <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='cancel'>取消订单</view>
         </view>
       </view>
@@ -35,7 +35,7 @@
   </view>
   <!--/已指派  -->
 
-    <!--未响应  -->
+  <!--未响应  -->
   <view class='reservation-wrap {{1 == currentNav?"block":""}}'>
     <view class='reservation-item' wx:for="{{sents}}" wx:for-item="notSentItem" wx:key="id">
       <view class='reservation-content'>
@@ -55,11 +55,54 @@
       <view class='reservation-info flex-row'>
         <view class='reservation-info-time'>{{notSentItem.time}}</view>
         <view class='reservation-info-btns flex-row' data-id='{{notSentItem.id}}' catchtap='operationFnc' data-type='sent'>
-          <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='checkMaster'>查看指派师傅</view>
+          <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='checkMaster' data-master='{{notSentItem}}'>查看师傅</view>
           <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='cancel'>取消订单</view>
         </view>
       </view>
     </view>
   </view>
   <!--/未响应  -->
+
+  <!--未响应  -->
+  <view class='reservation-wrap {{2 == currentNav?"block":""}}'>
+    <view class='reservation-item' wx:for="{{sents}}" wx:for-item="overSentItem" wx:key="id">
+      <view class='reservation-content'>
+        <view class='reservation-content-item flex-row'>
+          <image class='people-icon' mode='aspectFit' src='/images/icon/people.png'></image>
+          <view class='reservation-content-item-name'>{{overSentItem.name}}</view>
+        </view>
+        <view class='reservation-content-item flex-row'>
+          <image class='phone-icon' mode='aspectFit' src='/images/icon/phone.png'></image>
+          <view class='reservation-content-item-name'>{{overSentItem.phone}}</view>
+        </view>
+        <view class='reservation-content-item flex-row'>
+          <image class='address-icon' mode='aspectFit' src='/images/icon/address.png'></image>
+          <view class='reservation-content-item-name'>{{overSentItem.address}}</view>
+        </view>
+      </view>
+      <view class='reservation-info flex-row'>
+        <view class='reservation-info-time'>{{overSentItem.time}}</view>
+        <view class='reservation-info-btns flex-row' data-id='{{overSentItem.id}}' catchtap='operationFnc' data-type='sent'>
+          <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='checkMaster' data-master='{{overSentItem}}'>查看师傅</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--/未响应  -->
+
+  <!--查看师傅  -->
+  <view class='reservation-master-wrap' catchtap='hideMaster' hidden='{{!showMaster}}'>
+    <view class='reservation-master-part flex-column'>
+      <view class='reservation-master-title'>指派师傅联系方式</view>
+      <view class='reservation-master-content'>
+        <view class='reservation-master-item'>姓名：{{currentMaster.name}}</view>
+        <view class='reservation-master-item'>联系电话：{{currentMaster.phone}}</view>
+      </view>
+      <view class='reservation-master-btns flex-row'>
+        <view class='flex-row flex-center' hover-class='hover-class' catchtap='callMaster' data-phone='{{currentMaster.phone}}'>拨打电话</view>
+        <view class='flex-row flex-center' hover-class='hover-class' catchtap='hideMaster'>取消</view>
+      </view>
+    </view>
+  </view>
+  <!--/查看师傅  -->
 </view>

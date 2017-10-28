@@ -45,4 +45,11 @@ Page({
       })
     })
   },
+
+  //我的预约
+  goTomyReservation() {
+    wx.navigateTo({
+      url: '/pages/myreservation/myreservation',
+    })
+  }
 })

@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/mine/mine",
     "pages/myreservation/myreservation",
     "pages/index/index",
     "pages/book/book",
-    "pages/mine/mine",
     "pages/company/company",
     "pages/shop/shop",
     "pages/logs/logs"
