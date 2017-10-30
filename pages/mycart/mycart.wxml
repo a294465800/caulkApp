@@ -1,0 +1,42 @@
+<!--pages/mycart/mycart.wxml-->
+<view class='container' wx:if="{{carts.length}}">
+  <view class='crat-list'>
+    <view class='cart-tips flex-row'>
+      <icon size='15' type='info'></icon>
+      <view>长按商品可移出购物车</view>
+    </view>
+    <view class='cart-item flex-row' catchlongpress='deleteCommodity' catchtap='chooseItem' wx:for="{{carts}}" wx:for-item="cartItem" wx:key="id" data-index='{{index}}'>
+      <icon size='25' type='success' color='{{sumCart[index]?"":"#ddd"}}'></icon>
+      <view class='cart-item-content flex-row'>
+        <image class='cart-item-content-img' mode='aspectFit' src='{{cartItem.url}}'></image>
+        <view class='cart-item-content-info flex-column'>
+          <view class='cart-item-content-info-title multi-two-text-flow'>{{cartItem.title}}</view>
+          <view class='cart-item-content-info-type'>{{cartItem.type}}</view>
+          <view class='cart-item-content-info-operation flex-row'>
+            <view class='cart-item-content-info-price'>￥{{cartItem.price}}</view>
+            <view class='cart-item-content-info-btns flex-row' catchtap='operation' data-index='{{index}}'>
+              <view class='cart-item-content-info-delete' data-operation='delete' hover-class='cart-item-content-info-delete-hover' hover-stay-time='100'>-</view>
+              <view class='cart-item-content-info-text'>{{cartItem.num}}</view>
+              <view class='cart-item-content-info-plus' data-operation='add' hover-class='cart-item-content-info-plus-hover' hover-stay-time='100'>+</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!--购买  -->
+  <view class='cart-buy flex-row'>
+    <view class='cart-buy-price'>总计：￥{{wholePrice}}</view>
+    <view class='cart-buy-btn' hover-class='cart-buy-btn-hover' hover-stay-time='150' catchtap='payForIt'>确认付款</view>
+  </view>
+  <!--/购买  -->
+</view>
+
+<view class='container flex-column special' wx:else>
+  <view class='cart-none-wrap flex-column flex-center'>
+    <image class='cart-none-img' mode='aspectFit' src='/images/icon/cart_big.png'></image>
+    <view class='cart-none-tips'>购物车空空如也~</view>
+  </view>
+  <button catchtap='goToShoppingMall' class='order-submit' hover-class='submit-hover'>去商城逛逛</button>
+</view>

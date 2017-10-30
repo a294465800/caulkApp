@@ -58,5 +58,12 @@ Page({
     wx.navigateTo({
       url: '/pages/myorder/myorder',
     })
+  },
+
+  //我的购物车
+  goTomyCart() {
+    wx.navigateTo({
+      url: '/pages/mycart/mycart',
+    })
   }
 })
