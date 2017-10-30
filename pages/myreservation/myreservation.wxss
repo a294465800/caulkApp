@@ -126,6 +126,16 @@
   color: #047911;
 }
 
-.reservation-master-btns>view:last-child{
+.reservation-master-btns>view:last-child {
   color: #999;
+}
+
+.none-master {
+  align-items: center;
+  font-size: 14px;
+  color: #999;
+}
+
+.none-master>icon {
+  margin-right: 10rpx;
 }
