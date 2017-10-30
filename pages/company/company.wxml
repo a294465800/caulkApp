@@ -1,7 +1,7 @@
 <!--pages/company/company.wxml-->
 <view class='container'>
   <!--轮播  -->
-  <swiper indicator-dots autoplay interval="5000" duration="1000" class='swiper-images-wrap'>
+  <swiper indicator-dots autoplay indicator-active-color='#047911' interval="5000" duration="1000" class='swiper-images-wrap'>
     <block wx:for="{{imgUrls}}">
       <swiper-item>
         <image mode='aspectFill' src="{{item}}" class="slide-image" class='order-img-item' />

@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/mine/mine",
+    "pages/mymaster/mymaster",
     "pages/myorder/myorder",
     "pages/myreservation/myreservation",
     "pages/mycart/mycart",

@@ -65,5 +65,12 @@ Page({
     wx.navigateTo({
       url: '/pages/mycart/mycart',
     })
+  },
+
+  //我是师傅
+  goToMaster() {
+    wx.navigateTo({
+      url: '/pages/mymaster/mymaster',
+    })
   }
 })

@@ -1,0 +1,73 @@
+<!--pages/mymaster/mymaster.wxml-->
+<view class='container flex-column'>
+
+  <!--导航  -->
+  <view class='nav-wrap flex-row' catchtap='switchNav'>
+    <view class='nav-item {{index == currentNav?"active":""}}' wx:for="{{navs}}" wx:for-item="navItem" wx:key="type" data-type='{{navItem.type}}' data-index='{{index}}'>{{navItem.name}}</view>
+  </view>
+  <!--/导航  -->
+
+  <!--附近单子  -->
+  <view class='master-list {{0===currentNav?"block":""}}'>
+    <view class='flex-bug'>
+      <scroll-view class='scroll' scroll-y>
+        <view class='master-item' wx:for="{{naborLists}}" wx:for-item="naborItem" wx:key="id">
+          <view class='master-item-content-wrap flex-row'>
+            <view class='master-item-content'>
+              <view class='master-item-content-item flex-row'>
+                <image class='people-icon' mode='aspectFit' src='/images/icon/people.png'></image>
+                <view class='master-item-content-item-text'>{{naborItem.name}}</view>
+              </view>
+              <view class='master-item-content-item flex-row'>
+                <image class='phone-icon' mode='aspectFit' src='/images/icon/phone.png'></image>
+                <view class='master-item-content-item-text'>{{naborItem.phone}}</view>
+              </view>
+              <view class='master-item-content-item flex-row'>
+                <image class='address-icon' mode='aspectFit' src='/images/icon/address.png'></image>
+                <view class='master-item-content-item-text'>{{naborItem.address}}</view>
+              </view>
+            </view>
+            <image data-phone='{{naborItem.phone}}' catchtap='call' class='master-item-img' mode='aspectFit' src='/images/icon/call.png'></image>
+          </view>
+          <view class='master-info flex-row'>
+            <view class='master-info-time'>{{naborItem.time}}</view>
+            <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' catchtap='confirmOrder' data-id='{{naborItem.id}}'>我要接单</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <!--/附近单子  -->
+
+  <!--已接单子  -->
+  <view class='master-list {{1===currentNav?"block":""}}'>
+    <view class='flex-bug'>
+      <scroll-view class='scroll' scroll-y>
+        <view class='master-item' wx:for="{{naborLists}}" wx:for-item="okItem" wx:key="id">
+          <view class='master-item-content-wrap flex-row'>
+            <view class='master-item-content'>
+              <view class='master-item-content-item flex-row'>
+                <image class='people-icon' mode='aspectFit' src='/images/icon/people.png'></image>
+                <view class='master-item-content-item-text'>{{okItem.name}}</view>
+              </view>
+              <view class='master-item-content-item flex-row'>
+                <image class='phone-icon' mode='aspectFit' src='/images/icon/phone.png'></image>
+                <view class='master-item-content-item-text'>{{okItem.phone}}</view>
+              </view>
+              <view class='master-item-content-item flex-row'>
+                <image class='address-icon' mode='aspectFit' src='/images/icon/address.png'></image>
+                <view class='master-item-content-item-text'>{{okItem.address}}</view>
+              </view>
+            </view>
+            <image data-phone='{{okItem.phone}}' catchtap='call' class='master-item-img' mode='aspectFit' src='/images/icon/call.png'></image>
+          </view>
+          <view class='master-info'>
+            <view class='master-info-time'>{{okItem.time}}</view>
+            <!-- <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' catchtap='confirmOrder' data-id='{{okItem.id}}'>我要接单</view> -->
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <!--/已接单子  -->
+</view>

@@ -1,0 +1,95 @@
+/* pages/mymaster/mymaster.wxss */
+
+.container {
+  background-color: #eee;
+}
+
+/* 导航 */
+
+.nav-wrap {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.nav-item {
+  text-align: center;
+  flex: 1;
+  font-size: 16px;
+  padding: 20rpx 0 30rpx;
+}
+
+.nav-item.active {
+  border-bottom: 3px solid #047911;
+  color: #047911;
+}
+
+/* 订单列表 */
+
+.master-list {
+  flex: 1;
+  position: relative;
+  display: none;
+}
+
+.master-item {
+  background-color: #fff;
+  padding: 20rpx 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.master-item-img {
+  width: 18px;
+  height: 23px;
+}
+
+.master-item-content-wrap {
+  border-bottom: 1px solid #eee;
+  align-items: center;
+  padding-bottom: 10rpx;
+}
+
+.master-item-content {
+  flex: 1;
+}
+
+.master-item-content-item {
+  align-items: center;
+  margin: 10rpx 0;
+}
+
+.master-item-content-item>image {
+  margin-right: 10rpx;
+}
+
+.master-item-content-item-text {
+  font-size: 16px;
+  color: #333;
+  flex: 1;
+}
+
+.master-info {
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.master-info-time {
+  color: #999;
+  font-size: 14px;
+}
+
+.reservation-info-btn {
+  display: inline-block;
+  font-size: 14px;
+  color: #333;
+  border: 1px solid #333;
+  border-radius: 3px;
+  padding: 15rpx 20rpx;
+  margin-left: 20rpx;
+}
+
+.reservation-info-btn-hover {
+  background-color: #333;
+  color: #fff;
+}
