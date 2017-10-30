@@ -1,5 +1,5 @@
 <!--pages/myreservation/myreservation.wxml-->
-<view class='container'>
+<view class='container flex-column'>
 
   <!--导航  -->
   <view class='nav-wrap flex-row' catchtap='switchNav'>
@@ -9,83 +9,95 @@
 
   <!--已指派  -->
   <view class='reservation-wrap {{0 == currentNav?"block":""}}'>
-    <view class='reservation-item' wx:for="{{sents}}" wx:for-item="sentItem" wx:key="id">
-      <view class='reservation-content'>
-        <view class='reservation-content-item flex-row'>
-          <image class='people-icon' mode='aspectFit' src='/images/icon/people.png'></image>
-          <view class='reservation-content-item-name'>{{sentItem.name}}</view>
+    <view class='flex-bug'>
+      <scroll-view scroll-y class='scroll'>
+        <view class='reservation-item' wx:for="{{sents}}" wx:for-item="sentItem" wx:key="id">
+          <view class='reservation-content'>
+            <view class='reservation-content-item flex-row'>
+              <image class='people-icon' mode='aspectFit' src='/images/icon/people.png'></image>
+              <view class='reservation-content-item-name'>{{sentItem.name}}</view>
+            </view>
+            <view class='reservation-content-item flex-row'>
+              <image class='phone-icon' mode='aspectFit' src='/images/icon/phone.png'></image>
+              <view class='reservation-content-item-name'>{{sentItem.phone}}</view>
+            </view>
+            <view class='reservation-content-item flex-row'>
+              <image class='address-icon' mode='aspectFit' src='/images/icon/address.png'></image>
+              <view class='reservation-content-item-name'>{{sentItem.address}}</view>
+            </view>
+          </view>
+          <view class='reservation-info flex-row'>
+            <view class='reservation-info-time'>{{sentItem.time}}</view>
+            <view class='reservation-info-btns flex-row' data-id='{{sentItem.id}}' catchtap='operationFnc' data-type='sent'>
+              <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='checkMaster' data-master='{{sentItem}}'>查看师傅</view>
+              <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='cancel'>取消订单</view>
+            </view>
+          </view>
         </view>
-        <view class='reservation-content-item flex-row'>
-          <image class='phone-icon' mode='aspectFit' src='/images/icon/phone.png'></image>
-          <view class='reservation-content-item-name'>{{sentItem.phone}}</view>
-        </view>
-        <view class='reservation-content-item flex-row'>
-          <image class='address-icon' mode='aspectFit' src='/images/icon/address.png'></image>
-          <view class='reservation-content-item-name'>{{sentItem.address}}</view>
-        </view>
-      </view>
-      <view class='reservation-info flex-row'>
-        <view class='reservation-info-time'>{{sentItem.time}}</view>
-        <view class='reservation-info-btns flex-row' data-id='{{sentItem.id}}' catchtap='operationFnc' data-type='sent'>
-          <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='checkMaster' data-master='{{sentItem}}'>查看师傅</view>
-          <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='cancel'>取消订单</view>
-        </view>
-      </view>
+      </scroll-view>
     </view>
   </view>
   <!--/已指派  -->
 
   <!--未响应  -->
   <view class='reservation-wrap {{1 == currentNav?"block":""}}'>
-    <view class='reservation-item' wx:for="{{sents}}" wx:for-item="notSentItem" wx:key="id">
-      <view class='reservation-content'>
-        <view class='reservation-content-item flex-row'>
-          <image class='people-icon' mode='aspectFit' src='/images/icon/people.png'></image>
-          <view class='reservation-content-item-name'>{{notSentItem.name}}</view>
+    <view class='flex-bug'>
+      <scroll-view scroll-y class='scroll'>
+        <view class='reservation-item' wx:for="{{sents}}" wx:for-item="notSentItem" wx:key="id">
+          <view class='reservation-content'>
+            <view class='reservation-content-item flex-row'>
+              <image class='people-icon' mode='aspectFit' src='/images/icon/people.png'></image>
+              <view class='reservation-content-item-name'>{{notSentItem.name}}</view>
+            </view>
+            <view class='reservation-content-item flex-row'>
+              <image class='phone-icon' mode='aspectFit' src='/images/icon/phone.png'></image>
+              <view class='reservation-content-item-name'>{{notSentItem.phone}}</view>
+            </view>
+            <view class='reservation-content-item flex-row'>
+              <image class='address-icon' mode='aspectFit' src='/images/icon/address.png'></image>
+              <view class='reservation-content-item-name'>{{notSentItem.address}}</view>
+            </view>
+          </view>
+          <view class='reservation-info flex-row'>
+            <view class='reservation-info-time'>{{notSentItem.time}}</view>
+            <view class='reservation-info-btns flex-row' data-id='{{notSentItem.id}}' catchtap='operationFnc' data-type='sent'>
+              <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='checkMaster' data-master='{{notSentItem}}'>查看师傅</view>
+              <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='cancel'>取消订单</view>
+            </view>
+          </view>
         </view>
-        <view class='reservation-content-item flex-row'>
-          <image class='phone-icon' mode='aspectFit' src='/images/icon/phone.png'></image>
-          <view class='reservation-content-item-name'>{{notSentItem.phone}}</view>
-        </view>
-        <view class='reservation-content-item flex-row'>
-          <image class='address-icon' mode='aspectFit' src='/images/icon/address.png'></image>
-          <view class='reservation-content-item-name'>{{notSentItem.address}}</view>
-        </view>
-      </view>
-      <view class='reservation-info flex-row'>
-        <view class='reservation-info-time'>{{notSentItem.time}}</view>
-        <view class='reservation-info-btns flex-row' data-id='{{notSentItem.id}}' catchtap='operationFnc' data-type='sent'>
-          <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='checkMaster' data-master='{{notSentItem}}'>查看师傅</view>
-          <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='cancel'>取消订单</view>
-        </view>
-      </view>
+      </scroll-view>
     </view>
   </view>
   <!--/未响应  -->
 
   <!--未响应  -->
   <view class='reservation-wrap {{2 == currentNav?"block":""}}'>
-    <view class='reservation-item' wx:for="{{sents}}" wx:for-item="overSentItem" wx:key="id">
-      <view class='reservation-content'>
-        <view class='reservation-content-item flex-row'>
-          <image class='people-icon' mode='aspectFit' src='/images/icon/people.png'></image>
-          <view class='reservation-content-item-name'>{{overSentItem.name}}</view>
+    <view class='flex-bug'>
+      <scroll-view scroll-y class='scroll'>
+        <view class='reservation-item' wx:for="{{sents}}" wx:for-item="overSentItem" wx:key="id">
+          <view class='reservation-content'>
+            <view class='reservation-content-item flex-row'>
+              <image class='people-icon' mode='aspectFit' src='/images/icon/people.png'></image>
+              <view class='reservation-content-item-name'>{{overSentItem.name}}</view>
+            </view>
+            <view class='reservation-content-item flex-row'>
+              <image class='phone-icon' mode='aspectFit' src='/images/icon/phone.png'></image>
+              <view class='reservation-content-item-name'>{{overSentItem.phone}}</view>
+            </view>
+            <view class='reservation-content-item flex-row'>
+              <image class='address-icon' mode='aspectFit' src='/images/icon/address.png'></image>
+              <view class='reservation-content-item-name'>{{overSentItem.address}}</view>
+            </view>
+          </view>
+          <view class='reservation-info flex-row'>
+            <view class='reservation-info-time'>{{overSentItem.time}}</view>
+            <view class='reservation-info-btns flex-row' data-id='{{overSentItem.id}}' catchtap='operationFnc' data-type='sent'>
+              <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='checkMaster' data-master='{{overSentItem}}'>查看师傅</view>
+            </view>
+          </view>
         </view>
-        <view class='reservation-content-item flex-row'>
-          <image class='phone-icon' mode='aspectFit' src='/images/icon/phone.png'></image>
-          <view class='reservation-content-item-name'>{{overSentItem.phone}}</view>
-        </view>
-        <view class='reservation-content-item flex-row'>
-          <image class='address-icon' mode='aspectFit' src='/images/icon/address.png'></image>
-          <view class='reservation-content-item-name'>{{overSentItem.address}}</view>
-        </view>
-      </view>
-      <view class='reservation-info flex-row'>
-        <view class='reservation-info-time'>{{overSentItem.time}}</view>
-        <view class='reservation-info-btns flex-row' data-id='{{overSentItem.id}}' catchtap='operationFnc' data-type='sent'>
-          <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='checkMaster' data-master='{{overSentItem}}'>查看师傅</view>
-        </view>
-      </view>
+      </scroll-view>
     </view>
   </view>
   <!--/未响应  -->

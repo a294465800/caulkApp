@@ -70,6 +70,18 @@ view {
   align-items: center;
 }
 
+.flex-bug {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.scroll {
+  height: 100%;
+  background-color: transparent;
+}
+
 .block {
   display: block !important;
 }

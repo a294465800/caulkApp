@@ -2,7 +2,6 @@
 
 .container {
   background-color: #eee;
-  padding-bottom: 60rpx;
 }
 
 /* 导航 */
@@ -33,12 +32,10 @@
   padding: 20rpx 30rpx 0;
 }
 
-.reservation-item:last-child {
-  margin-bottom: 0;
-}
-
 .reservation-wrap {
   display: none;
+  flex: 1;
+  position: relative;
 }
 
 .reservation-content-item {
