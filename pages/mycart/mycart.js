@@ -56,15 +56,20 @@ Page({
   //删除商品
   deleteCommodity(e) {
     const index = e.currentTarget.dataset.index
+    let sumCart = this.data.sumCart
     let carts = this.data.carts
     wx.showModal({
       title: '提示',
       content: '确定把该商品移出购物车吗？',
       success: (res) => {
         if (res.confirm) {
+          if (sumCart.hasOwnProperty(index)) {
+            delete sumCart[index]
+          }
           carts.splice(index, 1)
+          this.sumALl()
           this.setData({
-            carts
+            carts, sumCart
           })
         }
       }
@@ -73,9 +78,8 @@ Page({
 
   //加入购物车
   chooseItem(e) {
-    // const id = e.currentTarget.dataset.id
     const index = e.currentTarget.dataset.index
-    const sumCart = this.data.sumCart
+    let sumCart = this.data.sumCart
     if (sumCart.hasOwnProperty(index)) {
       delete sumCart[index]
     } else {
