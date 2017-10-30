@@ -68,6 +68,13 @@ Page({
     })
   },
 
+  //接单
+  getOrder() {
+    wx.showToast({
+      title: '接单成功',
+    })
+  },
+
   //拨打电话
   call(e) {
     const phone = e.currentTarget.dataset.phone

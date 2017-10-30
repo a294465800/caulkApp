@@ -39,6 +39,9 @@ Page({
   goToShopItem(e) {
     const id = e.currentTarget.dataset.id
     console.log(id)
+    wx.navigateTo({
+      url: '/pages/commodity/commodity',
+    })
   },
 
 })

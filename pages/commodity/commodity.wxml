@@ -1,0 +1,37 @@
+<!--pages/commodity/commodity.wxml-->
+<view class='container'>
+
+  <!--轮播  -->
+  <swiper indicator-dots autoplay interval="5000" duration="1000" class='swiper-images-wrap' indicator-active-color='#047911'>
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image catchtap='preImg' data-img='{{item}}' mode='aspectFill' src="{{item}}" class="slide-image" class='order-img-item' />
+      </swiper-item>
+    </block>
+  </swiper>
+  <!--/轮播  -->
+
+  <!--商品详情  -->
+  <view class='commodity-content'>
+    <view class='commodity-content-info'>
+      <view class='commodity-content-info-title'>这是一件商品</view>
+      <view class='commodity-content-info-suinfo flex-row'>
+        <view class='commodity-content-info-price'>￥99</view>
+        <view class='commodity-content-info-sell'>已售9件</view>
+      </view>
+    </view>
+  </view>
+  <!--/商品详情  -->
+
+  <!--购买按钮  -->
+  <view class='commodity-buy-btns flex-row'>
+    <!-- <view class='commodity-buy-icons flex-column'>
+      <image class='service-icon' mode='aspectFit' src='/images/icon/service.png'></image>
+      <view>客服</view>
+    </view> -->
+    <view class='commodity-price'>价格：￥99</view>
+    <view class='commodity-buy-btn'>加入购物车</view>
+    <view class='commodity-buy-btn'>立即购买</view>
+  </view>
+  <!--/购买按钮  -->
+</view>

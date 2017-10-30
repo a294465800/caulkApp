@@ -1,0 +1,77 @@
+/* pages/commodity/commodity.wxss */
+
+.container {
+  background-color: #eee;
+  padding-bottom: 160rpx;
+}
+
+/* 商品 */
+
+.commodity-content-info {
+  background-color: #fff;
+  padding: 20rpx 30rpx;
+}
+
+.commodity-content-info-title {
+  font-size: 18px;
+  color: #333;
+}
+
+.commodity-content-info-suinfo {
+  justify-content: space-between;
+  align-content: center;
+  margin-top: 20rpx;
+}
+
+.commodity-content-info-price {
+  color: #f92a54;
+  /* font-size:  */
+}
+
+.commodity-content-info-sell {
+  padding: 10rpx;
+  border-radius: 4px;
+  border: 1px solid #ffac36;
+  color: #ffac36;
+  font-size: 13px;
+}
+
+/* 购买按钮 */
+
+.commodity-buy-btns {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  align-items: center;
+  background-color: #fff;
+}
+
+.commodity-buy-icons {
+  flex: 1;
+  justify-content: center;
+}
+
+.commodity-buy-icons {
+  font-size: 14px;
+  color: #999;
+  padding-left: 40rpx;
+}
+
+.commodity-buy-btn {
+  padding: 30rpx 40rpx;
+  font-size: 16px;
+  color: #fff;
+  background-color: #ffac36;
+}
+
+.commodity-buy-btn:last-of-type {
+  background-color: #fc2a57;
+}
+
+.commodity-price {
+  color: #f92a54;
+  flex: 1;
+  padding-left: 30rpx;
+}

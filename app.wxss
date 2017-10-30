@@ -119,3 +119,8 @@ view {
   width: 13px;
   height: 15px;
 }
+
+.service-icon {
+  width: 21px;
+  height: 23px;
+}

@@ -31,7 +31,7 @@
           </view>
           <view class='master-info flex-row'>
             <view class='master-info-time'>{{naborItem.time}}</view>
-            <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' catchtap='confirmOrder' data-id='{{naborItem.id}}'>我要接单</view>
+            <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' catchtap='getOrder' data-id='{{naborItem.id}}'>我要接单</view>
           </view>
         </view>
       </scroll-view>
