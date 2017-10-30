@@ -30,7 +30,10 @@ App({
   },
 
   //获取地址
-  getAddress(callback) {
+  getAddress(callback, flag) {
+    if (flag) {
+      return false
+    }
     const that = this
     wx.chooseAddress({
       success(res) {
@@ -40,7 +43,7 @@ App({
         wx.openSetting({
           success(res) {
             if (res.authSetting['scope.address']) {
-              that.getAddress(callback)
+              that.getAddress(callback, true)
             }
           }
         })

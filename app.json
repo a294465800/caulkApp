@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/mine/mine",
+    "pages/myorder/myorder",
     "pages/myreservation/myreservation",
     "pages/index/index",
     "pages/book/book",

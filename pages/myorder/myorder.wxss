@@ -1,0 +1,115 @@
+/* pages/myorder/myorder.wxss */
+
+.container {
+  background-color: #eee;
+  padding-bottom: 60rpx;
+}
+
+/* 导航 */
+
+.nav-wrap {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.nav-item {
+  text-align: center;
+  flex: 1;
+  font-size: 16px;
+  padding: 20rpx 0 30rpx;
+}
+
+.nav-item.active {
+  border-bottom: 3px solid #047911;
+  color: #047911;
+}
+
+/* 订单列表 */
+
+.order-item-wrap {
+  background-color: #fff;
+  margin-top: 30rpx;
+}
+
+.order-item-title {
+  justify-content: space-between;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 10rpx 30rpx;
+}
+
+.order-item-title-id {
+  font-size: 15px;
+  color: #444;
+}
+
+.order-item-title-time {
+  color: #888;
+  font-size: 13px;
+}
+
+.order-item-content {
+  padding: 20rpx 30rpx;
+  border-bottom: 1px solid #ddd;
+}
+
+.order-item-content-img {
+  width: 200rpx;
+  height: 200rpx;
+  margin-right: 20rpx;
+}
+
+.order-item-content-content {
+  flex: 1;
+  justify-content: space-between;
+}
+
+.order-item-content-content-title {
+  max-width: 460rpx;
+  font-size: 16px;
+}
+
+.order-item-content-content-type {
+  color: #888;
+  font-size: 14px;
+  justify-content: space-between;
+}
+
+.order-item-content-content-price {
+  font-size: 16px;
+  text-align: right;
+  color: #fc2a57;
+}
+
+.order-item-price {
+  text-align: right;
+  font-size: 14px;
+  color: #444;
+  padding: 20rpx 30rpx;
+  justify-content: space-between;
+}
+
+.order-item-btns {
+  text-align: right;
+  padding: 0 30rpx 20rpx;
+}
+
+.reservation-info-btn {
+  display: inline-block;
+  font-size: 14px;
+  color: #333;
+  border: 1px solid #333;
+  border-radius: 3px;
+  padding: 15rpx 20rpx;
+  margin-left: 20rpx;
+}
+
+.reservation-info-btn-hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.confirm-text {
+  color: #fc2a57;
+}

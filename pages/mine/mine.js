@@ -51,5 +51,12 @@ Page({
     wx.navigateTo({
       url: '/pages/myreservation/myreservation',
     })
+  },
+
+  //我的订单
+  goTomyOrder() {
+    wx.navigateTo({
+      url: '/pages/myorder/myorder',
+    })
   }
 })
