@@ -124,3 +124,8 @@ view {
   width: 21px;
   height: 23px;
 }
+
+.arrow-down-icon {
+  width: 13px;
+  height: 10px;
+}

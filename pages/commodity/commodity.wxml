@@ -3,7 +3,7 @@
 
   <!--轮播  -->
   <swiper indicator-dots autoplay interval="5000" duration="1000" class='swiper-images-wrap' indicator-active-color='#047911'>
-    <block wx:for="{{imgUrls}}">
+    <block wx:for="{{commodity.imgUrls}}">
       <swiper-item>
         <image catchtap='preImg' data-img='{{item}}' mode='aspectFill' src="{{item}}" class="slide-image" class='order-img-item' />
       </swiper-item>
@@ -14,11 +14,50 @@
   <!--商品详情  -->
   <view class='commodity-content'>
     <view class='commodity-content-info'>
-      <view class='commodity-content-info-title'>这是一件商品</view>
+      <view class='commodity-content-info-title'>{{commodity.title}}</view>
       <view class='commodity-content-info-suinfo flex-row'>
-        <view class='commodity-content-info-price'>￥99</view>
-        <view class='commodity-content-info-sell'>已售9件</view>
+        <view class='commodity-content-info-price'>￥{{commodity.price}}</view>
+        <view class='commodity-content-info-sell'>已售{{commodity.sell}}件</view>
       </view>
+    </view>
+  </view>
+  <!--/商品详情  -->
+
+  <!--商品描述  -->
+  <view class='commodity-item'>
+    <view class='commodity-item-title flex-row'>
+      <view class='commodity-item-title-text'>商品描述</view>
+      <image class='arrow-down-icon' mode='aspectFit' src='/images/icon/arrow_down.png'></image>
+    </view>
+    <view class='commodity-item-content'>{{commodity.description}}</view>
+  </view>
+  <!--/商品描述  -->
+
+  <!--商品规格  -->
+  <view class='commodity-item'>
+    <view class='commodity-item-title flex-row'>
+      <view class='commodity-item-title-text'>商品规格</view>
+      <image class='arrow-down-icon' mode='aspectFit' src='/images/icon/arrow_down.png'></image>
+    </view>
+    <view class='commodity-item-content'>
+      <view class='commodity-item-content-item flex-row' wx:for="{{commodity.type}}" wx:for-item="typeItem" wx:key="id">
+        <view class='commodity-item-content-item-type'>{{typeItem.name}}</view>
+        <view>
+          <block wx:for="{{typeItem.items}}">{{item}}</block>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--/商品规格  -->
+
+  <!--商品详情  -->
+  <view class='commodity-item'>
+    <view class='commodity-item-title flex-row'>
+      <view class='commodity-item-title-text'>商品详情</view>
+      <image class='arrow-down-icon' mode='aspectFit' src='/images/icon/arrow_down.png'></image>
+    </view>
+    <view class='commodity-item-imgs'>
+      <image wx:for="{{commodity.details}}" class='commodity-item-img' mode='widthFix' src='{{item}}'></image>
     </view>
   </view>
   <!--/商品详情  -->
@@ -30,8 +69,52 @@
       <view>客服</view>
     </view> -->
     <view class='commodity-price'>价格：￥99</view>
-    <view class='commodity-buy-btn'>加入购物车</view>
-    <view class='commodity-buy-btn'>立即购买</view>
+    <view class='commodity-buy-btn' catchtap='addToCart'>加入购物车</view>
+    <view class='commodity-buy-btn' catchtap='singleBuy'>立即购买</view>
   </view>
   <!--/购买按钮  -->
+
+  <!--商品购买弹窗  -->
+  <view class='commodity-box-wrap {{buyNow?"active":""}}' catchtap='closeBox'>
+    <view class='commodity-box {{buyNow?"active":""}} flex-column' catchtap='showBox'>
+      <view class='commodity-box-top'>
+        <view class='commodity-box-title flex-row'>
+          <view class='commodity-box-title-info flex-row'>
+            <image class='commodity-box-title-img' mode='aspectFill' src='{{commodity.imgUrls[0]}}'></image>
+            <view class='commodity-box-title-plus'>
+              <view class='commodity-box-title-price'>￥{{waittingBuy.price}}</view>
+              <view class='commodity-box-title-current'>已选：黑色 43</view>
+            </view>
+          </view>
+          <view class='commodity-box-close' catchtap='closeBox'>X</view>
+        </view>
+        <view class='commodity-box-type-wrap'>
+          <view class='commodity-box-type'>
+            <view class='commodity-box-type-title'>颜色</view>
+            <view class='commodity-box-type-items flex-row'>
+              <view class='commodity-box-type-item active'>白底</view>
+              <view class='commodity-box-type-item'>黑底</view>
+            </view>
+          </view>
+          <view class='commodity-box-type'>
+            <view class='commodity-box-type-title'>尺寸</view>
+            <view class='commodity-box-type-items flex-row'>
+              <view class='commodity-box-type-item'>白底</view>
+              <view class='commodity-box-type-item'>黑底</view>
+            </view>
+          </view>
+        </view>
+        <view class='commodity-box-num flex-row'>
+          <view>数量</view>
+          <view class='cart-item-content-info-btns flex-row' catchtap='operation'>
+            <view class='cart-item-content-info-delete' data-operation='delete' hover-class='cart-item-content-info-delete-hover' hover-stay-time='100'>-</view>
+            <view class='cart-item-content-info-text'>1</view>
+            <view class='cart-item-content-info-plus' data-operation='add' hover-class='cart-item-content-info-plus-hover' hover-stay-time='100'>+</view>
+          </view>
+        </view>
+      </view>
+      <view class='commodity-box-confirm {{btnText == "直接购买"?"red":"orange"}}'>{{btnText}}</view>
+    </view>
+  </view>
+  <!--/商品购买弹窗  -->
 </view>
