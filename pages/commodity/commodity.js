@@ -107,16 +107,16 @@ Page({
     })
   },
 
-  //加入购物车
-  addToCart() {
+  //加入购物车显示
+  addToCartText() {
     this.setData({
       buyNow: true,
       btnText: '加入购物车'
     })
   },
 
-  //直接购买
-  singleBuy() {
+  //直接购买显示
+  singleBuyText() {
     this.setData({
       buyNow: true,
       btnText: '直接购买'
@@ -136,4 +136,20 @@ Page({
       buyNow: true
     })
   },
+
+  //直接购买
+  singleBuy() {
+    wx.setStorage({
+      key: 'cart',
+      data: JSON.stringify(this.data.commodity),
+    })
+    wx.navigateTo({
+      url: '/pages/buyconfirm/buyconfirm?type=single&price=' + this.data.waittingBuy.price,
+    })
+  },
+
+  //加入购物车
+  addToCart() {
+
+  }
 })

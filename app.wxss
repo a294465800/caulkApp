@@ -129,3 +129,8 @@ view {
   width: 13px;
   height: 10px;
 }
+
+.more-icon {
+  width: 10px;
+  height: 15px;
+}

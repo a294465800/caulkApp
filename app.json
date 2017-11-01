@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/buyconfirm/buyconfirm",
     "pages/commodity/commodity",
     "pages/mine/mine",
     "pages/mymaster/mymaster",

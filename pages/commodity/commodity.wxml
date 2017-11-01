@@ -69,8 +69,8 @@
       <view>客服</view>
     </view> -->
     <view class='commodity-price'>价格：￥99</view>
-    <view class='commodity-buy-btn' catchtap='addToCart'>加入购物车</view>
-    <view class='commodity-buy-btn' catchtap='singleBuy'>立即购买</view>
+    <view class='commodity-buy-btn' catchtap='addToCartText'>加入购物车</view>
+    <view class='commodity-buy-btn' catchtap='singleBuyText'>立即购买</view>
   </view>
   <!--/购买按钮  -->
 
@@ -113,7 +113,7 @@
           </view>
         </view>
       </view>
-      <view class='commodity-box-confirm {{btnText == "直接购买"?"red":"orange"}}'>{{btnText}}</view>
+      <view class='commodity-box-confirm {{btnText == "直接购买"?"red":"orange"}}' catchtap='{{btnText == "直接购买"?"singleBuy":"addToCart"}}'>{{btnText}}</view>
     </view>
   </view>
   <!--/商品购买弹窗  -->

@@ -1,0 +1,54 @@
+<!--pages/buyconfirm/buyconfirm.wxml-->
+<view class='container flex-column'>
+  <view class='flex-wrap'>
+    <view class='flex-bug'>
+      <scroll-view class='scroll' scroll-y>
+        <view class='commodity-list'>
+          <view class='cart-item' catchlongpress='deleteCommodity' catchtap='chooseItem' wx:for="{{carts}}" wx:for-item="cartItem" wx:key="id" data-index='{{index}}'>
+            <view class='cart-item-content flex-row'>
+              <image class='cart-item-content-img' mode='aspectFit' src='{{cartItem.url}}'></image>
+              <view class='cart-item-content-info flex-column'>
+                <view class='cart-item-content-info-title multi-two-text-flow'>{{cartItem.title}}</view>
+                <view class='cart-item-content-info-type'>{{cartItem.type}}</view>
+                <view class='cart-item-content-info-operation flex-row'>
+                  <view class='cart-item-content-info-price'>￥{{cartItem.price}}</view>
+                  <view class='cart-item-content-number'>x {{cartItem.num}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <view class='confirm-item flex-row' catchtap='addAddress'>
+          <view class='confirm-item-name'>添加地址</view>
+          <image class='more-icon' mode='aspectFit' src='/images/icon/more.png'></image>
+        </view>
+
+        <block wx:if="{{address}}">
+          <view class='confirm-item'>当前地址：{{address}}</view>
+        </block>
+
+        <view class='confirm-item flex-row margin-top'>
+          <view class='confirm-item-name'>商品金额</view>
+          <view class='confirm-item-price'>￥{{price}}</view>
+        </view>
+        <view class='confirm-item flex-row margin-bottom'>
+          <view class='confirm-item-name'>运费</view>
+          <view class='confirm-item-price'>￥0</view>
+        </view>
+
+        <view class='confirm-remark-wrap'>
+          <view class='confirm-remark-title'>买家留言</view>
+          <textarea class='confirm-textarea' maxlength='200' placeholder='（选填，填写本次交易的说明）'></textarea>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!--购买  -->
+  <view class='cart-buy flex-row'>
+    <view class='cart-buy-price'>总计：￥{{price}}</view>
+    <view class='cart-buy-btn' hover-class='cart-buy-btn-hover' hover-stay-time='150' catchtap='payForIt'>确认付款</view>
+  </view>
+  <!--/购买  -->
+</view>

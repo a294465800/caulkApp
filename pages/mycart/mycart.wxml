@@ -28,7 +28,7 @@
   <!--购买  -->
   <view class='cart-buy flex-row'>
     <view class='cart-buy-price'>总计：￥{{wholePrice}}</view>
-    <view class='cart-buy-btn' hover-class='cart-buy-btn-hover' hover-stay-time='150' catchtap='payForIt'>确认付款</view>
+    <view class='cart-buy-btn' hover-class='cart-buy-btn-hover' hover-stay-time='150' catchtap='payForIt'>下一步</view>
   </view>
   <!--/购买  -->
 </view>

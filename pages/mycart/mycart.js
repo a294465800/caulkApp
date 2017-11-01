@@ -50,7 +50,8 @@ Page({
         type: '天蓝 3L',
         price: 22,
         url: 'https://img.alicdn.com/bao/uploaded/i3/2074861905/TB1RAjsXrsTMeJjy1zbXXchlVXa_!!0-item_pic.jpg_b.jpg'
-      }]
+      }
+    ]
   },
 
   //删除商品
@@ -119,6 +120,9 @@ Page({
     this.setData({
       [str]: num
     })
+
+    //更新购物车
+    this.sumALl()
   },
 
   //增加数值
@@ -133,6 +137,7 @@ Page({
     this.setData({
       [str]: num <= 99 ? num : 99
     })
+    this.sumALl()
   },
 
   //统计总价钱和购买的商品
@@ -168,20 +173,13 @@ Page({
     const payItems = this.data.payCommodities
     const wholePrice = this.data.wholePrice
     if (payItems.length) {
-      wx.showModal({
-        title: '提示',
-        content: '你选中了' + payItems.length + '件商品，总计' + wholePrice + '元，确认付款吗？',
-        success(res) {
-          if (res.confirm) {
-            wx.showToast({
-              title: '购买成功',
-            })
-          } else {
-            wx.showToast({
-              title: '已取消',
-            })
-          }
-        }
+
+      wx.setStorage({
+        key: 'carts',
+        data: JSON.stringify(payItems),
+      })
+      wx.navigateTo({
+        url: '/pages/buyconfirm/buyconfirm?type=cart&price=' + wholePrice,
       })
     } else {
       wx.showModal({
