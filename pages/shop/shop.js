@@ -1,16 +1,22 @@
 // pages/shop/shop.js
 const app = getApp()
+let timer
 Page({
 
   data: {
 
-    loading: true,
+    // loading: true,
 
     imgUrls: [
       'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
     ],
+
+    flag: false,
+    page: 1,
+
+    searchTitle: '',
 
     //接口数据
     shops: []
@@ -20,9 +26,48 @@ Page({
     app._api.getCommodities('', res => {
       this.setData({
         shops: res.data.data,
-        loading: false
+        // loading: false
       })
     })
+  },
+
+  //触底刷新
+  onReachBottom() {
+    const page = this.data.page
+    const flag = this.data.flag
+    if (flag) {
+      return false
+    }
+    app._api.getCommodities({ title: this.data.searchTitle, page: page + 1 }, res => {
+      const data = res.data.data
+      if (data.length) {
+        this.setData({
+          shops: [...this.data.shops, ...data],
+          page: page + 1
+        })
+      } else {
+        this.setData({
+          page: page + 1,
+          flag: true
+        })
+      }
+    })
+  },
+
+  //商品搜索
+  searchCommodity(e) {
+    const value = e.detail.value
+    clearInterval(timer)
+    timer = setInterval(() => {
+      clearInterval(timer)
+      app._api.getCommodities({ title: value }, res => {
+        this.setData({
+          shops: res.data.data,
+          // loading: false
+          searchTitle: value,
+        })
+      })
+    }, 500)
   },
 
   // 具体商品跳转
