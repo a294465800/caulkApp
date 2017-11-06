@@ -147,12 +147,42 @@ const api = {
   },
 
   /**
+   * 付款，向微信获取订单号
+   * @params {object} data {address, (description), token, products}
+   * @params {function} cb 回调
+   */
+  postPorduct(data, cb){
+    _http.post(`${host}order`, data)
+      .then(res => {
+        typeof cb === 'function' && cb(res)
+      })
+      .catch(err => {
+        errFnc(err)
+      })
+  },
+
+  /**
    * 获取我的预约
-   * @params {object} data {uid, state, (page), (limit)}
+   * @params {object} data {token, state, (page), (limit)}
    * @params cb 回调
    */
   getMyReserve(data, cb) {
     _http.get(`${host}my/reserves`, data)
+      .then(res => {
+        typeof cb === 'function' && cb(res)
+      })
+      .catch(err => {
+        errFnc(err)
+      })
+  },
+
+  /**
+   * 获取我的订单
+   * @params {object} data {token, state, (page), (limit)}
+   * @params {function} cb 回调
+   */
+  getMyOrder(data, cb){
+    _http.get(`${host}my/orders`, data)
       .then(res => {
         typeof cb === 'function' && cb(res)
       })

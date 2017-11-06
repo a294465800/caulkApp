@@ -1,4 +1,17 @@
 <!--pages/buyconfirm/buyconfirm.wxml-->
+<wxs module="m1">
+  var finialPrice = function(carts) {
+    var end_price = 0
+    for (var i = 0; i < carts.length; i++) {
+      end_price += carts[i].final_num * carts[i].price
+    }
+
+    return end_price
+  }
+
+  module.exports.finialPrice = finialPrice;
+</wxs>
+
 <view class='container flex-column'>
   <view class='flex-wrap'>
     <view class='flex-bug'>
@@ -9,10 +22,15 @@
               <image class='cart-item-content-img' mode='aspectFit' src='{{cartItem.url}}'></image>
               <view class='cart-item-content-info flex-column'>
                 <view class='cart-item-content-info-title multi-two-text-flow'>{{cartItem.title}}</view>
-                <view class='cart-item-content-info-type'>{{cartItem.type}}</view>
+                <view class='cart-item-content-info-type'>
+                  <block wx:if="{{cartItem.attrs && cartItem.attrs.length}}">
+                    <block wx:for="{{cartItem.attrs}}">{{item}}
+                    </block>
+                  </block>
+                </view>
                 <view class='cart-item-content-info-operation flex-row'>
                   <view class='cart-item-content-info-price'>￥{{cartItem.price}}</view>
-                  <view class='cart-item-content-number'>x {{cartItem.num}}</view>
+                  <view class='cart-item-content-number'>x {{cartItem.final_num}}</view>
                 </view>
               </view>
             </view>
@@ -24,13 +42,13 @@
           <image class='more-icon' mode='aspectFit' src='/images/icon/more.png'></image>
         </view>
 
-        <block wx:if="{{address}}">
-          <view class='confirm-item'>当前地址：{{address}}</view>
+        <block wx:if="{{submitForm.address}}">
+          <view class='confirm-item'>当前地址：{{submitForm.address}}</view>
         </block>
 
         <view class='confirm-item flex-row margin-top'>
           <view class='confirm-item-name'>商品金额</view>
-          <view class='confirm-item-price'>￥{{price}}</view>
+          <view class='confirm-item-price'>￥{{m1.finialPrice(carts)}}</view>
         </view>
         <view class='confirm-item flex-row margin-bottom'>
           <view class='confirm-item-name'>运费</view>
@@ -39,7 +57,7 @@
 
         <view class='confirm-remark-wrap'>
           <view class='confirm-remark-title'>买家留言</view>
-          <textarea class='confirm-textarea' maxlength='200' placeholder='（选填，填写本次交易的说明）'></textarea>
+          <textarea class='confirm-textarea' maxlength='200' placeholder='（选填，填写本次交易的说明）' bindinput="getTextarea"></textarea>
         </view>
       </scroll-view>
     </view>
@@ -47,8 +65,8 @@
 
   <!--购买  -->
   <view class='cart-buy flex-row'>
-    <view class='cart-buy-price'>总计：￥{{price}}</view>
-    <view class='cart-buy-btn' hover-class='cart-buy-btn-hover' hover-stay-time='150' catchtap='payForIt'>确认付款</view>
+    <view class='cart-buy-price'>总计：￥{{m1.finialPrice(carts)}}</view>
+    <view class='cart-buy-btn' hover-class='cart-buy-btn-hover' hover-stay-time='150' catchtap='payForIt' data-price='{{m1.finialPrice(carts)}}'>确认付款</view>
   </view>
   <!--/购买  -->
 </view>

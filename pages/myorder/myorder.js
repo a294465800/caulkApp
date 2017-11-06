@@ -5,18 +5,23 @@ Page({
   data: {
     //导航
     currentNav: 0,
+    currentType: 0,
     navs: [
       {
-        type: 1,
+        type: 0,
         name: '待收货',
       },
       {
-        type: 2,
+        type: 1,
         name: '已完成',
       }
     ],
 
     //模拟数据
+    orders: {
+      0: [],
+      1: []
+    },
     orders: [
       {
         id: 1,
@@ -63,16 +68,34 @@ Page({
     ]
   },
 
+  onLoad() {
+    app._api.getMyOrder({ token: app.globalData._token, state: 0 }, res => {
+      this.setData({
+        'orders[0]': res.data.data
+      })
+    })
+  },
+
   //导航切换
   switchNav(e) {
     const index = e.target.dataset.index
     const type = e.target.dataset.type
+    const tmp = `orders[${type}]`
     if (index === this.data.currentNav) {
       return false
     }
-    this.setData({
-      currentNav: index
-    })
+    if (this.orders[type] && this.orders[type].length > 0) {
+      this.setData({
+        currentNav: index
+      })
+    } else {
+      app._api.getMyOrder({ token: app.globalData._token, state: type }, res => {
+        this.setData({
+          [tmp]: res.data.data,
+          currentNav: index
+        })
+      })
+    }
   },
 
   //确认收货

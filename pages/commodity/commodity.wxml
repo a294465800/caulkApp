@@ -82,7 +82,7 @@
           <view class='commodity-box-title-info flex-row'>
             <image class='commodity-box-title-img' mode='aspectFill' src='{{commodity.pictures[0]}}'></image>
             <view class='commodity-box-title-plus'>
-              <view class='commodity-box-title-price'>￥{{currentCommdity?currentCommdity.price : '0'}}</view>
+              <view class='commodity-box-title-price'>￥{{currentCommdity?currentCommdity.price * waittingBuy.final_num: 0}}</view>
               <view class='commodity-box-title-current'>已选：
                 <block wx:if="{{currentCommdity}}">
                   <block wx:for="{{currentCommdity.attrs}}">{{item}} </block>
@@ -98,7 +98,7 @@
           <view class='commodity-box-type' wx:for="{{commodity.standards}}" wx:key="id" wx:for-item="standard">
             <view class='commodity-box-type-title'>{{standard.title}}</view>
             <view class='commodity-box-type-items flex-row'>
-              <view class='commodity-box-type-item {{standardList[standard.id] == attr.id?"active": ""}}' catchtap='chooseStandard' data-standard_id='{{standard.id}}' data-id='{{attr.id}}' wx:for="{{standard.attrs}}" wx:for-item="attr" wx:key="id">{{attr.title}}</view>
+              <view class='commodity-box-type-item {{standardList[standard.id] == attr.id?"active": ""}}' catchtap='chooseStandard' data-standard_id='{{standard.id}}' data-title='{{attr.title}}' data-id='{{attr.id}}' wx:for="{{standard.attrs}}" wx:for-item="attr" wx:key="id">{{attr.title}}</view>
             </view>
           </view>
         </view>
@@ -106,7 +106,7 @@
           <view>数量（当前库存：{{currentCommdity?currentCommdity.stock: '0'}}）</view>
           <view class='cart-item-content-info-btns flex-row' catchtap='operation'>
             <view class='cart-item-content-info-delete' data-operation='delete' hover-class='cart-item-content-info-delete-hover' hover-stay-time='100'>-</view>
-            <view class='cart-item-content-info-text'>{{waittingBuy.num}}</view>
+            <view class='cart-item-content-info-text'>{{waittingBuy.final_num}}</view>
             <view class='cart-item-content-info-plus' data-operation='add' hover-class='cart-item-content-info-plus-hover' hover-stay-time='100'>+</view>
           </view>
         </view>

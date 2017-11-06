@@ -14,8 +14,7 @@ Page({
 
     //购买商品的数据
     waittingBuy: {
-      num: 1,
-      price: 99,
+      final_num: 1,
     },
 
     //规格表
@@ -27,37 +26,8 @@ Page({
 
     currentCommdity: null,
 
-    //模拟数据
-
-    commodity: {
-      id: 1,
-      imgUrls: [
-        'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg'
-      ],
-      title: '这是一件商品',
-      price: 99,
-      sell: 9,
-      description: '这是一大段商品描述。。。。。。。。。。。。。。。。',
-      type: [
-        {
-          id: 1,
-          name: '规格一',
-          items: ['红色', '蓝色', '白色'],
-        },
-        {
-          id: 2,
-          name: '规格二',
-          items: ['红色', '蓝色', '白色'],
-        }
-      ],
-      details: [
-        'http://img04.taobaocdn.com/bao/uploaded/i4/TB1suLDOpXXXXc3XXXXXXXXXXXX_!!0-item_pic.jpg',
-        'https://cbu01.alicdn.com/img/ibank/2017/924/859/4068958429_1902505327.310x310.jpg',
-        'http://www.xayijiayi.com/uploads/140611/xiangyajin.jpg'
-      ]
-    }
+    //接口数据
+    commodity: {}
   },
 
   onLoad(options) {
@@ -96,15 +66,16 @@ Page({
   chooseStandard(e) {
     const standard_id = e.currentTarget.dataset.standard_id
     const id = e.currentTarget.dataset.id
+    // const title = e.currentTarget.dataset.title
     let statusList = this.data.standardList
-    // const tmp = `standardList[${standard_id}]`
     let tmpArr = []
-    // console.log(status, feature, standard_id)
+    // let tmpTitle = []
     if (statusList[standard_id] == id) {
       statusList[standard_id] = ''
       for (let it in statusList) {
         if (statusList[it]) {
           tmpArr.push(statusList[it])
+          // tmpTitle.push()
         }
       }
       this.setData({
@@ -123,7 +94,6 @@ Page({
         feature: tmpArr
       })
     }
-    console.log(tmpArr)
     app._api.getCommodityStandard({ feature: tmpArr }, res => {
       this.setData({
         currentCommdity: res.data.data
@@ -133,36 +103,45 @@ Page({
 
   //删除数值
   deleteNum(e) {
-    let num = this.data.waittingBuy.num - 1
+    const currentCommdity = this.data.currentCommdity
+    if (!currentCommdity) {
+      return false
+    }
+    let num = this.data.waittingBuy.final_num - 1
     if (num <= 0) {
       return false
     }
-    this.sumSingle(this.data.commodity.price, -1)
+    // this.sumSingle(currentCommdity.price, -1)
     this.setData({
-      'waittingBuy.num': num
+      'waittingBuy.final_num': num
     })
   },
 
   //增加数值
   addNum(e) {
-    let num = this.data.waittingBuy.num + 1
-    if (num > 99) {
+    const currentCommdity = this.data.currentCommdity
+    if (currentCommdity && currentCommdity.stock > this.data.waittingBuy.final_num) {
+      let num = this.data.waittingBuy.final_num + 1
+      if (num > 99) {
+        return false
+      }
+      // this.sumSingle(currentCommdity.price, 1)
+      this.setData({
+        'waittingBuy.final_num': num <= 99 ? num : 99
+      })
+    } else {
       return false
     }
-    this.sumSingle(this.data.commodity.price, 1)
-    this.setData({
-      'waittingBuy.num': num <= 99 ? num : 99
-    })
   },
 
   //单次价格统计
-  sumSingle(price, num) {
-    let old_price = this.data.waittingBuy.price
-    old_price += price * num
-    this.setData({
-      'waittingBuy.price': old_price
-    })
-  },
+  // sumSingle(price, num) {
+  //   let old_price = this.data.waittingBuy.final_price
+  //   old_price += price * num
+  //   this.setData({
+  //     'waittingBuy.final_price': old_price >= 0 ? old_price : 0
+  //   })
+  // },
 
   //加入购物车显示
   addToCartText() {
@@ -196,12 +175,30 @@ Page({
 
   //直接购买
   singleBuy() {
+    const currentCommdity = this.data.currentCommdity
+    if (!currentCommdity) {
+      wx.showModal({
+        title: '提示',
+        content: '请选择正确商品',
+        showCancel: false
+      })
+      return false
+    }
+    if (currentCommdity.stock == 0) {
+      wx.showModal({
+        title: '提示',
+        content: '该商品已经没有库存了',
+        showCancel: false
+      })
+      return false
+    }
+    let buyCommodity = Object.assign(currentCommdity, this.data.waittingBuy, { title: this.data.commodity.title, url: this.data.commodity.pictures[0] })
     wx.setStorage({
       key: 'cart',
-      data: JSON.stringify(this.data.commodity),
+      data: JSON.stringify(this.data.currentCommdity),
     })
     wx.navigateTo({
-      url: '/pages/buyconfirm/buyconfirm?type=single&price=' + this.data.waittingBuy.price,
+      url: '/pages/buyconfirm/buyconfirm?type=single',
     })
   },
 

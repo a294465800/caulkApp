@@ -3,43 +3,67 @@ const app = getApp()
 Page({
 
   data: {
-    address: '',
-    price: '',
     currentType: '',
 
-    carts: null,
+    carts: [],
+
+    submitForm: {
+      address: '',
+      description: '',
+      products: []
+    }
   },
 
   onLoad(options) {
     const operation = options.type
-    const price = options.price || 0
+    let carts = []
     if (operation === 'single') {
-      const carts = [JSON.parse(wx.getStorageSync('cart'))]
+      carts = [JSON.parse(wx.getStorageSync('cart'))]
       const currentType = 'cart'
       this.setData({
-        price, carts, currentType
+        carts, currentType
       })
     } else {
-      const carts = JSON.parse(wx.getStorageSync('carts'))
+      carts = JSON.parse(wx.getStorageSync('carts'))
       const currentType = 'carts'
       this.setData({
-        price, carts, currentType
+        carts, currentType
       })
     }
+
+    //制造 post 数据
+    let tmpPost = []
+    for (let it in carts) {
+      tmpPost.push({ id: carts[it].id, number: carts[it].final_num })
+    }
+    console.log(tmpPost)
+    this.setData({
+      'submitForm.products': tmpPost
+    })
   },
 
   //添加地址
   addAddress() {
     app.getAddress(res => {
       this.setData({
-        address: res.provinceName + res.cityName + res.countyName + res.detailInfo
+        'submitForm.address': res.provinceName + res.cityName + res.countyName + res.detailInfo
       })
     })
   },
 
+  //获取 textarea
+  getTextarea(e) {
+    this.setData({
+      'submitForm.description': e.detail.value
+    })
+  },
+
   //付款
-  payForIt() {
-    if (!this.data.address) {
+  payForIt(e) {
+    const price = e.currentTarget.dataset.price
+    const submitForm = this.data.submitForm
+    let endForm = Object.assign(submitForm, { token: app.globalData._token })
+    if (!submitForm.address) {
       wx.showModal({
         title: '提示',
         content: '请先选择地址',
@@ -49,14 +73,30 @@ Page({
     }
     wx.showModal({
       title: '提示',
-      content: '你选中了' + this.data.carts.length + '件商品，总计' + this.data.price + '元，确认付款吗？',
+      content: '你选中了' + this.data.carts.length + '件商品，总计' + price + '元，确认付款吗？',
       success(res) {
         if (res.confirm) {
-          wx.showToast({
-            title: '购买成功',
-          })
-          wx.removeStorage({
-            key: this.data.currentType,
+          app._api.postPorduct(endForm, res => {
+            wx.requestPayment({
+              timeStamp: res.data.data.timeStamp,
+              nonceStr: res.data.data.nonceStr,
+              package: res.data.data.package,
+              signType: res.data.data.signType,
+              paySign: res.data.data.paySign,
+              success: success => {
+                wx.showToast({
+                  title: '购买成功',
+                })
+                wx.removeStorage({
+                  key: this.data.currentType,
+                })
+              },
+              fail: fail => {
+                wx.showToast({
+                  title: '已取消',
+                })
+              }
+            })
           })
         } else {
           wx.showToast({
