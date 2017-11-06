@@ -3,7 +3,7 @@
 
   <!--轮播  -->
   <swiper indicator-dots autoplay interval="5000" duration="1000" class='swiper-images-wrap' indicator-active-color='#047911'>
-    <block wx:for="{{commodity.imgUrls}}">
+    <block wx:for="{{commodity.pictures}}">
       <swiper-item>
         <image catchtap='preImg' data-img='{{item}}' mode='aspectFill' src="{{item}}" class="slide-image" class='order-img-item' />
       </swiper-item>
@@ -17,7 +17,7 @@
       <view class='commodity-content-info-title'>{{commodity.title}}</view>
       <view class='commodity-content-info-suinfo flex-row'>
         <view class='commodity-content-info-price'>￥{{commodity.price}}</view>
-        <view class='commodity-content-info-sell'>已售{{commodity.sell}}件</view>
+        <view class='commodity-content-info-sell'>已售{{commodity.sales}}件</view>
       </view>
     </view>
   </view>
@@ -40,10 +40,10 @@
       <image class='arrow-down-icon' mode='aspectFit' src='/images/icon/arrow_down.png'></image>
     </view>
     <view class='commodity-item-content'>
-      <view class='commodity-item-content-item flex-row' wx:for="{{commodity.type}}" wx:for-item="typeItem" wx:key="id">
-        <view class='commodity-item-content-item-type'>{{typeItem.name}}</view>
+      <view class='commodity-item-content-item flex-row' wx:for="{{commodity.standards}}" wx:for-item="typeItem" wx:key="id">
+        <view class='commodity-item-content-item-type'>{{typeItem.title}}</view>
         <view>
-          <block wx:for="{{typeItem.items}}">{{item}}</block>
+          <block wx:for="{{typeItem.attrs}}" wx:for-item="attr" wx:key="id">{{attr.title}}、</block>
         </view>
       </view>
     </view>
@@ -80,35 +80,33 @@
       <view class='commodity-box-top'>
         <view class='commodity-box-title flex-row'>
           <view class='commodity-box-title-info flex-row'>
-            <image class='commodity-box-title-img' mode='aspectFill' src='{{commodity.imgUrls[0]}}'></image>
+            <image class='commodity-box-title-img' mode='aspectFill' src='{{commodity.pictures[0]}}'></image>
             <view class='commodity-box-title-plus'>
-              <view class='commodity-box-title-price'>￥{{waittingBuy.price}}</view>
-              <view class='commodity-box-title-current'>已选：黑色 43</view>
+              <view class='commodity-box-title-price'>￥{{currentCommdity?currentCommdity.price : '0'}}</view>
+              <view class='commodity-box-title-current'>已选：
+                <block wx:if="{{currentCommdity}}">
+                  <block wx:for="{{currentCommdity.attrs}}">{{item}} </block>
+                </block>
+                <block wx:else>
+                </block>
+              </view>
             </view>
           </view>
           <view class='commodity-box-close' catchtap='closeBox'>X</view>
         </view>
         <view class='commodity-box-type-wrap'>
-          <view class='commodity-box-type'>
-            <view class='commodity-box-type-title'>颜色</view>
+          <view class='commodity-box-type' wx:for="{{commodity.standards}}" wx:key="id" wx:for-item="standard">
+            <view class='commodity-box-type-title'>{{standard.title}}</view>
             <view class='commodity-box-type-items flex-row'>
-              <view class='commodity-box-type-item active'>白底</view>
-              <view class='commodity-box-type-item'>黑底</view>
-            </view>
-          </view>
-          <view class='commodity-box-type'>
-            <view class='commodity-box-type-title'>尺寸</view>
-            <view class='commodity-box-type-items flex-row'>
-              <view class='commodity-box-type-item'>白底</view>
-              <view class='commodity-box-type-item'>黑底</view>
+              <view class='commodity-box-type-item {{standardList[standard.id] == attr.id?"active": ""}}' catchtap='chooseStandard' data-standard_id='{{standard.id}}' data-id='{{attr.id}}' wx:for="{{standard.attrs}}" wx:for-item="attr" wx:key="id">{{attr.title}}</view>
             </view>
           </view>
         </view>
         <view class='commodity-box-num flex-row'>
-          <view>数量</view>
+          <view>数量（当前库存：{{currentCommdity?currentCommdity.stock: '0'}}）</view>
           <view class='cart-item-content-info-btns flex-row' catchtap='operation'>
             <view class='cart-item-content-info-delete' data-operation='delete' hover-class='cart-item-content-info-delete-hover' hover-stay-time='100'>-</view>
-            <view class='cart-item-content-info-text'>1</view>
+            <view class='cart-item-content-info-text'>{{waittingBuy.num}}</view>
             <view class='cart-item-content-info-plus' data-operation='add' hover-class='cart-item-content-info-plus-hover' hover-stay-time='100'>+</view>
           </view>
         </view>

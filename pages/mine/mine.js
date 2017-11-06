@@ -37,6 +37,12 @@ Page({
     ],
   },
 
+  onLoad(){
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
+  },
+
   // 登录
   login() {
     app.getUserInfo(userInfo => {
@@ -71,6 +77,13 @@ Page({
   goToMaster() {
     wx.navigateTo({
       url: '/pages/mymaster/mymaster',
+    })
+  },
+
+  //关于我们
+  goToUs(){
+    wx.navigateTo({
+      url: '/pages/company/company',
     })
   }
 })

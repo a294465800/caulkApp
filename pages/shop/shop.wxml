@@ -20,23 +20,30 @@
   <!--/搜索  -->
 
   <view class='shop-list flex-row'>
-    <block wx:if="{{shops.length}}">
-      <view class='shop-item' wx:for="{{shops}}" wx:for-item="shopItem" wx:key="id" hover-class='hover-class' hover-stay-time='150' bindtap='goToShopItem' data-id='{{shopItem.id}}'>
-        <image mode='aspectFit' class='shop-item-img' src='{{shopItem.url}}'></image>
-        <view class='shop-item-content'>
-          <view class='shop-item-title text-overflow'>{{shopItem.name}}</view>
-          <view class='shop-item-info flex-row'>
-            <view class='shop-item-sell flex-row'>
-              <view class='shop-item-price'>￥{{shopItem.price}}</view>
-              <view class='shop-item-sold'>已售{{shopItem.sell>999?999:shopItem.sell}}</view>
-            </view>
-            <image class='cart-icon' mode='aspectFit' src='/images/icon/cart.png'></image>
-          </view>
-        </view>
+    <block wx:if="{{loading}}">
+      <view class='loading-wrap'>
+        <image class='loading-gif' mode='aspectFit' src='/images/icon/loading.gif'></image>
       </view>
     </block>
     <block wx:else>
-      <view class='tips'>暂无商品</view>
+      <block wx:if="{{shops.length}}">
+        <view class='shop-item' wx:for="{{shops}}" wx:for-item="shopItem" wx:key="id" hover-class='hover-class' hover-stay-time='150' bindtap='goToShopItem' data-id='{{shopItem.id}}'>
+          <image mode='aspectFit' class='shop-item-img' src='{{shopItem.picture}}'></image>
+          <view class='shop-item-content'>
+            <view class='shop-item-title text-overflow'>{{shopItem.title}}</view>
+            <view class='shop-item-info flex-row'>
+              <view class='shop-item-sell flex-row'>
+                <view class='shop-item-price'>￥{{shopItem.price}}</view>
+                <view class='shop-item-sold'>已售{{shopItem.sales>999?999:shopItem.sales}}</view>
+              </view>
+              <image class='cart-icon' mode='aspectFit' src='/images/icon/cart.png'></image>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class='tips'>暂无商品</view>
+      </block>
     </block>
   </view>
 </view>

@@ -3,10 +3,23 @@ const _api = require('./utils/api.js')
 App({
 
   globalData: {
-    _token: ''
+    _token: '',
+    userInfo: null
   },
 
   _api: _api.api,
+
+  onLaunch() {
+    wx.getSetting({
+      success: setting => {
+        if (setting.authSetting['scope.userInfo']) {
+          this.getUserInfo(userInfo => {
+            this.globalData.userInfo = userInfo
+          })
+        }
+      }
+    })
+  },
 
   //获取登录权限
   getUserInfo(callback) {

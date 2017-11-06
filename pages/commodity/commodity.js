@@ -18,6 +18,15 @@ Page({
       price: 99,
     },
 
+    //规格表
+    standardList: {
+    },
+
+    //规格判断
+    feature: [],
+
+    currentCommdity: null,
+
     //模拟数据
 
     commodity: {
@@ -51,6 +60,15 @@ Page({
     }
   },
 
+  onLoad(options) {
+    const id = options.id
+    app._api.getCommodity(id, res => {
+      this.setData({
+        commodity: res.data.data
+      })
+    })
+  },
+
   preImg(e) {
     const img = e.currentTarget.dataset.img
     wx.previewImage({
@@ -72,6 +90,45 @@ Page({
       default:
         return false
     }
+  },
+
+  //选择标准
+  chooseStandard(e) {
+    const standard_id = e.currentTarget.dataset.standard_id
+    const id = e.currentTarget.dataset.id
+    let statusList = this.data.standardList
+    // const tmp = `standardList[${standard_id}]`
+    let tmpArr = []
+    // console.log(status, feature, standard_id)
+    if (statusList[standard_id] == id) {
+      statusList[standard_id] = ''
+      for (let it in statusList) {
+        if (statusList[it]) {
+          tmpArr.push(statusList[it])
+        }
+      }
+      this.setData({
+        standardList: statusList,
+        feature: tmpArr
+      })
+    } else {
+      statusList[standard_id] = id
+      for (let it in statusList) {
+        if (statusList[it]) {
+          tmpArr.push(statusList[it])
+        }
+      }
+      this.setData({
+        standardList: statusList,
+        feature: tmpArr
+      })
+    }
+    console.log(tmpArr)
+    app._api.getCommodityStandard({ feature: tmpArr }, res => {
+      this.setData({
+        currentCommdity: res.data.data
+      })
+    })
   },
 
   //删除数值

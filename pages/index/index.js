@@ -13,6 +13,12 @@ Page({
     location: {}
   },
 
+  onLoad() {
+    app._api.getAdverts({ type: 1 }, res => {
+      console.log(res)
+    })
+  },
+
   getLocation() {
     app.getLocation(res => {
       this.setData({
@@ -26,7 +32,7 @@ Page({
   //提交
   submit(e) {
     const dataForm = e.detail.value
-    const submitForm = Object.assign(dataForm, this.data.location)
+    const submitForm = Object.assign(dataForm, this.data.location, { token: app.globalData._token })
     for (let it in submitForm) {
       if (!submitForm[it]) {
         wx.showModal({

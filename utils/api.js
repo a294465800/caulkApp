@@ -59,7 +59,7 @@ const api = {
   /**
    * 登录获取 token
    * @params {object} data  {code, iv, encryptedData}
-   * @params {function} cb 
+   * @params {function} cb 回调
    */
   login(data, cb) {
     _http.post(`${host}login`, data)
@@ -71,8 +71,69 @@ const api = {
       })
   },
 
+  /**
+   * 获取广告
+   * @params {object} data {name, number, address, latitude, longitude, token}
+   * @params {function} cb 回调
+   */
   postReserve(data, cb) {
     _http.post(`${host}reserve`, data)
+      .then(res => {
+        typeof cb === 'function' && cb(res)
+      })
+      .catch(err => {
+        errFnc(err)
+      })
+  },
+
+  /**
+   * 获取广告轮播
+   * @params {object} data {type, others}
+   * @params {function} cb 回调
+   */
+  getAdverts(data, cb) {
+    _http.get(`${host}adverts`, data)
+      .then(res => {
+        typeof cb === 'function' && cb(res)
+      })
+      .catch(err => {
+        errFnc(err)
+      })
+  },
+
+  /**
+   * 获取商品信息
+   * @params {object} data {(title), page, limmit }
+   * @params {function} cb 回调
+   */
+  getCommodities(data, cb) {
+    _http.get(`${host}commodities`, data)
+      .then(res => {
+        typeof cb === 'function' && cb(res)
+      })
+      .catch(err => {
+        errFnc(err)
+      })
+  },
+
+  /**
+   * 获取商品
+   * @params {string} id 
+   * @params {function} cb
+   */
+  getCommodity(id, cb) {
+    _http.get(`${host}commodity/${id}`)
+      .then(res => {
+        typeof cb === 'function' && cb(res)
+      })
+      .catch(err => {
+        errFnc(err)
+      })
+  },
+
+  //获取商品库存
+  getCommodityStandard(data, cb) {
+    _http.get(`${host}product`, data)
       .then(res => {
         typeof cb === 'function' && cb(res)
       })
