@@ -131,9 +131,28 @@ const api = {
       })
   },
 
-  //获取商品库存
+  /**
+   * 获取商品库存
+   * @params {array} data [1,2,..]
+   * @params {function} cb 回调
+   */
   getCommodityStandard(data, cb) {
     _http.get(`${host}product`, data)
+      .then(res => {
+        typeof cb === 'function' && cb(res)
+      })
+      .catch(err => {
+        errFnc(err)
+      })
+  },
+
+  /**
+   * 获取我的预约
+   * @params {object} data {uid, state, (page), (limit)}
+   * @params cb 回调
+   */
+  getMyReserve(data, cb) {
+    _http.get(`${host}my/reserves`, data)
       .then(res => {
         typeof cb === 'function' && cb(res)
       })

@@ -34,7 +34,7 @@ App({
           withCredentials: true,
           success: res => {
             this._api.login({ code: login.code, iv: res.iv, encryptedData: res.encryptedData }, (token) => {
-              this.globalData._token = token.data.token
+              this.globalData._token = token.data.data.token
               typeof callback === 'function' && callback(res.userInfo)
             })
           },
