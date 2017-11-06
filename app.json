@@ -23,7 +23,7 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "我要下单",
+        "text": "我要预约",
         "iconPath": "/images/tab/orders.png",
         "selectedIconPath": "/images/tab/orders_selected.png"
       },
@@ -32,12 +32,6 @@
         "text": "商城",
         "iconPath": "/images/tab/shop.png",
         "selectedIconPath": "/images/tab/shop_selected.png"
-      },
-      {
-        "pagePath": "pages/company/company",
-        "text": "公司简介",
-        "iconPath": "/images/tab/company.png",
-        "selectedIconPath": "/images/tab/company_selected.png"
       },
       {
         "pagePath": "pages/mine/mine",

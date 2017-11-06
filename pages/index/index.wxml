@@ -13,7 +13,7 @@
   <!--form表单  -->
   <view class='order-form-wrap flex-column'>
     <view class='order-from-title flex-row flex-center'>
-      <image mode='aspectFit' src='/images/icon/order-icon.png'></image>下单
+      <image mode='aspectFit' src='/images/icon/order-icon.png'></image>预约
     </view>
     <view class='order-form'>
       <form report-submit bindsubmit='submit'>
@@ -34,7 +34,7 @@
           <view>详细位置</view>
           <textarea maxlength='200' class='order-textarea'></textarea>
         </label> -->
-        <button form-type="submit" class='order-submit' hover-class='submit-hover'>一键下单</button>
+        <button form-type="submit" class='order-submit' hover-class='submit-hover'>一键预约</button>
       </form>
     </view>
   </view>

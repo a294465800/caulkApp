@@ -71,3 +71,8 @@
   width: 8px;
   height: 18px;
 }
+
+.margin-top {
+  margin-top: 30rpx;
+  background-color: #fff;
+}

@@ -1,5 +1,12 @@
 //app.js
+const _api = require('./utils/api.js')
 App({
+
+  globalData: {
+    _token: ''
+  },
+
+  _api: _api.api,
 
   //获取登录权限
   getUserInfo(callback) {
@@ -8,12 +15,15 @@ App({
       title: '登录中',
     })
     wx.login({
-      success: () => {
+      success: login => {
         wx.hideLoading()
         wx.getUserInfo({
           withCredentials: true,
           success: res => {
-            typeof callback === 'function' && callback(res.userInfo)
+            this._api.login({ code: login.code, iv: res.iv, encryptedData: res.encryptedData }, (token) => {
+              this.globalData._token = token.data.token
+              typeof callback === 'function' && callback(res.userInfo)
+            })
           },
           fail: (error) => {
             wx.openSetting({
