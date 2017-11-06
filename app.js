@@ -59,6 +59,28 @@ App({
         })
       }
     })
+  },
+
+  //获取经纬度，微信地图
+  getLocation(callback, flag) {
+    const that = this
+    if (flag) {
+      return false
+    }
+    wx.chooseLocation({
+      success(res) {
+        typeof callback === 'function' && callback(res)
+      },
+      fail(error) {
+        wx.openSetting({
+          success(res) {
+            if (res.authSetting['scope.userLocation']) {
+              that.getLocation(callback, true)
+            }
+          }
+        })
+      }
+    })
   }
 
 })

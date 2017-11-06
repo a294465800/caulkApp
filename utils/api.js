@@ -1,4 +1,5 @@
 const host = 'http://119.23.255.177:8090/api/v1/'
+// const app = getApp()
 
 // 请求 promise 封装
 const _http = {
@@ -24,6 +25,8 @@ const _http = {
 
   post: function (url, data) {
     return new Promise((resolve, reject) => {
+      // const realData = Object.assign()
+      // console.log(app.globalData._token)
       wx.request({
         url,
         data,
@@ -62,7 +65,18 @@ const api = {
     _http.post(`${host}login`, data)
       .then(res => {
         typeof cb === 'function' && cb(res)
-      }).catch(err => {
+      })
+      .catch(err => {
+        errFnc(err)
+      })
+  },
+
+  postReserve(data, cb) {
+    _http.post(`${host}reserve`, data)
+      .then(res => {
+        typeof cb === 'function' && cb(res)
+      })
+      .catch(err => {
         errFnc(err)
       })
   }

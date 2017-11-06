@@ -23,7 +23,7 @@
         </label>
         <label class='input-label order-form-item'>
           <view class='input-title'>联系方式</view>
-          <input class='input-view' type='number' name="phone"></input>
+          <input class='input-view' type='number' name="number"></input>
         </label>
         <view class='flex-row order-form-item' bindtap='getLocation'>
           <view class='input-title'>详细地址</view>

@@ -3,11 +3,20 @@ const app = getApp()
 Page({
 
   data: {
+    book: {}
+  },
 
+  onLoad(options) {
+    const data = JSON.parse(options.success)
+    this.setData({
+      book: data
+    })
   },
 
   //回到首页
   goBack() {
-    wx.navigateBack()
+    wx.switchTab({
+      url: '/pages/index/index',
+    })
   }
 })

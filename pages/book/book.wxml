@@ -9,9 +9,9 @@
     <!--确认订单内容  -->
     <view class='book-content'>
       <view class='book-content-title'>确认订单内容：</view>
-      <view class='book-content-item'>姓名：黄小姐</view>
-      <view class='book-content-item'>联系方式：13546154215</view>
-      <view class='book-content-item'>地址：广州XX区XXXXX街道XXX栋XXX号403</view>
+      <view class='book-content-item'>姓名：{{book.name}}</view>
+      <view class='book-content-item'>联系方式：{{book.number}}</view>
+      <view class='book-content-item'>地址：{{book.address}}</view>
     </view>
     <!--/确认订单内容  -->
     <view class='tips'>正在为您处理订单中...</view>
