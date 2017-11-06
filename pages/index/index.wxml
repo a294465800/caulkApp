@@ -2,9 +2,9 @@
 <view class='container flex-column'>
   <!--轮播  -->
   <swiper indicator-dots autoplay interval="5000" duration="1000" class='swiper-images-wrap' indicator-active-color='#047911'>
-    <block wx:for="{{imgUrls}}">
+    <block wx:for="{{imgUrls}}" wx:for-item="img" wx:key="id">
       <swiper-item>
-        <image mode='aspectFill' src="{{item}}" class="slide-image" class='order-img-item' />
+        <image mode='aspectFill' src="{{img.url}}" class="slide-image" class='order-img-item' />
       </swiper-item>
     </block>
   </swiper>

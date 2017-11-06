@@ -15,7 +15,10 @@ Page({
 
   onLoad() {
     app._api.getAdverts({ type: 1 }, res => {
-      console.log(res)
+      // console.log(res)
+      this.setData({
+        imgUrls: res.data.data
+      })
     })
   },
 

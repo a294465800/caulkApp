@@ -29,6 +29,13 @@ Page({
         // loading: false
       })
     })
+
+    app._api.getAdverts({ type: 2 }, res => {
+      // console.log(res)
+      this.setData({
+        imgUrls: res.data.data
+      })
+    })
   },
 
   //触底刷新
