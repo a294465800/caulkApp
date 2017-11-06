@@ -104,11 +104,16 @@
         </view>
         <view class='commodity-box-num flex-row'>
           <view>数量（当前库存：{{currentCommdity?currentCommdity.stock: '0'}}）</view>
-          <view class='cart-item-content-info-btns flex-row' catchtap='operation'>
-            <view class='cart-item-content-info-delete' data-operation='delete' hover-class='cart-item-content-info-delete-hover' hover-stay-time='100'>-</view>
-            <view class='cart-item-content-info-text'>{{waittingBuy.final_num}}</view>
-            <view class='cart-item-content-info-plus' data-operation='add' hover-class='cart-item-content-info-plus-hover' hover-stay-time='100'>+</view>
-          </view>
+          <block wx:if="{{currentCommdity && currentCommdity.stock > 0}}">
+            <view class='cart-item-content-info-btns flex-row' catchtap='operation'>
+              <view class='cart-item-content-info-delete' data-operation='delete' hover-class='cart-item-content-info-delete-hover' hover-stay-time='100'>-</view>
+              <view class='cart-item-content-info-text'>{{waittingBuy.final_num}}</view>
+              <view class='cart-item-content-info-plus' data-operation='add' hover-class='cart-item-content-info-plus-hover' hover-stay-time='100'>+</view>
+            </view>
+          </block>
+          <block wx:else>
+            <view class='red-text'>暂无库存</view>
+          </block>
         </view>
       </view>
       <view class='commodity-box-confirm {{btnText == "直接购买"?"red":"orange"}}' catchtap='{{btnText == "直接购买"?"singleBuy":"addToCart"}}'>{{btnText}}</view>

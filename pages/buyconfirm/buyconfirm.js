@@ -45,8 +45,11 @@ Page({
   //添加地址
   addAddress() {
     app.getAddress(res => {
+      console.log(res)
       this.setData({
-        'submitForm.address': res.provinceName + res.cityName + res.countyName + res.detailInfo
+        'submitForm.address': res.provinceName + res.cityName + res.countyName + res.detailInfo,
+        'submitForm.name': res.userName,
+        'submitForm.phone': res.telNumber,
       })
     })
   },

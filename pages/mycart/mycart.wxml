@@ -1,4 +1,5 @@
 <!--pages/mycart/mycart.wxml-->
+
 <view class='container' wx:if="{{carts.length}}">
   <view class='crat-list'>
     <view class='cart-tips flex-row'>
@@ -11,12 +12,16 @@
         <image class='cart-item-content-img' mode='aspectFit' src='{{cartItem.url}}'></image>
         <view class='cart-item-content-info flex-column'>
           <view class='cart-item-content-info-title multi-two-text-flow'>{{cartItem.title}}</view>
-          <view class='cart-item-content-info-type'>{{cartItem.type}}</view>
+          <view class='cart-item-content-info-type'>
+            <block wx:if="{{cartItem.attrs && cartItem.attrs.length}}">
+              <block wx:for="{{cartItem.attrs}}">{{item}} </block>
+            </block>
+          </view>
           <view class='cart-item-content-info-operation flex-row'>
             <view class='cart-item-content-info-price'>￥{{cartItem.price}}</view>
-            <view class='cart-item-content-info-btns flex-row' catchtap='operation' data-index='{{index}}'>
+            <view class='cart-item-content-info-btns flex-row' catchtap='operation' data-index='{{index}}' data-stock='{{cartItem.stock}}'>
               <view class='cart-item-content-info-delete' data-operation='delete' hover-class='cart-item-content-info-delete-hover' hover-stay-time='100'>-</view>
-              <view class='cart-item-content-info-text'>{{cartItem.num}}</view>
+              <view class='cart-item-content-info-text'>{{cartItem.final_num}}</view>
               <view class='cart-item-content-info-plus' data-operation='add' hover-class='cart-item-content-info-plus-hover' hover-stay-time='100'>+</view>
             </view>
           </view>

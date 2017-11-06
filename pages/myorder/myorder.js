@@ -9,18 +9,23 @@ Page({
     navs: [
       {
         type: 0,
+        name: '未付款',
+      },
+      {
+        type: 2,
         name: '待收货',
       },
       {
-        type: 1,
+        type: 3,
         name: '已完成',
       }
     ],
 
-    //模拟数据
+    //接口数据
     orders: {
       0: [],
-      1: []
+      2: [],
+      3: []
     },
     orders: [
       {
@@ -84,7 +89,7 @@ Page({
     if (index === this.data.currentNav) {
       return false
     }
-    if (this.orders[type] && this.orders[type].length > 0) {
+    if (this.data.orders[type] && this.data.orders[type].length > 0) {
       this.setData({
         currentNav: index
       })
@@ -101,7 +106,25 @@ Page({
   //确认收货
   confirmOrder(e) {
     const id = e.currentTarget.dataset.id
-    console.log(e, id)
+    const index = e.currentTarget.dataset.index
+    let list = this.data.orders[2]
+    wx.showModal({
+      title: '提示',
+      content: '确认收货吗？',
+      success: confirm => {
+        if (confirm.confirm) {
+          app._api.confirmOrder(id, { token: app.globalData._token }, res => {
+            list.splice(index, 1)
+            this.setData({
+              'orders[2]': list
+            })
+          })
+          wx.showToast({
+            title: '已确认',
+          })
+        }
+      }
+    })
   }
 
 })

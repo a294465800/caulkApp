@@ -204,6 +204,39 @@ Page({
 
   //加入购物车
   addToCart() {
-
+    const currentCommdity = this.data.currentCommdity
+    let carts = wx.getStorageSync('cartsObj')
+    if (carts) {
+      carts = JSON.parse(carts)
+    } else {
+      carts = {}
+    }
+    if (!currentCommdity) {
+      wx.showModal({
+        title: '提示',
+        content: '请选择正确商品',
+        showCancel: false
+      })
+      return false
+    }
+    if (currentCommdity.stock == 0) {
+      wx.showModal({
+        title: '提示',
+        content: '该商品已经没有库存了',
+        showCancel: false
+      })
+      return false
+    }
+    let buyCommodity = Object.assign(currentCommdity, this.data.waittingBuy, { title: this.data.commodity.title, url: this.data.commodity.pictures[0] })
+    if (!carts[buyCommodity.id]) {
+      carts[buyCommodity.id] = buyCommodity
+    }
+    wx.setStorage({
+      key: 'cartsObj',
+      data: JSON.stringify(carts),
+    })
+    wx.showToast({
+      title: '加入成功',
+    })
   }
 })

@@ -54,6 +54,20 @@ Page({
     ]
   },
 
+  onLoad() {
+    let carts = wx.getStorageSync('cartsObj')
+    let tmpCarts = []
+    if (carts) {
+      carts = JSON.parse(carts)
+      for (let it in carts) {
+        tmpCarts.push(carts[it])
+      }
+    }
+    this.setData({
+      carts: tmpCarts
+    })
+  },
+
   //删除商品
   deleteCommodity(e) {
     const index = e.currentTarget.dataset.index
@@ -69,6 +83,13 @@ Page({
           }
           carts.splice(index, 1)
           this.sumALl()
+          //更新购物车本地缓存
+          const commodities = this.data.payCommodities
+          let tmp = {}
+          for (let it in commodities) {
+            tmp[commodities[it].id] = commodities[it]
+          }
+          wx.setStorageSync('cartsObj')
           this.setData({
             carts, sumCart
           })
@@ -111,8 +132,8 @@ Page({
   deleteNum(e) {
     const index = e.currentTarget.dataset.index
     const sumCart = this.data.sumCart
-    const str = 'carts[' + index + '].num'
-    let num = this.data.carts[index].num - 1
+    const str = 'carts[' + index + '].final_num'
+    let num = this.data.carts[index].final_num - 1
     if (num <= 0) {
       return false
     }
@@ -127,9 +148,16 @@ Page({
 
   //增加数值
   addNum(e) {
+    const stock = e.currentTarget.dataset.stock
     const index = e.currentTarget.dataset.index
-    const str = 'carts[' + index + '].num'
-    let num = this.data.carts[index].num + 1
+    const str = 'carts[' + index + '].final_num'
+    if (this.data.carts[index].final_num >= stock) {
+      wx.showToast({
+        title: '没库存了',
+      })
+      return false
+    }
+    let num = this.data.carts[index].final_num + 1
     if (num > 99) {
       return false
     }
@@ -148,7 +176,7 @@ Page({
     for (let item in sumCart) {
       const commodity = this.data.carts[item]
       temp.push(commodity)
-      sum += commodity.price * commodity.num
+      sum += commodity.price * commodity.final_num
     }
     this.setData({
       payCommodities: temp,

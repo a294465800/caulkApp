@@ -11,27 +11,36 @@
   <view class='order-list {{currentNav == 0?"block":""}}'>
     <view class='flex-bug'>
       <scroll-view class='scroll' scroll-y>
-        <view class='order-item-wrap' wx:for="{{orders}}" wx:for-item="orderItem" wx:key="id">
-          <view class='order-item-title flex-row'>
-            <view class='order-item-title-id'>编号：{{orderItem.order_id}}</view>
-            <view class='order-item-title-time'>{{orderItem.time}}</view>
-          </view>
-          <view class='order-item-content flex-row' wx:for="{{orderItem.commodities}}" wx:for-item="commodityItem" wx:key="id">
-            <image class='order-item-content-img' src='{{commodityItem.url}}' mode='aspectFit'></image>
-            <view class='order-item-content-content flex-column'>
-              <view class='order-item-content-content-title multi-two-text-flow'>{{commodityItem.name}}</view>
-              <view class='order-item-content-content-type flex-row'>
-                <view class='order-item-content-content-type-name'>{{commodityItem.type}}</view>
-                <view class='order-item-content-content-type-num'>x{{commodityItem.num}}</view>
+        <block wx:if="{{orders[0] && orders[0].length}}">
+          <view class='order-item-wrap' wx:for="{{orders[0]}}" wx:for-item="orderItem" wx:key="id">
+            <view class='order-item-title flex-row'>
+              <view class='order-item-title-id'>编号：{{orderItem.number}}</view>
+              <view class='order-item-title-time'>{{orderItem.created_at}}</view>
+            </view>
+            <view class='order-item-content flex-row' wx:for="{{orderItem.snapshots}}" wx:for-item="commodityItem" wx:key="id">
+              <image class='order-item-content-img' src='{{commodityItem.picture}}' mode='aspectFit'></image>
+              <view class='order-item-content-content flex-column'>
+                <view class='order-item-content-content-title multi-two-text-flow'>{{commodityItem.commodity_name}}</view>
+                <view class='order-item-content-content-type flex-row'>
+                  <view class='order-item-content-content-type-name'>
+                    <block wx:if="{{commodityItem.attrs && commodityItem.attrs.length}}">
+                      <block>{{item}} </block>
+                    </block>
+                  </view>
+                  <view class='order-item-content-content-type-num'>x{{commodityItem.count}}</view>
+                </view>
+                <view class='order-item-content-content-price'>￥{{commodityItem.price}}</view>
               </view>
-              <view class='order-item-content-content-price'>￥{{commodityItem.price}}</view>
+            </view>
+            <view class='order-item-price'>合计：￥{{orderItem.price}}（含运费￥{{orderItem.fare || 0}}）</view>
+            <view class='order-item-btns'>
+              <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' catchtap='confirmOrder' data-id='{{orderItem.id}}'>付款</view>
             </view>
           </view>
-          <view class='order-item-price'>合计：￥{{orderItem.all_price}}（含运费￥{{orderItem.fare}}）</view>
-          <view class='order-item-btns'>
-            <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' catchtap='confirmOrder' data-id='{{orderItem.id}}'>确认收货</view>
-          </view>
-        </view>
+        </block>
+        <block wx:else>
+          <view class='tips'>暂无数据</view>
+        </block>
       </scroll-view>
     </view>
   </view>
@@ -41,27 +50,75 @@
   <view class='order-list {{currentNav == 1?"block":""}}'>
     <view class='flex-bug'>
       <scroll-view class='scroll' scroll-y>
-        <view class='order-item-wrap' wx:for="{{orders}}" wx:for-item="orderFinishItem" wx:key="id">
-          <view class='order-item-title flex-row'>
-            <view class='order-item-title-id'>编号：{{orderFinishItem.order_id}}</view>
-            <view class='order-item-title-time'>{{orderFinishItem.time}}</view>
-          </view>
-          <view class='order-item-content flex-row' wx:for="{{orderFinishItem.commodities}}" wx:for-item="commodityItem" wx:key="id">
-            <image class='order-item-content-img' src='{{commodityItem.url}}' mode='aspectFit'></image>
-            <view class='order-item-content-content flex-column'>
-              <view class='order-item-content-content-title multi-two-text-flow'>{{commodityItem.name}}</view>
-              <view class='order-item-content-content-type flex-row'>
-                <view class='order-item-content-content-type-name'>{{commodityItem.type}}</view>
-                <view class='order-item-content-content-type-num'>x{{commodityItem.num}}</view>
+        <block wx:if="{{orders[2] && orders[2].length}}">
+          <view class='order-item-wrap' wx:for="{{orders[2]}}" wx:for-item="orderFinishItem" wx:key="id">
+            <view class='order-item-title flex-row'>
+              <view class='order-item-title-id'>编号：{{orderFinishItem.order_id}}</view>
+              <view class='order-item-title-time'>{{orderFinishItem.time}}</view>
+            </view>
+            <view class='order-item-content flex-row' wx:for="{{orderFinishItem.snapshots}}" wx:for-item="commodityItem" wx:key="id">
+              <image class='order-item-content-img' src='{{commodityItem.picture}}' mode='aspectFit'></image>
+              <view class='order-item-content-content flex-column'>
+                <view class='order-item-content-content-title multi-two-text-flow'>{{commodityItem.commodity_name}}</view>
+                <view class='order-item-content-content-type flex-row'>
+                  <view class='order-item-content-content-type-name'>
+                    <block wx:if="{{commodityItem.attrs && commodityItem.attrs.length}}">
+                      <block>{{item}} </block>
+                    </block>
+                  </view>
+                  <view class='order-item-content-content-type-num'>x{{commodityItem.count}}</view>
+                </view>
+                <view class='order-item-content-content-price'>￥{{commodityItem.price}}</view>
               </view>
-              <view class='order-item-content-content-price'>￥{{commodityItem.price}}</view>
+            </view>
+            <view class='order-item-price'>合计：￥{{orderFinishItem.price}}（含运费￥{{orderFinishItem.fare || 0}}）</view>
+            <view class='order-item-btns'>
+              <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' catchtap='confirmOrder' data-index='{{index}}' data-id='{{orderFinishItem.id}}'>确认收货</view>
             </view>
           </view>
-          <view class='order-item-price flex-row'>
-            <view class='confirm-text'>已确认收货</view>
-            <view>合计：￥{{orderFinishItem.all_price}}（含运费￥{{orderFinishItem.fare}}）</view>
+        </block>
+        <block wx:else>
+          <view class='tips'>暂无数据</view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+  <!--/订单列表  -->
+
+  <!--订单列表  -->
+  <view class='order-list {{currentNav == 2?"block":""}}'>
+    <view class='flex-bug'>
+      <scroll-view class='scroll' scroll-y>
+        <block wx:if="{{orders[3] && orders[3].length}}">
+          <view class='order-item-wrap' wx:for="{{orders[3]}}" wx:for-item="orderFinishItem" wx:key="id">
+            <view class='order-item-title flex-row'>
+              <view class='order-item-title-id'>编号：{{orderFinishItem.number}}</view>
+              <view class='order-item-title-time'>{{orderFinishItem.time}}</view>
+            </view>
+            <view class='order-item-content flex-row' wx:for="{{orderFinishItem.snapshots}}" wx:for-item="commodityItem" wx:key="id">
+              <image class='order-item-content-img' src='{{commodityItem.picture}}' mode='aspectFit'></image>
+              <view class='order-item-content-content flex-column'>
+                <view class='order-item-content-content-title multi-two-text-flow'>{{commodityItem.commodity_name}}</view>
+                <view class='order-item-content-content-type flex-row'>
+                  <view class='order-item-content-content-type-name'>
+                    <block wx:if="{{commodityItem.attrs && commodityItem.attrs.length}}">
+                      <block>{{item}} </block>
+                    </block>
+                  </view>
+                  <view class='order-item-content-content-type-num'>x{{commodityItem.count}}</view>
+                </view>
+                <view class='order-item-content-content-price'>￥{{commodityItem.price}}</view>
+              </view>
+            </view>
+            <view class='order-item-price flex-row'>
+              <view class='confirm-text'>已确认收货</view>
+              <view>合计：￥{{orderFinishItem.price}}（含运费￥{{orderFinishItem.fare || 0}}）</view>
+            </view>
           </view>
-        </view>
+        </block>
+        <block wx:else>
+          <view class='tips'>暂无数据</view>
+        </block>
       </scroll-view>
     </view>
   </view>

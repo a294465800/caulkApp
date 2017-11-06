@@ -189,6 +189,22 @@ const api = {
       .catch(err => {
         errFnc(err)
       })
+  },
+
+  /**
+   * 确认收货
+   * @params {string} id 
+   * @params {object} data {token}
+   * @params {function} cb
+   */
+  confirmOrder(id, data, cb){
+    _http.get(`${host}confirm/${id}`, data)
+      .then(res => {
+        typeof cb === 'function' && cb(res)
+      })
+      .catch(err => {
+        errFnc(err)
+      })
   }
 }
 
