@@ -1,0 +1,48 @@
+<!--pages/bemaster/bemaster.wxml-->
+<view class='container'>
+
+  <view class='form-wrap'>
+    <form report-submit bindsubmit='submit'>
+      <view class='form-item'>
+        <view class='form-title'>基本信息</view>
+        <view class='form-group'>
+          <label class='label-control'>
+            <view class='label-text'>用户名</view>
+            <input class='input-control' name="name" placeholder='请输入姓名'></input>
+          </label>
+          <label class='label-control'>
+            <view class='label-text'>身份证</view>
+            <input class='input-control' maxlength='18' name="id_card" placeholder='请输入身份证'></input>
+          </label>
+          <label class='label-control'>
+            <view class='label-text'>擅长</view>
+            <input class='input-control' name="good_at" placeholder='请输入擅长技能'></input>
+          </label>
+          <label class='label-control'>
+            <view class='label-text'>地址</view>
+            <input catchtap='getLocation' class='input-control' disabled name="address" value='{{address}}' placeholder='请输入地址'></input>
+          </label>
+        </view>
+      </view>
+      <view class='form-item'>
+        <view class='form-title'>登录信息</view>
+        <view class='form-group'>
+          <label class='label-control'>
+            <view class='label-text'>密码</view>
+            <input class='input-control' name="password" placeholder='请输入密码'></input>
+          </label>
+          <label class='label-control'>
+            <view class='label-text'>手机号</view>
+            <input class='input-control' maxlength='11' name="phone" placeholder='请输入手机号' bindinput='checkNumber'></input>
+            <button class='input-btn' disabled='{{!btnOK}}' type='primary' color="#047911" catchtap='getSms'>{{btnText}}</button>
+          </label>
+          <label class='label-control'>
+            <view class='label-text'>验证码</view>
+            <input class='input-control' type='number' maxlength='6' name="sms" placeholder='请输入验证码'></input>
+          </label>
+        </view>
+      </view>
+      <button form-type='submit' type='primary'>提交</button>
+    </form>
+  </view>
+</view>

@@ -18,15 +18,15 @@
     <view class='order-form'>
       <form report-submit bindsubmit='submit'>
         <label class='input-label order-form-item'>
-          <view class='input-title'>你的称呼</view>
+          <view class='input-title'>你的称呼：</view>
           <input class='input-view' name="name"></input>
         </label>
         <label class='input-label order-form-item'>
-          <view class='input-title'>联系方式</view>
+          <view class='input-title'>联系方式：</view>
           <input class='input-view' type='number' name="number"></input>
         </label>
         <view class='flex-row order-form-item' bindtap='getLocation'>
-          <view class='input-title'>详细地址</view>
+          <view class='input-title'>详细地址：</view>
           <input disabled class='order-form-address text-flow' name="address" value='{{address}}'></input>
           <image class='location-icon' mode='aspectFit' src='/images/icon/location.png'></image>
         </view>

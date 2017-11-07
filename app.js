@@ -35,6 +35,7 @@ App({
           success: res => {
             this._api.login({ code: login.code, iv: res.iv, encryptedData: res.encryptedData }, (token) => {
               this.globalData._token = token.data.data.token
+              wx.setStorageSync('worker', token.data.data.worker)
               typeof callback === 'function' && callback(res.userInfo)
             })
           },

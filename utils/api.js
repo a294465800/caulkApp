@@ -151,7 +151,7 @@ const api = {
    * @params {object} data {address, (description), token, products}
    * @params {function} cb 回调
    */
-  postPorduct(data, cb){
+  postPorduct(data, cb) {
     _http.post(`${host}order`, data)
       .then(res => {
         typeof cb === 'function' && cb(res)
@@ -181,7 +181,7 @@ const api = {
    * @params {object} data {token, state, (page), (limit)}
    * @params {function} cb 回调
    */
-  getMyOrder(data, cb){
+  getMyOrder(data, cb) {
     _http.get(`${host}my/orders`, data)
       .then(res => {
         typeof cb === 'function' && cb(res)
@@ -197,8 +197,23 @@ const api = {
    * @params {object} data {token}
    * @params {function} cb
    */
-  confirmOrder(id, data, cb){
+  confirmOrder(id, data, cb) {
     _http.get(`${host}confirm/${id}`, data)
+      .then(res => {
+        typeof cb === 'function' && cb(res)
+      })
+      .catch(err => {
+        errFnc(err)
+      })
+  },
+
+  /**
+   * 师傅入驻
+   * @param {object} data {token, phone, password, city, address, name, id_card}
+   * @param {function} cb
+   */
+  postWorker(data, cb) {
+    _http.post(`${host}worker`, data)
       .then(res => {
         typeof cb === 'function' && cb(res)
       })

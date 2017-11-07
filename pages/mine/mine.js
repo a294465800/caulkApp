@@ -37,7 +37,7 @@ Page({
     ],
   },
 
-  onLoad(){
+  onLoad() {
     this.setData({
       userInfo: app.globalData.userInfo
     })
@@ -75,13 +75,30 @@ Page({
 
   //我是师傅
   goToMaster() {
-    wx.navigateTo({
-      url: '/pages/mymaster/mymaster',
-    })
+    const worker = wx.getStorageSync('worker')
+    console.log(worker)
+    if (worker == 0) {
+      wx.showModal({
+        title: '提示',
+        content: '您还没成为入驻师傅，要入驻吗？',
+        success: res => {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/bemaster/bemaster',
+            })
+          }
+        }
+      })
+    } else {
+
+      wx.navigateTo({
+        url: '/pages/mymaster/mymaster',
+      })
+    }
   },
 
   //关于我们
-  goToUs(){
+  goToUs() {
     wx.navigateTo({
       url: '/pages/company/company',
     })

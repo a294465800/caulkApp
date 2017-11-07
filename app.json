@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/bemaster/bemaster",
     "pages/buyconfirm/buyconfirm",
     "pages/commodity/commodity",
     "pages/mine/mine",
@@ -16,7 +17,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#047911",
-    "navigationBarTitleText": "美缝剂",
+    "navigationBarTitleText": "美家美缝服务中心",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
