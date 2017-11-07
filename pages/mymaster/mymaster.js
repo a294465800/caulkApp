@@ -5,6 +5,7 @@ Page({
   data: {
     //导航
     currentNav: 0,
+    currentType: 1,
     navs: [
       {
         type: 1,
@@ -15,6 +16,11 @@ Page({
         name: '已接单子',
       }
     ],
+
+    orders: {
+      1: [],
+      2: []
+    },
 
     //模拟数据
     naborLists: [
@@ -56,22 +62,49 @@ Page({
     ]
   },
 
+  onLoad() {
+    app._api.getWorkerReserves({ type: 1, token: app.globalData._token }, res => {
+      this.setData({
+        'orders[1]': res.data.data
+      })
+    })
+  },
+
   //导航切换
   switchNav(e) {
     const index = e.target.dataset.index
     const type = e.target.dataset.type
+    const orders = this.data.orders[type]
+
     if (index === this.data.currentNav) {
       return false
     }
-    this.setData({
-      currentNav: index
-    })
+
+    if (orders && orders.length > 0) {
+      this.setData({
+        currentNav: index,
+        currentType: type
+      })
+    } else {
+      const tmp = `orders[${type}]`
+      app._api.getWorkerReserves({ type: type, token: app.globalData._token }, res => {
+        this.setData({
+          [tmp]: res.data.data,
+          currentNav: index,
+          currentType: type
+        })
+      })
+    }
   },
 
   //接单
-  getOrder() {
-    wx.showToast({
-      title: '接单成功',
+  getOrder(e) {
+    const id = e.currentTarget.dataset.id
+    app._api.acceptReserve(id, { token: app.globalData._token }, res => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '接单成功',
+      })
     })
   },
 

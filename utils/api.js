@@ -58,8 +58,8 @@ const api = {
 
   /**
    * 登录获取 token
-   * @params {object} data  {code, iv, encryptedData}
-   * @params {function} cb 回调
+   * @param {object} data  {code, iv, encryptedData}
+   * @param {function} cb 回调
    */
   login(data, cb) {
     _http.post(`${host}login`, data)
@@ -73,8 +73,8 @@ const api = {
 
   /**
    * 获取广告
-   * @params {object} data {name, number, address, latitude, longitude, token}
-   * @params {function} cb 回调
+   * @param {object} data {name, number, address, latitude, longitude, token}
+   * @param {function} cb 回调
    */
   postReserve(data, cb) {
     _http.post(`${host}reserve`, data)
@@ -88,8 +88,8 @@ const api = {
 
   /**
    * 获取广告轮播
-   * @params {object} data {type, others}
-   * @params {function} cb 回调
+   * @param {object} data {type, others}
+   * @param {function} cb 回调
    */
   getAdverts(data, cb) {
     _http.get(`${host}adverts`, data)
@@ -103,8 +103,8 @@ const api = {
 
   /**
    * 获取商品信息
-   * @params {object} data {(title), page, limmit }
-   * @params {function} cb 回调
+   * @param {object} data {(title), page, limmit }
+   * @param {function} cb 回调
    */
   getCommodities(data, cb) {
     _http.get(`${host}commodities`, data)
@@ -118,8 +118,8 @@ const api = {
 
   /**
    * 获取商品
-   * @params {string} id 
-   * @params {function} cb
+   * @param {string} id 
+   * @param {function} cb
    */
   getCommodity(id, cb) {
     _http.get(`${host}commodity/${id}`)
@@ -133,8 +133,8 @@ const api = {
 
   /**
    * 获取商品库存
-   * @params {array} data [1,2,..]
-   * @params {function} cb 回调
+   * @param {array} data [1,2,..]
+   * @param {function} cb 回调
    */
   getCommodityStandard(data, cb) {
     _http.get(`${host}product`, data)
@@ -148,8 +148,8 @@ const api = {
 
   /**
    * 付款，向微信获取订单号
-   * @params {object} data {address, (description), token, products}
-   * @params {function} cb 回调
+   * @param {object} data {address, (description), token, products}
+   * @param {function} cb 回调
    */
   postPorduct(data, cb) {
     _http.post(`${host}order`, data)
@@ -163,8 +163,8 @@ const api = {
 
   /**
    * 获取我的预约
-   * @params {object} data {token, state, (page), (limit)}
-   * @params cb 回调
+   * @param {object} data {token, state, (page), (limit)}
+   * @param cb 回调
    */
   getMyReserve(data, cb) {
     _http.get(`${host}my/reserves`, data)
@@ -178,8 +178,8 @@ const api = {
 
   /**
    * 获取我的订单
-   * @params {object} data {token, state, (page), (limit)}
-   * @params {function} cb 回调
+   * @param {object} data {token, state, (page), (limit)}
+   * @param {function} cb 回调
    */
   getMyOrder(data, cb) {
     _http.get(`${host}my/orders`, data)
@@ -193,9 +193,9 @@ const api = {
 
   /**
    * 确认收货
-   * @params {string} id 
-   * @params {object} data {token}
-   * @params {function} cb
+   * @param {string} id 
+   * @param {object} data {token}
+   * @param {function} cb
    */
   confirmOrder(id, data, cb) {
     _http.get(`${host}confirm/${id}`, data)
@@ -214,6 +214,57 @@ const api = {
    */
   postWorker(data, cb) {
     _http.post(`${host}worker`, data)
+      .then(res => {
+        typeof cb === 'function' && cb(res)
+      })
+      .catch(err => {
+        errFnc(err)
+      })
+  },
+
+  /**
+   * 获取师傅的订单
+   * @param {object} data {token, type, (limit), (page)}
+   * @param {function} cb 回调
+   */
+  getWorkerReserves(data, cb) {
+    _http.get(`${host}worker/reserves`, data)
+      .then(res => {
+        typeof cb === 'function' && cb(res)
+      })
+      .catch(err => {
+        errFnc(err)
+      })
+  },
+
+  /**
+   * 师傅接单
+   * @param {string} id
+   * @param {object} data {token}
+   * @param {function} cb 回调
+   */
+  acceptReserve(id, data, cb) {
+    wx.showLoading({
+      title: '抢单中',
+    })
+    _http.get(`${host}accept/reserve/${id}`, data)
+      .then(res => {
+        wx.hideLoading()
+        typeof cb === 'function' && cb(res)
+      })
+      .catch(err => {
+        wx.hideLoading()
+        errFnc(err)
+      })
+  },
+
+  /**
+   * 获取公司简介
+   * @param {object} data {type}
+   * @param {function} cb 回调
+   */
+  getArticle(data, cb) {
+    _http.get(`${host}article`, data)
       .then(res => {
         typeof cb === 'function' && cb(res)
       })

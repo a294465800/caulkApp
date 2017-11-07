@@ -11,29 +11,35 @@
   <view class='master-list {{0===currentNav?"block":""}}'>
     <view class='flex-bug'>
       <scroll-view class='scroll' scroll-y>
-        <view class='master-item' wx:for="{{naborLists}}" wx:for-item="naborItem" wx:key="id">
-          <view class='master-item-content-wrap flex-row'>
-            <view class='master-item-content'>
-              <view class='master-item-content-item flex-row'>
-                <image class='people-icon' mode='aspectFit' src='/images/icon/people.png'></image>
-                <view class='master-item-content-item-text'>{{naborItem.name}}</view>
+        <block wx:if="{{orders[1] && orders[1].length}}">
+
+          <view class='master-item' wx:for="{{orders[1]}}" wx:for-item="naborItem" wx:key="id">
+            <view class='master-item-content-wrap flex-row'>
+              <view class='master-item-content'>
+                <view class='master-item-content-item flex-row'>
+                  <image class='people-icon' mode='aspectFit' src='/images/icon/people.png'></image>
+                  <view class='master-item-content-item-text'>{{naborItem.name}}</view>
+                </view>
+                <view class='master-item-content-item flex-row'>
+                  <image class='phone-icon' mode='aspectFit' src='/images/icon/phone.png'></image>
+                  <view class='master-item-content-item-text'>{{naborItem.number}}</view>
+                </view>
+                <view class='master-item-content-item flex-row'>
+                  <image class='address-icon' mode='aspectFit' src='/images/icon/address.png'></image>
+                  <view class='master-item-content-item-text'>{{naborItem.address}}</view>
+                </view>
               </view>
-              <view class='master-item-content-item flex-row'>
-                <image class='phone-icon' mode='aspectFit' src='/images/icon/phone.png'></image>
-                <view class='master-item-content-item-text'>{{naborItem.phone}}</view>
-              </view>
-              <view class='master-item-content-item flex-row'>
-                <image class='address-icon' mode='aspectFit' src='/images/icon/address.png'></image>
-                <view class='master-item-content-item-text'>{{naborItem.address}}</view>
-              </view>
+              <image data-phone='{{naborItem.number}}' catchtap='call' class='master-item-img' mode='aspectFit' src='/images/icon/call.png'></image>
             </view>
-            <image data-phone='{{naborItem.phone}}' catchtap='call' class='master-item-img' mode='aspectFit' src='/images/icon/call.png'></image>
+            <view class='master-info flex-row'>
+              <view class='master-info-time'>{{naborItem.created_at}}</view>
+              <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' catchtap='getOrder' data-id='{{naborItem.id}}'>我要接单</view>
+            </view>
           </view>
-          <view class='master-info flex-row'>
-            <view class='master-info-time'>{{naborItem.time}}</view>
-            <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' catchtap='getOrder' data-id='{{naborItem.id}}'>我要接单</view>
-          </view>
-        </view>
+        </block>
+        <block wx:else>
+          <view class='tips'>暂无数据</view>
+        </block>
       </scroll-view>
     </view>
   </view>
@@ -43,29 +49,34 @@
   <view class='master-list {{1===currentNav?"block":""}}'>
     <view class='flex-bug'>
       <scroll-view class='scroll' scroll-y>
-        <view class='master-item' wx:for="{{naborLists}}" wx:for-item="okItem" wx:key="id">
-          <view class='master-item-content-wrap flex-row'>
-            <view class='master-item-content'>
-              <view class='master-item-content-item flex-row'>
-                <image class='people-icon' mode='aspectFit' src='/images/icon/people.png'></image>
-                <view class='master-item-content-item-text'>{{okItem.name}}</view>
+        <block wx:if="{{orders[2] && orders[2].length}}">
+          <view class='master-item' wx:for="{{orders[2]}}" wx:for-item="okItem" wx:key="id">
+            <view class='master-item-content-wrap flex-row'>
+              <view class='master-item-content'>
+                <view class='master-item-content-item flex-row'>
+                  <image class='people-icon' mode='aspectFit' src='/images/icon/people.png'></image>
+                  <view class='master-item-content-item-text'>{{okItem.name}}</view>
+                </view>
+                <view class='master-item-content-item flex-row'>
+                  <image class='phone-icon' mode='aspectFit' src='/images/icon/phone.png'></image>
+                  <view class='master-item-content-item-text'>{{okItem.number}}</view>
+                </view>
+                <view class='master-item-content-item flex-row'>
+                  <image class='address-icon' mode='aspectFit' src='/images/icon/address.png'></image>
+                  <view class='master-item-content-item-text'>{{okItem.address}}</view>
+                </view>
               </view>
-              <view class='master-item-content-item flex-row'>
-                <image class='phone-icon' mode='aspectFit' src='/images/icon/phone.png'></image>
-                <view class='master-item-content-item-text'>{{okItem.phone}}</view>
-              </view>
-              <view class='master-item-content-item flex-row'>
-                <image class='address-icon' mode='aspectFit' src='/images/icon/address.png'></image>
-                <view class='master-item-content-item-text'>{{okItem.address}}</view>
-              </view>
+              <image data-phone='{{okItem.number}}' catchtap='call' class='master-item-img' mode='aspectFit' src='/images/icon/call.png'></image>
             </view>
-            <image data-phone='{{okItem.phone}}' catchtap='call' class='master-item-img' mode='aspectFit' src='/images/icon/call.png'></image>
+            <view class='master-info'>
+              <view class='master-info-time'>{{okItem.created_at}}</view>
+              <!-- <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' catchtap='confirmOrder' data-id='{{okItem.id}}'>我要接单</view> -->
+            </view>
           </view>
-          <view class='master-info'>
-            <view class='master-info-time'>{{okItem.time}}</view>
-            <!-- <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' catchtap='confirmOrder' data-id='{{okItem.id}}'>我要接单</view> -->
-          </view>
-        </view>
+        </block>
+        <block wx:else>
+          <view class='tips'>暂无数据</view>
+        </block>
       </scroll-view>
     </view>
   </view>
