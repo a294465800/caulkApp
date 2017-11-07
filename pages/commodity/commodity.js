@@ -25,7 +25,6 @@ Page({
     feature: [],
 
     currentCommdity: null,
-
     //接口数据
     commodity: {}
   },

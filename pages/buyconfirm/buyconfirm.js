@@ -11,7 +11,9 @@ Page({
       address: '',
       description: '',
       products: []
-    }
+    },
+
+    mode: ''
   },
 
   onLoad(options) {
@@ -25,7 +27,7 @@ Page({
       })
     } else {
       carts = JSON.parse(wx.getStorageSync('carts'))
-      const currentType = 'carts'
+      const currentType = 'cartsObj'
       this.setData({
         carts, currentType
       })
