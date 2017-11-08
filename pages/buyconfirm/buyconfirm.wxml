@@ -19,7 +19,7 @@
         <view class='commodity-list'>
           <view class='cart-item' catchlongpress='deleteCommodity' catchtap='chooseItem' wx:for="{{carts}}" wx:for-item="cartItem" wx:key="id" data-index='{{index}}'>
             <view class='cart-item-content flex-row'>
-              <image class='cart-item-content-img' mode='aspectFit' src='{{cartItem.url}}'></image>
+              <image class='cart-item-content-img' mode='aspectFit' src='{{cartItem.picture[0].thumb_url}}'></image>
               <view class='cart-item-content-info flex-column'>
                 <view class='cart-item-content-info-title multi-two-text-flow'>{{cartItem.title}}</view>
                 <view class='cart-item-content-info-type'>

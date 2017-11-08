@@ -45,13 +45,15 @@
 }
 
 .order-item-title-id {
-  font-size: 15px;
+  font-size: 30rpx;
   color: #444;
+  text-align: left;
 }
 
 .order-item-title-time {
   color: #888;
-  font-size: 13px;
+  font-size: 26rpx;
+  text-align: right;
 }
 
 .order-item-content {

@@ -10,7 +10,7 @@
   <!--附近单子  -->
   <view class='master-list {{0===currentNav?"block":""}}'>
     <view class='flex-bug'>
-      <scroll-view class='scroll' scroll-y>
+      <scroll-view class='scroll' scroll-y bindscrolltolower="getMore">
         <block wx:if="{{orders[1] && orders[1].length}}">
 
           <view class='master-item' wx:for="{{orders[1]}}" wx:for-item="naborItem" wx:key="id">

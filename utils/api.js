@@ -271,6 +271,21 @@ const api = {
       .catch(err => {
         errFnc(err)
       })
+  },
+
+  /**
+   * 获取验证码
+   * @param {object} data {phone}
+   * @param {function} cb
+   */
+  postSms(data, cb) {
+    _http.post(`${host}code`, data)
+      .then(res => {
+        typeof cb === 'function' && cb(res)
+      })
+      .catch(err => {
+        errFnc(err)
+      })
   }
 }
 

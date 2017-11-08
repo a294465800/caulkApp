@@ -31,7 +31,7 @@
               <view class='reservation-info-time'>{{sentItem.time}}</view>
               <view class='reservation-info-btns flex-row' data-id='{{sentItem.id}}' catchtap='operationFnc' data-type='sent'>
                 <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='checkMaster' data-master='{{sentItem}}'>查看师傅</view>
-                <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='cancel'>取消订单</view>
+                <!-- <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='cancel'>取消订单</view> -->
               </view>
             </view>
           </view>
@@ -72,7 +72,7 @@
                   <icon size='13' type='info' color='#fb2956'></icon>
                   <view>未指派师傅</view>
                 </view>
-                <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='cancel'>取消订单</view>
+                <!-- <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='cancel'>取消订单</view> -->
               </view>
             </view>
           </view>

@@ -1,4 +1,6 @@
 /* pages/commodity/commodity.wxss */
+@import "/wxParse/wxParse.wxss";
+@import "../common/quill.bubble.wxss";
 
 .container {
   background-color: #eee;
@@ -36,6 +38,10 @@
 }
 
 /* 商品详情 */
+
+.commodity-item-imgs {
+  padding: 20rpx;
+}
 
 .commodity-item {
   background-color: #fff;
@@ -112,6 +118,10 @@
 
 /* 购买弹起框 */
 
+.commodity-box-top, .commodity-box {
+  overflow: unset;
+}
+
 .commodity-box-wrap {
   position: fixed;
   left: 0;
@@ -147,10 +157,12 @@
   padding: 20rpx 30rpx;
   border-bottom: 1px solid #ddd;
   position: relative;
+  overflow: unset;
 }
 
 .commodity-box-title-info {
   align-items: center;
+  overflow: unset;
 }
 
 .commodity-box-title-img {

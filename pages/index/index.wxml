@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class='container flex-column'>
+<view class='container'>
   <!--轮播  -->
   <swiper indicator-dots autoplay interval="5000" duration="1000" class='swiper-images-wrap' indicator-active-color='#047911'>
     <block wx:for="{{imgUrls}}" wx:for-item="img" wx:key="id">
@@ -11,7 +11,7 @@
   <!--/轮播  -->
 
   <!--form表单  -->
-  <view class='order-form-wrap flex-column'>
+  <view class='order-form-wrap'>
     <view class='order-from-title flex-row flex-center'>
       <image mode='aspectFit' src='/images/icon/order-icon.png'></image>预约
     </view>
@@ -19,21 +19,21 @@
       <form report-submit bindsubmit='submit'>
         <label class='input-label order-form-item'>
           <view class='input-title'>你的称呼：</view>
-          <input class='input-view' name="name"></input>
+          <input class='input-view' name="name" value="{{name}}"></input>
         </label>
         <label class='input-label order-form-item'>
           <view class='input-title'>联系方式：</view>
-          <input class='input-view' type='number' name="number"></input>
+          <input class='input-view' type='number' value='{{number}}' name="number"></input>
         </label>
         <view class='flex-row order-form-item' bindtap='getLocation'>
-          <view class='input-title'>详细地址：</view>
+          <view class='input-title'>地址：</view>
           <input disabled class='order-form-address text-flow' name="address" value='{{address}}'></input>
           <image class='location-icon' mode='aspectFit' src='/images/icon/location.png'></image>
         </view>
-        <!-- <label class='order-form-item block'>
+        <label class='order-form-item block'>
           <view>详细位置</view>
-          <textarea maxlength='200' class='order-textarea'></textarea>
-        </label> -->
+          <textarea maxlength='200' value='{{detail}}' name="detail" class='order-textarea'></textarea>
+        </label>
         <button form-type="submit" class='order-submit' hover-class='submit-hover'>一键预约</button>
       </form>
     </view>

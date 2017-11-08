@@ -8,6 +8,7 @@ Page({
 
     btnOK: false,
     btnText: '获取验证码',
+    phone: '',
 
     submitForm: {
       city: '',
@@ -36,11 +37,13 @@ Page({
     const value = e.detail.value
     if (value.length === 11) {
       this.setData({
-        btnOK: true
+        btnOK: true,
+        phone: value
       })
     } else {
       this.setData({
-        btnOK: false
+        btnOK: false,
+        phone: value
       })
     }
   },
@@ -49,21 +52,23 @@ Page({
   //获取验证码
   getSms() {
     let second = 60
-    timer = setInterval(() => {
-      if (second > 0) {
-        second--
-        this.setData({
-          btnText: `${second}秒重新获取`,
-          btnOK: false
-        })
-      } else {
-        this.setData({
-          btnOK: true,
-          btnText: '获取验证码'
-        })
-        clearInterval(timer)
-      }
-    }, 1000)
+    app._api.postSms({ phone: this.data.phone }, res => {
+      timer = setInterval(() => {
+        if (second > 0) {
+          second--
+          this.setData({
+            btnText: `${second}秒重新获取`,
+            btnOK: false
+          })
+        } else {
+          this.setData({
+            btnOK: true,
+            btnText: '获取验证码'
+          })
+          clearInterval(timer)
+        }
+      }, 1000)
+    })
 
   },
 
@@ -83,10 +88,12 @@ Page({
 
     app._api.postWorker(postData, res => {
       wx.showToast({
-        title: '入驻成功',
+        title: '申请成功',
       })
-      // wx.setStorageSync('worker', 1)
-      wx.navigateBack()
+      wx.setStorageSync('apply', 1)
+      setTimeout(() => {
+        wx.navigateBack()
+      }, 300)
     })
   }
 })

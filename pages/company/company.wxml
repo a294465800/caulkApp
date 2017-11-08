@@ -1,10 +1,11 @@
 <!--pages/company/company.wxml-->
-<view class='container'>
+<import src="../../wxParse/wxParse.wxml" />
+<view class='container flex-column'>
   <!--轮播  -->
   <swiper indicator-dots autoplay indicator-active-color='#047911' interval="5000" duration="1000" class='swiper-images-wrap'>
-    <block wx:for="{{imgUrls}}">
+    <block wx:for="{{imgUrls}}" wx:key="id" wx:for-item="img">
       <swiper-item>
-        <image mode='aspectFill' src="{{item}}" class="slide-image" class='order-img-item' />
+        <image mode='aspectFill' src="{{img.url}}" class="slide-image" class='order-img-item' />
       </swiper-item>
     </block>
   </swiper>
@@ -17,11 +18,15 @@
   <!--/导航条  -->
 
   <!--公司展示页面  -->
-  <image mode='widthFix' class='company-show-img {{currentPage == 1? "block": ""}}' src='http://www.web191.com/uploads/allimg/151126/2345313562-0.jpg'></image>
+  <view class='text-content {{currentPage == 1? "block": ""}}'>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+  </view>
   <!--/公司展示页面  -->
 
 
   <!--关于我们页面  -->
-  <image mode='widthFix' class='company-show-img {{currentPage == 2? "block": ""}}' src='http://www.web191.com/uploads/allimg/151126/234KUF5-0.jpg'></image>
+  <view class='text-content {{currentPage == 2? "block": ""}}'>
+    <template is="wxParse" data="{{wxParseData:article2.nodes}}" />
+  </view>
   <!--/关于我们页面  -->
 </view>

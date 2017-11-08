@@ -35,11 +35,11 @@
 }
 
 .book-content-title {
-  font-size: 14pt;
+  font-size: 16px;
 }
 
 .book-content-item {
-  font-size: 16px;
+  font-size: 32rpx;
   margin-top: 20rpx;
 }
 

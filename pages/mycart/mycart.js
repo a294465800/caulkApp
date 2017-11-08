@@ -4,54 +4,13 @@ Page({
 
   data: {
 
+    loading: true,
     wholePrice: 0,
     sumCart: {},
     payCommodities: [],
 
     //模拟数据
-    carts: [
-      {
-        id: 1,
-        num: 1,
-        title: '这是美缝剂',
-        type: '象牙白 1L',
-        price: 128,
-        url: 'https://img.alicdn.com/bao/uploaded/i3/2074861905/TB1RAjsXrsTMeJjy1zbXXchlVXa_!!0-item_pic.jpg_b.jpg'
-      },
-      {
-        id: 2,
-        num: 1,
-        title: '这是美缝剂这是美缝剂这是美缝剂这是美缝剂这是美缝剂,这是美缝剂',
-        type: '天蓝 3L',
-        price: 22,
-        url: 'https://img.alicdn.com/bao/uploaded/i3/2074861905/TB1RAjsXrsTMeJjy1zbXXchlVXa_!!0-item_pic.jpg_b.jpg'
-      },
-      {
-        id: 3,
-        num: 1,
-        title: '这是美缝剂这是美缝剂这是美缝剂这是美缝剂这是美缝剂,这是美缝剂',
-        type: '天蓝 3L',
-        price: 22,
-        url: 'https://img.alicdn.com/bao/uploaded/i3/2074861905/TB1RAjsXrsTMeJjy1zbXXchlVXa_!!0-item_pic.jpg_b.jpg'
-      }
-      ,
-      {
-        id: 4,
-        num: 1,
-        title: '这是美缝剂这是美缝剂这是美缝剂这是美缝剂这是美缝剂,这是美缝剂',
-        type: '天蓝 3L',
-        price: 22,
-        url: 'https://img.alicdn.com/bao/uploaded/i3/2074861905/TB1RAjsXrsTMeJjy1zbXXchlVXa_!!0-item_pic.jpg_b.jpg'
-      },
-      {
-        id: 5,
-        num: 1,
-        title: '这是美缝剂这是美缝剂这是美缝剂这是美缝剂这是美缝剂,这是美缝剂',
-        type: '天蓝 3L',
-        price: 22,
-        url: 'https://img.alicdn.com/bao/uploaded/i3/2074861905/TB1RAjsXrsTMeJjy1zbXXchlVXa_!!0-item_pic.jpg_b.jpg'
-      }
-    ]
+    carts: []
   },
 
   onLoad() {
@@ -64,7 +23,8 @@ Page({
       }
     }
     this.setData({
-      carts: tmpCarts
+      carts: tmpCarts,
+      loading: false
     })
   },
 

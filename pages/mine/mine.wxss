@@ -64,7 +64,7 @@
 }
 
 .operation-text {
-  font-size: 16px;
+  font-size: 34rpx;
 }
 
 .operation-icon-arrow {

@@ -5,11 +5,11 @@ Page({
   data: {
     //导航
     currentNav: 0,
-    currentType: 0,
+    currentType: 1,
     navs: [
       {
-        type: 0,
-        name: '未付款',
+        type: 1,
+        name: '待发货',
       },
       {
         type: 2,
@@ -21,62 +21,30 @@ Page({
       }
     ],
 
+    flag: false,
+    bottomFlag: {
+      1: false,
+      2: false,
+      3: false
+    },
+    pages: {
+      1: 1,
+      2: 1,
+      3: 1
+    },
+
     //接口数据
     orders: {
-      0: [],
+      1: [],
       2: [],
       3: []
     },
-    orders: [
-      {
-        id: 1,
-        order_id: 213213,
-        time: '2017-10-31 15:22',
-        commodities: [
-          {
-            id: 1,
-            name: '这是一桶油漆',
-            num: 1,
-            type: '象牙白',
-            price: 128,
-            url: 'http://a1.att.hudong.com/86/95/01300543915313147018958658988_s.jpg'
-          },
-          {
-            id: 2,
-            name: '这是一桶油漆,这是一桶油漆,这是一桶油漆,这是一桶油漆,这是一桶油漆,这是一桶油漆',
-            num: 2,
-            type: '天蓝',
-            price: 256,
-            url: 'http://a1.att.hudong.com/86/95/01300543915313147018958658988_s.jpg'
-          }
-        ],
-        all_price: 384,
-        fare: 20
-      },
-      {
-        id: 1,
-        order_id: 213213,
-        time: '2017-10-31 15:22',
-        commodities: [
-          {
-            id: 1,
-            name: '这是一桶油漆',
-            num: 1,
-            type: '象牙白',
-            price: 128,
-            url: 'http://a1.att.hudong.com/86/95/01300543915313147018958658988_s.jpg'
-          }
-        ],
-        all_price: 128,
-        fare: 20
-      }
-    ]
   },
 
   onLoad() {
-    app._api.getMyOrder({ token: app.globalData._token, state: 0 }, res => {
+    app._api.getMyOrder({ token: app.globalData._token, state: 1 }, res => {
       this.setData({
-        'orders[0]': res.data.data
+        'orders[1]': res.data.data
       })
     })
   },
@@ -91,13 +59,15 @@ Page({
     }
     if (this.data.orders[type] && this.data.orders[type].length > 0) {
       this.setData({
-        currentNav: index
+        currentNav: index,
+        currentType: type,
       })
     } else {
       app._api.getMyOrder({ token: app.globalData._token, state: type }, res => {
         this.setData({
           [tmp]: res.data.data,
-          currentNav: index
+          currentNav: index,
+          currentType: type,
         })
       })
     }
@@ -123,6 +93,39 @@ Page({
             title: '已确认',
           })
         }
+      }
+    })
+  },
+
+  //触底刷新
+  getMore() {
+    const flag = this.data.flag
+    const type = this.data.currentType
+    const bottomFlag = this.data.bottomFlag[type]
+    const page = this.data.pages[type]
+    const tmpFlag = `bottomFlag[${type}]`
+    const tmpOrder = `orders[${type}]`
+    const tmpPage = `pages[${type}]`
+    if (flag || bottomFlag) {
+      return false
+    }
+    this.setData({
+      flag: true
+    })
+    app._api.getMyOrder({ token: app.globalData._token, state: type, page: page + 1 }, res => {
+      const data = res.data.data
+      if (data.length) {
+        this.setData({
+          flag: false,
+          [tmpOrder]: [...this.data.orders[type], ...data],
+          [tmpPage]: page + 1
+        })
+      } else {
+        this.setData({
+          flag: false,
+          [tmpPage]: page + 1,
+          [tmpFlag]: true
+        })
       }
     })
   }

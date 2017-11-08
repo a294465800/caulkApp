@@ -1,123 +1,136 @@
 <!--pages/commodity/commodity.wxml-->
-<view class='container'>
-
-  <!--轮播  -->
-  <swiper indicator-dots autoplay interval="5000" duration="1000" class='swiper-images-wrap' indicator-active-color='#047911'>
-    <block wx:for="{{commodity.pictures}}">
-      <swiper-item>
-        <image catchtap='preImg' data-img='{{item}}' mode='aspectFill' src="{{item}}" class="slide-image" class='order-img-item' />
-      </swiper-item>
-    </block>
-  </swiper>
-  <!--/轮播  -->
-
-  <!--商品详情  -->
-  <view class='commodity-content'>
-    <view class='commodity-content-info'>
-      <view class='commodity-content-info-title'>{{commodity.title}}</view>
-      <view class='commodity-content-info-suinfo flex-row'>
-        <view class='commodity-content-info-price'>￥{{commodity.price}}</view>
-        <view class='commodity-content-info-sell'>已售{{commodity.sales}}件</view>
-      </view>
-    </view>
+<import src="../../wxParse/wxParse.wxml" />
+<block wx:if="{{loading}}">
+  <view class='loading-wrap flex-column flex-center'>
+    <image class='loading-gif' mode='aspectFit' src='/images/icon/loading.gif'></image>
   </view>
-  <!--/商品详情  -->
+</block>
+<block wx:else>
+  <view class='container'>
 
-  <!--商品描述  -->
-  <view class='commodity-item'>
-    <view class='commodity-item-title flex-row'>
-      <view class='commodity-item-title-text'>商品描述</view>
-      <image class='arrow-down-icon' mode='aspectFit' src='/images/icon/arrow_down.png'></image>
-    </view>
-    <view class='commodity-item-content'>{{commodity.description}}</view>
-  </view>
-  <!--/商品描述  -->
+    <!--轮播  -->
+    <swiper indicator-dots autoplay interval="5000" duration="1000" class='swiper-images-wrap' indicator-active-color='#047911'>
+      <block wx:for="{{commodity.pictures}}">
+        <swiper-item>
+          <image catchtap='preImg' data-img='{{item.url}}' mode='aspectFill' src="{{item.url}}" class="slide-image" class='order-img-item' />
+        </swiper-item>
+      </block>
+    </swiper>
+    <!--/轮播  -->
 
-  <!--商品规格  -->
-  <view class='commodity-item'>
-    <view class='commodity-item-title flex-row'>
-      <view class='commodity-item-title-text'>商品规格</view>
-      <image class='arrow-down-icon' mode='aspectFit' src='/images/icon/arrow_down.png'></image>
-    </view>
-    <view class='commodity-item-content'>
-      <view class='commodity-item-content-item flex-row' wx:for="{{commodity.standards}}" wx:for-item="typeItem" wx:key="id">
-        <view class='commodity-item-content-item-type'>{{typeItem.title}}</view>
-        <view>
-          <block wx:for="{{typeItem.attrs}}" wx:for-item="attr" wx:key="id">{{attr.title}}、</block>
+    <!--商品详情  -->
+    <view class='commodity-content'>
+      <view class='commodity-content-info'>
+        <view class='commodity-content-info-title'>{{commodity.title}}</view>
+        <view class='commodity-content-info-suinfo flex-row'>
+          <view class='commodity-content-info-price'>￥{{commodity.price}}</view>
+          <view class='commodity-content-info-sell'>已售{{commodity.sales}}件</view>
         </view>
       </view>
     </view>
-  </view>
-  <!--/商品规格  -->
+    <!--/商品详情  -->
 
-  <!--商品详情  -->
-  <view class='commodity-item'>
-    <view class='commodity-item-title flex-row'>
-      <view class='commodity-item-title-text'>商品详情</view>
-      <image class='arrow-down-icon' mode='aspectFit' src='/images/icon/arrow_down.png'></image>
+    <!--商品描述  -->
+    <view class='commodity-item'>
+      <view class='commodity-item-title flex-row'>
+        <view class='commodity-item-title-text'>商品描述</view>
+        <image class='arrow-down-icon' mode='aspectFit' src='/images/icon/arrow_down.png'></image>
+      </view>
+      <view class='commodity-item-content'>{{commodity.description}}</view>
     </view>
-    <view class='commodity-item-imgs'>
-      <image wx:for="{{commodity.details}}" class='commodity-item-img' mode='widthFix' src='{{item}}'></image>
-    </view>
-  </view>
-  <!--/商品详情  -->
+    <!--/商品描述  -->
 
-  <!--购买按钮  -->
-  <view class='commodity-buy-btns flex-row'>
-    <!-- <view class='commodity-buy-icons flex-column'>
+    <!--商品规格  -->
+    <view class='commodity-item'>
+      <view class='commodity-item-title flex-row'>
+        <view class='commodity-item-title-text'>商品规格</view>
+        <image class='arrow-down-icon' mode='aspectFit' src='/images/icon/arrow_down.png'></image>
+      </view>
+      <view class='commodity-item-content'>
+        <view class='commodity-item-content-item flex-row' wx:for="{{commodity.standards}}" wx:for-item="typeItem" wx:key="id">
+          <view class='commodity-item-content-item-type'>{{typeItem.title}}</view>
+          <view>
+            <block wx:for="{{typeItem.attrs}}" wx:for-item="attr" wx:key="id">{{attr.title}}、</block>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--/商品规格  -->
+
+    <!--商品详情  -->
+    <view class='commodity-item'>
+      <view class='commodity-item-title flex-row'>
+        <view class='commodity-item-title-text'>商品详情</view>
+        <image class='arrow-down-icon' mode='aspectFit' src='/images/icon/arrow_down.png'></image>
+      </view>
+      <view class='commodity-item-imgs'>
+        <block wx:if="{{commodity.content}}">
+          <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+        </block>
+        <block wx:else>
+          <view class='tips'>暂无</view>
+        </block>
+      </view>
+    </view>
+    <!--/商品详情  -->
+
+    <!--购买按钮  -->
+    <view class='commodity-buy-btns flex-row'>
+      <!-- <view class='commodity-buy-icons flex-column'>
       <image class='service-icon' mode='aspectFit' src='/images/icon/service.png'></image>
       <view>客服</view>
     </view> -->
-    <view class='commodity-price'>价格：￥99</view>
-    <view class='commodity-buy-btn' catchtap='addToCartText'>加入购物车</view>
-    <view class='commodity-buy-btn' catchtap='singleBuyText'>立即购买</view>
-  </view>
-  <!--/购买按钮  -->
+      <view class='commodity-price'>价格：￥{{commodity.price}}</view>
+      <view class='commodity-buy-btn' catchtap='addToCartText'>加入购物车</view>
+      <view class='commodity-buy-btn' catchtap='singleBuyText'>立即购买</view>
+    </view>
+    <!--/购买按钮  -->
 
-  <!--商品购买弹窗  -->
-  <view class='commodity-box-wrap {{buyNow?"active":""}}' catchtap='closeBox'>
-    <view class='commodity-box {{buyNow?"active":""}} flex-column' catchtap='showBox'>
-      <view class='commodity-box-top'>
-        <view class='commodity-box-title flex-row'>
-          <view class='commodity-box-title-info flex-row'>
-            <image class='commodity-box-title-img' mode='aspectFill' src='{{commodity.pictures[0]}}'></image>
-            <view class='commodity-box-title-plus'>
-              <view class='commodity-box-title-price'>￥{{currentCommdity?currentCommdity.price * waittingBuy.final_num: 0}}</view>
-              <view class='commodity-box-title-current'>已选：
-                <block wx:if="{{currentCommdity}}">
-                  <block wx:for="{{currentCommdity.attrs}}">{{item}} </block>
-                </block>
-                <block wx:else>
-                </block>
+    <!--商品购买弹窗  -->
+    <view class='commodity-box-wrap {{buyNow?"active":""}}' catchtap='closeBox'>
+      <view class='commodity-box {{buyNow?"active":""}} flex-column' catchtap='showBox'>
+        <view class='commodity-box-top'>
+          <view class='commodity-box-title flex-row'>
+            <view class='commodity-box-title-info flex-row'>
+              <image class='commodity-box-title-img' mode='aspectFill' src='{{currentCommdity?currentCommdity.picture[0].thumb_url:commodity.pictures[0].thumb_url}}'></image>
+              <view class='commodity-box-title-plus'>
+                <view class='commodity-box-title-price'>￥{{currentCommdity?currentCommdity.price * waittingBuy.final_num: 0}}</view>
+                <view class='commodity-box-title-current'>已选：
+                  <block wx:if="{{currentCommdity}}">
+                    <block wx:for="{{currentCommdity.attrs}}">{{item}} </block>
+                  </block>
+                  <block wx:else>
+                  </block>
+                </view>
+              </view>
+            </view>
+            <view class='commodity-box-close' catchtap='closeBox'>X</view>
+          </view>
+          <view class='commodity-box-type-wrap'>
+            <view class='commodity-box-type' wx:for="{{commodity.standards}}" wx:key="id" wx:for-item="standard">
+              <view class='commodity-box-type-title'>{{standard.title}}</view>
+              <view class='commodity-box-type-items flex-row'>
+                <view class='commodity-box-type-item {{standardList[standard.id] == attr.id?"active": ""}}' catchtap='chooseStandard' data-standard_id='{{standard.id}}' data-title='{{attr.title}}' data-id='{{attr.id}}' wx:for="{{standard.attrs}}" wx:for-item="attr" wx:key="id">{{attr.title}}</view>
               </view>
             </view>
           </view>
-          <view class='commodity-box-close' catchtap='closeBox'>X</view>
-        </view>
-        <view class='commodity-box-type-wrap'>
-          <view class='commodity-box-type' wx:for="{{commodity.standards}}" wx:key="id" wx:for-item="standard">
-            <view class='commodity-box-type-title'>{{standard.title}}</view>
-            <view class='commodity-box-type-items flex-row'>
-              <view class='commodity-box-type-item {{standardList[standard.id] == attr.id?"active": ""}}' catchtap='chooseStandard' data-standard_id='{{standard.id}}' data-title='{{attr.title}}' data-id='{{attr.id}}' wx:for="{{standard.attrs}}" wx:for-item="attr" wx:key="id">{{attr.title}}</view>
-            </view>
+          <view class='commodity-box-num flex-row'>
+            <view>数量（当前库存：{{currentCommdity?currentCommdity.stock: '0'}}）</view>
+            <block wx:if="{{currentCommdity && currentCommdity.stock > 0}}">
+              <view class='cart-item-content-info-btns flex-row' catchtap='operation'>
+                <view class='cart-item-content-info-delete' data-operation='delete' hover-class='cart-item-content-info-delete-hover' hover-stay-time='100'>-</view>
+                <view class='cart-item-content-info-text'>{{waittingBuy.final_num}}</view>
+                <view class='cart-item-content-info-plus' data-operation='add' hover-class='cart-item-content-info-plus-hover' hover-stay-time='100'>+</view>
+              </view>
+            </block>
+            <block wx:else>
+              <view class='red-text'>暂无库存</view>
+            </block>
           </view>
         </view>
-        <view class='commodity-box-num flex-row'>
-          <view>数量（当前库存：{{currentCommdity?currentCommdity.stock: '0'}}）</view>
-          <block wx:if="{{currentCommdity && currentCommdity.stock > 0}}">
-            <view class='cart-item-content-info-btns flex-row' catchtap='operation'>
-              <view class='cart-item-content-info-delete' data-operation='delete' hover-class='cart-item-content-info-delete-hover' hover-stay-time='100'>-</view>
-              <view class='cart-item-content-info-text'>{{waittingBuy.final_num}}</view>
-              <view class='cart-item-content-info-plus' data-operation='add' hover-class='cart-item-content-info-plus-hover' hover-stay-time='100'>+</view>
-            </view>
-          </block>
-          <block wx:else>
-            <view class='red-text'>暂无库存</view>
-          </block>
-        </view>
+        <view class='commodity-box-confirm {{btnText == "直接购买"?"red":"orange"}}' catchtap='{{btnText == "直接购买"?"singleBuy":"addToCart"}}'>{{btnText}}</view>
       </view>
-      <view class='commodity-box-confirm {{btnText == "直接购买"?"red":"orange"}}' catchtap='{{btnText == "直接购买"?"singleBuy":"addToCart"}}'>{{btnText}}</view>
     </view>
+    <!--/商品购买弹窗  -->
   </view>
-  <!--/商品购买弹窗  -->
-</view>
+</block>

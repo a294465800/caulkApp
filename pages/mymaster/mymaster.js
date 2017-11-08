@@ -17,49 +17,22 @@ Page({
       }
     ],
 
+    flag: false,
+    bottomFlag: {
+      1: false,
+      2: false
+    },
+
+    pages: {
+      1: 1,
+      2: 1
+    },
+
+    //接口数据
     orders: {
       1: [],
       2: []
     },
-
-    //模拟数据
-    naborLists: [
-      {
-        id: 1,
-        name: '程先生',
-        phone: 1814512151,
-        address: '广州市XXX区XXX街道XXX号XXX',
-        time: '2017-10-21 15:12'
-      },
-      {
-        id: 2,
-        name: '岑先生',
-        phone: 136541251423,
-        address: '广州市XXX区XXX街道XXX号XXX',
-        time: '2017-10-21 15:12'
-      },
-      {
-        id: 3,
-        name: '程先生',
-        phone: 1814512151,
-        address: '广州市XXX区XXX街道XXX号XXX',
-        time: '2017-10-21 15:12'
-      },
-      {
-        id: 4,
-        name: '韩先生',
-        phone: 1814512151,
-        address: '广州市XXX区XXX街道XXX号XXX',
-        time: '2017-10-21 15:12'
-      },
-      {
-        id: 5,
-        name: '程先生',
-        phone: 13546843215,
-        address: '广州市XXX区XXX街道XXX号XXX',
-        time: '2017-10-21 15:12'
-      }
-    ]
   },
 
   onLoad() {
@@ -105,6 +78,40 @@ Page({
       wx.showToast({
         title: '接单成功',
       })
+    })
+  },
+
+  //触底刷新
+  getMore() {
+    const flag = this.data.flag
+    const type = this.data.currentType
+    const bottomFlag = this.data.bottomFLag[type]
+    const page = this.data.pages[type]
+    const tmpFlag = `bottomFlag[${type}]`
+    const tmpPage = `pages[${type}]`
+    const tmpOrder = `orders[${type}]`
+    if (flag || bottomFlag) {
+      return
+    }
+
+    this.setData({
+      flag: true
+    })
+    app._api.getWorkerReserves({ type, token: app.globalData._token, page: page + 1 }, res => {
+      const data = res.data.data
+      if (data.length) {
+        this.setData({
+          [tmpOrder]: [...this.data.orders[type], ...res.data.data],
+          [tmpPage]: page + 1,
+          flag: false
+        })
+      } else {
+        this.setData({
+          [tmpPage]: page + 1,
+          flag: false,
+          tmpFlag: true
+        })
+      }
     })
   },
 

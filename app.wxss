@@ -100,7 +100,7 @@ view {
 
 .input-title {
   width: 180rpx;
-  font-size: 13pt;
+  font-size: 34rpx;
 }
 
 .input-view {

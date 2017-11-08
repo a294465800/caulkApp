@@ -1,7 +1,15 @@
 /* pages/company/company.wxss */
+@import "/wxParse/wxParse.wxss";
+@import "../common/quill.bubble.wxss";
 
 .container {
   background-color: #efefef;
+}
+
+.text-content {
+  display: none;
+  background-color: #fff;
+  flex: 1;
 }
 
 /* 导航条 */
@@ -21,11 +29,4 @@
 .active {
   color: #047911;
   border-bottom: 2px solid #047911;
-}
-
-/* 公司展示 */
-
-.company-show-img {
-  width: 100%;
-  display: none;
 }

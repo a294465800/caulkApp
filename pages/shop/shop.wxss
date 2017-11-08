@@ -80,5 +80,6 @@
 }
 
 .shop-item:nth-of-type(2n+1) {
-  margin-right: 14rpx;
+  /* margin-right: 12rpx; */
+  margin-right: 2%;
 }

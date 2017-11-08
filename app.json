@@ -16,9 +16,9 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#047911",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "美家美缝服务中心",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "list": [

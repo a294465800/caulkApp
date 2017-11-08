@@ -10,10 +10,10 @@
   <!--订单列表  -->
   <view class='order-list {{currentNav == 0?"block":""}}'>
     <view class='flex-bug'>
-      <scroll-view class='scroll' scroll-y>
-        <block wx:if="{{orders[0] && orders[0].length}}">
-          <view class='order-item-wrap' wx:for="{{orders[0]}}" wx:for-item="orderItem" wx:key="id">
-            <view class='order-item-title flex-row'>
+      <scroll-view class='scroll' scroll-y bindscrolltolower="getMore">
+        <block wx:if="{{orders[1] && orders[1].length}}">
+          <view class='order-item-wrap' wx:for="{{orders[1]}}" wx:for-item="orderItem" wx:key="id">
+            <view class='order-item-title'>
               <view class='order-item-title-id'>编号：{{orderItem.number}}</view>
               <view class='order-item-title-time'>{{orderItem.created_at}}</view>
             </view>
@@ -49,12 +49,12 @@
   <!--订单列表  -->
   <view class='order-list {{currentNav == 1?"block":""}}'>
     <view class='flex-bug'>
-      <scroll-view class='scroll' scroll-y>
+      <scroll-view class='scroll' scroll-y bindscrolltolower="getMore">
         <block wx:if="{{orders[2] && orders[2].length}}">
           <view class='order-item-wrap' wx:for="{{orders[2]}}" wx:for-item="orderFinishItem" wx:key="id">
-            <view class='order-item-title flex-row'>
+            <view class='order-item-title'>
               <view class='order-item-title-id'>编号：{{orderFinishItem.order_id}}</view>
-              <view class='order-item-title-time'>{{orderFinishItem.time}}</view>
+              <view class='order-item-title-time'>{{orderFinishItem.created_at}}</view>
             </view>
             <view class='order-item-content flex-row' wx:for="{{orderFinishItem.snapshots}}" wx:for-item="commodityItem" wx:key="id">
               <image class='order-item-content-img' src='{{commodityItem.picture}}' mode='aspectFit'></image>
@@ -88,12 +88,12 @@
   <!--订单列表  -->
   <view class='order-list {{currentNav == 2?"block":""}}'>
     <view class='flex-bug'>
-      <scroll-view class='scroll' scroll-y>
+      <scroll-view class='scroll' scroll-y bindscrolltolower="getMore">
         <block wx:if="{{orders[3] && orders[3].length}}">
           <view class='order-item-wrap' wx:for="{{orders[3]}}" wx:for-item="orderFinishItem" wx:key="id">
-            <view class='order-item-title flex-row'>
+            <view class='order-item-title'>
               <view class='order-item-title-id'>编号：{{orderFinishItem.number}}</view>
-              <view class='order-item-title-time'>{{orderFinishItem.time}}</view>
+              <view class='order-item-title-time'>{{orderFinishItem.created_at}}</view>
             </view>
             <view class='order-item-content flex-row' wx:for="{{orderFinishItem.snapshots}}" wx:for-item="commodityItem" wx:key="id">
               <image class='order-item-content-img' src='{{commodityItem.picture}}' mode='aspectFit'></image>

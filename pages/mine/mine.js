@@ -74,10 +74,20 @@ Page({
   },
 
   //我是师傅
+  // apply = 1 ;审核中
+  // worker = 0 未入驻
+  // worker = 1 已入驻
   goToMaster() {
     const worker = wx.getStorageSync('worker')
-    console.log(worker)
-    if (worker == 0) {
+    const apply = wx.getStorageSync('apply')
+    if (apply == 1) {
+      wx.showModal({
+        title: '提示',
+        content: '您的信息正在审核中，请耐心等待',
+        showCancel: false
+      })
+      return false
+    } else if (worker == 0) {
       wx.showModal({
         title: '提示',
         content: '您还没成为入驻师傅，要入驻吗？',
@@ -90,7 +100,6 @@ Page({
         }
       })
     } else {
-
       wx.navigateTo({
         url: '/pages/mymaster/mymaster',
       })

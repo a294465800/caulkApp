@@ -16,7 +16,7 @@
           </label>
           <label class='label-control'>
             <view class='label-text'>擅长</view>
-            <input class='input-control' name="good_at" placeholder='请输入擅长技能'></input>
+            <textarea class='input-control' auto-height name="good_at" placeholder='请输入擅长技能'></textarea>
           </label>
           <label class='label-control'>
             <view class='label-text'>地址</view>
@@ -38,7 +38,7 @@
           </label>
           <label class='label-control'>
             <view class='label-text'>验证码</view>
-            <input class='input-control' type='number' maxlength='6' name="sms" placeholder='请输入验证码'></input>
+            <input class='input-control' type='number' maxlength='6' name="sns" placeholder='请输入验证码'></input>
           </label>
         </view>
       </view>

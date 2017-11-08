@@ -1,13 +1,11 @@
 // pages/commodity/commodity.js
 const app = getApp()
+const WxParse = require('../../wxParse/wxParse.js')
 Page({
 
   data: {
-    imgUrls: [
-      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg'
-    ],
+    imgUrls: [],
+    loading: true,
 
     buyNow: false,
     btnText: '加入购物车',
@@ -32,9 +30,19 @@ Page({
   onLoad(options) {
     const id = options.id
     app._api.getCommodity(id, res => {
+      const data = res.data.data
+      let tmpArr = []
+      for (let it in data.pictures) {
+        tmpArr.push(data.pictures[it].url)
+      }
       this.setData({
-        commodity: res.data.data
+        commodity: data,
+        imgUrls: tmpArr,
+        loading: false,
       })
+      const article = data.content
+      const that = this
+      WxParse.wxParse('article', 'html', article, that, 10)
     })
   },
 
