@@ -38,7 +38,6 @@ Page({
     for (let it in carts) {
       tmpPost.push({ id: carts[it].id, number: carts[it].final_num })
     }
-    console.log(tmpPost)
     this.setData({
       'submitForm.products': tmpPost
     })
@@ -47,7 +46,6 @@ Page({
   //添加地址
   addAddress() {
     app.getAddress(res => {
-      console.log(res)
       this.setData({
         'submitForm.address': res.provinceName + res.cityName + res.countyName + res.detailInfo,
         'submitForm.name': res.userName,

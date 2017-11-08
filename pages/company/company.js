@@ -29,23 +29,18 @@ Page({
 
   onLoad() {
     app._api.getAdverts({ type: 3 }, res => {
-      console.log(res)
       this.setData({
         imgUrls: res.data.data
       })
     })
     app._api.getArticle({ type: 1 }, res => {
-      console.log('error')
       const article = res.data.data ? res.data.data.content : '<h1 style="text-align:center;">暂无内容</h1>'
       const that = this
-      console.log(article)
       WxParse.wxParse('article', 'html', article, that, 10)
-      console.log('error')
     })
     app._api.getArticle({ type: 2 }, res => {
       const article2 = res.data.data ? res.data.data.content : '<h1 style="text-align:center;">暂无内容</h1>'
       const that = this
-      console.log(article2)
       WxParse.wxParse('article2', 'html', article2, that, 10)
     })
   },

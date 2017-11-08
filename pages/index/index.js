@@ -24,7 +24,6 @@ Page({
 
   getLocation() {
     app.getLocation(res => {
-      console.log(res)
       this.setData({
         address: res.address,
         // address: res.provinceName + res.cityName + res.countyName + res.detailInfo,
@@ -38,7 +37,6 @@ Page({
           longitude: res.longitude
         },
         success:(rs) => {
-          console.log(rs)
           const cityData = rs.result.address_component
           this.setData({
             address: res.address,

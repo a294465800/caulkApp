@@ -181,7 +181,6 @@ Page({
   //显示、关闭师傅面板 
   checkMaster(e) {
     const master = e.target.dataset.master
-    console.log(e)
     this.setData({
       showMaster: true,
       currentMaster: master
@@ -203,7 +202,7 @@ Page({
   },
 
   cancel() {
-    console.log('cancel')
+    // console.log('cancel')
   },
 
 

@@ -18,7 +18,7 @@
               <view class='order-item-title-time'>{{orderItem.created_at}}</view>
             </view>
             <view class='order-item-content flex-row' wx:for="{{orderItem.snapshots}}" wx:for-item="commodityItem" wx:key="id">
-              <image class='order-item-content-img' src='{{commodityItem.picture}}' mode='aspectFit'></image>
+              <image class='order-item-content-img' src='{{commodityItem.picture?commodityItem.picture[0].thumb_url:"/images/icon/no-img.png"}}' mode='aspectFit'></image>
               <view class='order-item-content-content flex-column'>
                 <view class='order-item-content-content-title multi-two-text-flow'>{{commodityItem.commodity_name}}</view>
                 <view class='order-item-content-content-type flex-row'>
@@ -32,7 +32,7 @@
                 <view class='order-item-content-content-price'>￥{{commodityItem.price}}</view>
               </view>
             </view>
-            <view class='order-item-price'>合计：￥{{orderItem.price}}（含运费￥{{orderItem.fare || 0}}）</view>
+            <view class='order-item-price'>合计：￥{{orderItem.price}}（含运费￥{{orderItem.delivery_price || 0}}）</view>
             <view class='order-item-btns'>
               <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' catchtap='confirmOrder' data-id='{{orderItem.id}}'>付款</view>
             </view>
@@ -57,7 +57,7 @@
               <view class='order-item-title-time'>{{orderFinishItem.created_at}}</view>
             </view>
             <view class='order-item-content flex-row' wx:for="{{orderFinishItem.snapshots}}" wx:for-item="commodityItem" wx:key="id">
-              <image class='order-item-content-img' src='{{commodityItem.picture}}' mode='aspectFit'></image>
+              <image class='order-item-content-img' src='{{commodityItem.picture?commodityItem.picture[0].thumb_url:"/images/icon/no-img.png"}}' mode='aspectFit'></image>
               <view class='order-item-content-content flex-column'>
                 <view class='order-item-content-content-title multi-two-text-flow'>{{commodityItem.commodity_name}}</view>
                 <view class='order-item-content-content-type flex-row'>
@@ -71,7 +71,7 @@
                 <view class='order-item-content-content-price'>￥{{commodityItem.price}}</view>
               </view>
             </view>
-            <view class='order-item-price'>合计：￥{{orderFinishItem.price}}（含运费￥{{orderFinishItem.fare || 0}}）</view>
+            <view class='order-item-price'>合计：￥{{orderFinishItem.price}}（含运费￥{{orderFinishItem.delivery_price || 0}}）</view>
             <view class='order-item-btns'>
               <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' catchtap='confirmOrder' data-index='{{index}}' data-id='{{orderFinishItem.id}}'>确认收货</view>
             </view>
@@ -96,7 +96,7 @@
               <view class='order-item-title-time'>{{orderFinishItem.created_at}}</view>
             </view>
             <view class='order-item-content flex-row' wx:for="{{orderFinishItem.snapshots}}" wx:for-item="commodityItem" wx:key="id">
-              <image class='order-item-content-img' src='{{commodityItem.picture}}' mode='aspectFit'></image>
+              <image class='order-item-content-img' src='{{commodityItem.picture?commodityItem.picture[0].thumb_url:"/images/icon/no-img.png"}}' mode='aspectFit'></image>
               <view class='order-item-content-content flex-column'>
                 <view class='order-item-content-content-title multi-two-text-flow'>{{commodityItem.commodity_name}}</view>
                 <view class='order-item-content-content-type flex-row'>
@@ -112,7 +112,7 @@
             </view>
             <view class='order-item-price flex-row'>
               <view class='confirm-text'>已确认收货</view>
-              <view>合计：￥{{orderFinishItem.price}}（含运费￥{{orderFinishItem.fare || 0}}）</view>
+              <view>合计：￥{{orderFinishItem.price}}（含运费￥{{orderFinishItem.delivery_price || 0}}）</view>
             </view>
           </view>
         </block>

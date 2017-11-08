@@ -5,8 +5,6 @@ Page({
 
   data: {
 
-    // loading: true,
-
     imgUrls: [],
 
     flag: false,
@@ -22,12 +20,10 @@ Page({
     app._api.getCommodities('', res => {
       this.setData({
         shops: res.data.data,
-        // loading: false
       })
     })
 
     app._api.getAdverts({ type: 2 }, res => {
-      // console.log(res)
       this.setData({
         imgUrls: res.data.data
       })
