@@ -27,10 +27,18 @@
   <view class='operation-item flex-row margin-top' hover-class='hover-class' hover-stay-time='150' bindtap='goToUs'>
     <view class='operation-item-left flex-row'>
       <image mode='aspectFit' src='/images/icon/about.png' class='operation-icon'></image>
-      <view class='operation-text'>关于我们</view>
+      <view class='operation-text'>关于美缝</view>
     </view>
     <image mode='aspectFit' src='/images/icon/more.png' class='operation-icon-arrow'></image>
   </view>
+
+  <button open-type='contact' class='operation-item special flex-row' hover-class='hover-class' hover-stay-time='150'>
+    <view class='operation-item-left flex-row'>
+      <image mode='aspectFit' src='/images/icon/kefu.png' class='operation-icon'></image>
+      <view class='operation-text'>联系客服</view>
+    </view>
+    <image mode='aspectFit' src='/images/icon/more.png' class='operation-icon-arrow'></image>
+  </button>
 
 
 </view>

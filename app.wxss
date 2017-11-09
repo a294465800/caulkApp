@@ -117,7 +117,7 @@ view {
 /* icon */
 
 .book-icon {
-  width: 22px;
+  width: 18px;
   height: 22px;
 }
 

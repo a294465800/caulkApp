@@ -24,7 +24,7 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "我要预约",
+        "text": "我要下单",
         "iconPath": "/images/tab/orders.png",
         "selectedIconPath": "/images/tab/orders_selected.png"
       },

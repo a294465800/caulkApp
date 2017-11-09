@@ -13,7 +13,7 @@
   padding: 40rpx 30rpx;
   border: 1px solid #ddd;
   background-color: #fff;
-  font-size: 16px;
+  font-size: 15px;
   color: #16ccb5;
   justify-content: center;
   margin-bottom: 30rpx;

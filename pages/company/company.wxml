@@ -2,7 +2,7 @@
 <import src="../../wxParse/wxParse.wxml" />
 <view class='container flex-column'>
   <!--轮播  -->
-  <swiper indicator-dots autoplay indicator-active-color='#047911' interval="5000" duration="1000" class='swiper-images-wrap'>
+  <swiper indicator-dots autoplay indicator-active-color='#047911' interval="5000" duration="1000" class='swiper-images-wrap' indicator-color='#fff'>
     <block wx:for="{{imgUrls}}" wx:key="id" wx:for-item="img">
       <swiper-item>
         <image mode='aspectFill' src="{{img.url}}" class="slide-image" class='order-img-item' />

@@ -183,6 +183,18 @@ Page({
   //直接购买
   singleBuy() {
     const currentCommdity = this.data.currentCommdity
+    if (!app.globalData.userInfo) {
+      wx.showModal({
+        title: '提示',
+        content: '请先登录',
+        success: ok => {
+          if (ok.confirm) {
+            app.getUserInfo()
+          }
+        }
+      })
+      return false
+    }
     if (!currentCommdity) {
       wx.showModal({
         title: '提示',
@@ -213,6 +225,18 @@ Page({
   addToCart() {
     const currentCommdity = this.data.currentCommdity
     let carts = wx.getStorageSync('cartsObj')
+    if (!app.globalData.userInfo) {
+      wx.showModal({
+        title: '提示',
+        content: '请先登录',
+        success: ok => {
+          if (ok.confirm) {
+            app.getUserInfo()
+          }
+        }
+      })
+      return false
+    }
     if (carts) {
       carts = JSON.parse(carts)
     } else {

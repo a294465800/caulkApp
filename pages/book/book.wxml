@@ -3,7 +3,7 @@
   <view>
     <view class='book-success flex-row'>
       <image class='book-icon' mode='aspectFit' src='/images/icon/booked.png'></image>
-      <view>预约成功</view>
+      <view>接单成功</view>
     </view>
 
     <!--确认订单内容  -->

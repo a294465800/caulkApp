@@ -1,7 +1,7 @@
 <!--pages/shop/shop.wxml-->
 <view class='container'>
   <!--轮播  -->
-  <swiper indicator-dots autoplay interval="5000" duration="1000" class='swiper-images-wrap' indicator-active-color='#047911'>
+  <swiper indicator-dots autoplay interval="5000" duration="1000" class='swiper-images-wrap' indicator-active-color='#047911' indicator-color='#fff'>
     <block wx:for="{{imgUrls}}" wx:for-item="img" wx:key="id">
       <swiper-item>
         <image mode='aspectFill' src="{{img.url}}" class="slide-image" class='order-img-item' />
@@ -13,7 +13,7 @@
   <!--搜索  -->
   <view class='search-wrap'>
     <label class='input-label'>
-      <icon type='search' color='#047911' size='20'></icon>
+      <icon type='search' color='#047911' size='17'></icon>
       <input class='input-view' placeholder='请输入搜索内容' bindinput='searchCommodity'></input>
     </label>
   </view>

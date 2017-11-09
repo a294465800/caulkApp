@@ -33,10 +33,14 @@ App({
         wx.getUserInfo({
           withCredentials: true,
           success: res => {
+            this.globalData.userInfo = res.userInfo
             this._api.login({ code: login.code, iv: res.iv, encryptedData: res.encryptedData }, (token) => {
               this.globalData._token = token.data.data.token
               wx.setStorageSync('worker', token.data.data.worker)
               wx.setStorageSync('apply', token.data.data.worker)
+              wx.showToast({
+                title: '登录成功',
+              })
               typeof callback === 'function' && callback(res.userInfo)
             })
           },

@@ -12,19 +12,19 @@ Page({
     operations: [
       {
         id: 1,
-        name: '我的预约',
+        name: '我的下单',
         url: '/images/icon/reservation.png',
         fnc: 'goTomyReservation'
       },
       {
         id: 2,
-        name: '我的订单',
+        name: '我的购物单',
         url: '/images/icon/my_order.png',
         fnc: 'goTomyOrder'
       },
       {
         id: 3,
-        name: '我的购物车',
+        name: '查看购物车',
         url: '/images/icon/my_cart.png',
         fnc: 'goTomyCart'
       },
@@ -52,25 +52,69 @@ Page({
     })
   },
 
+  //拒绝进入
+  reject() {
+    if (this.data.userInfo) {
+      return true
+    }
+    return false
+  },
+
   //我的预约
   goTomyReservation() {
-    wx.navigateTo({
-      url: '/pages/myreservation/myreservation',
-    })
+    if (this.reject()) {
+      wx.navigateTo({
+        url: '/pages/myreservation/myreservation',
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '请先登录',
+        success: ok => {
+          if (ok.confirm) {
+            this.login()
+          }
+        }
+      })
+    }
   },
 
   //我的订单
   goTomyOrder() {
-    wx.navigateTo({
-      url: '/pages/myorder/myorder',
-    })
+    if (this.reject()) {
+      wx.navigateTo({
+        url: '/pages/myorder/myorder',
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '请先登录',
+        success: ok => {
+          if (ok.confirm) {
+            this.login()
+          }
+        }
+      })
+    }
   },
 
   //我的购物车
   goTomyCart() {
-    wx.navigateTo({
-      url: '/pages/mycart/mycart',
-    })
+    if (this.reject()) {
+      wx.navigateTo({
+        url: '/pages/mycart/mycart',
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '请先登录',
+        success: ok => {
+          if (ok.confirm) {
+            this.login()
+          }
+        }
+      })
+    }
   },
 
   //我是师傅
@@ -80,7 +124,7 @@ Page({
   goToMaster() {
     const worker = wx.getStorageSync('worker')
     const apply = wx.getStorageSync('apply')
-    if (apply == 1) {
+    if (apply == 1 && worker != 1) {
       wx.showModal({
         title: '提示',
         content: '您的信息正在审核中，请耐心等待',

@@ -51,6 +51,7 @@
   justify-content: space-between;
   padding: 30rpx;
   border-bottom: 1px solid #efefef;
+  background-color: #fff;
 }
 
 .operation-item-left {
@@ -75,4 +76,14 @@
 .margin-top {
   margin-top: 30rpx;
   background-color: #fff;
+}
+
+.special {
+  line-height: 1;
+  border-radius: 0;
+}
+
+.special::after {
+  border: 0;
+  border-radius: 0;
 }
