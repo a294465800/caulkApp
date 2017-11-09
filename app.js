@@ -1,4 +1,4 @@
-//app.js
+// app.js
 const _api = require('./utils/api.js')
 App({
 

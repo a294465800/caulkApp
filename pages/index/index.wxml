@@ -13,28 +13,28 @@
   <!--form表单  -->
   <view class='order-form-wrap'>
     <view class='order-from-title flex-row flex-center'>
-      <image mode='aspectFit' src='/images/icon/order-icon.png'></image>下单
+      <image mode='aspectFit' src='/images/icon/order-icon.png'></image>预约
     </view>
     <view class='order-form'>
       <form report-submit bindsubmit='submit'>
         <label class='input-label order-form-item'>
           <view class='input-title'>您的称呼：</view>
-          <input class='input-view' name="name" value="{{name}}"></input>
+          <input class='input-view' maxlength='4' placeholder='请输入您的称呼' name="name" value="{{name}}"></input>
         </label>
         <label class='input-label order-form-item'>
           <view class='input-title'>联系方式：</view>
-          <input class='input-view' type='number' value='{{number}}' name="number"></input>
+          <input class='input-view' maxlength='11' placeholder='请输入您联系方式' type='number' value='{{number}}' name="number"></input>
         </label>
         <view class='flex-row order-form-item' bindtap='getLocation'>
           <view class='input-title'>您的位置：</view>
-          <input disabled class='order-form-address text-flow' name="address" value='{{address}}'></input>
+          <input disabled class='order-form-address text-flow' placeholder='请输入您位置' name="address" value='{{address}}'></input>
           <image class='location-icon' mode='aspectFit' src='/images/icon/location.png'></image>
         </view>
         <label class='order-form-item block'>
           <view>详细位置补充：</view>
-          <textarea maxlength='200' value='{{detail}}' name="detail" class='order-textarea'></textarea>
+          <textarea auto-height maxlength='200' value='{{detail}}' name="detail" class='order-textarea'></textarea>
         </label>
-        <button form-type="submit" class='order-submit' hover-class='submit-hover'>一键下单</button>
+        <button form-type="submit" class='order-submit' hover-class='submit-hover'>预约美缝</button>
       </form>
     </view>
   </view>

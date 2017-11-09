@@ -3,7 +3,7 @@
   <view>
     <view class='book-success flex-row'>
       <image class='book-icon' mode='aspectFit' src='/images/icon/booked.png'></image>
-      <view>接单成功</view>
+      <view>预约成功</view>
     </view>
 
     <!--确认订单内容  -->
@@ -14,7 +14,7 @@
       <view class='book-content-item'>地址：{{book.address}}</view>
     </view>
     <!--/确认订单内容  -->
-    <view class='tips'>正在为您处理订单中...</view>
+    <view class='tips'>正在为您指派美缝师傅...</view>
   </view>
 
   <button type='button' class='order-submit' hover-class='submit-hover' catchtap='goBack'>回到首页</button>

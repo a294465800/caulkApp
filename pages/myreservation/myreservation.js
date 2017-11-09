@@ -43,59 +43,6 @@ Page({
       1: [],
       2: []
     },
-    sents: [
-      {
-        id: 1,
-        name: '陈先生',
-        phone: 13541534813,
-        address: '广州市XXX区XXXXX街道XXX号',
-        time: '2017-10-21 15:31'
-      },
-      {
-        id: 2,
-        name: '曾先生',
-        phone: 18451346125,
-        address: '广州市XXX区XXXXX街道XXX号',
-        time: '2017-10-26 16:41'
-      },
-      {
-        id: 3,
-        name: '曾先生',
-        phone: 18451346125,
-        address: '广州市XXX区XXXXX街道XXX号',
-        time: '2017-10-26 16:41'
-      },
-      {
-        id: 4,
-        name: '曾先生',
-        phone: 18451346125,
-        address: '广州市XXX区XXXXX街道XXX号',
-        time: '2017-10-26 16:41'
-      },
-      {
-        id: 5,
-        name: '曾先生',
-        phone: 18451346125,
-        address: '广州市XXX区XXXXX街道XXX号',
-        time: '2017-10-26 16:41'
-      }
-    ],
-    notSents: [
-      {
-        id: 1,
-        name: '陈先生',
-        phone: 13541534813,
-        address: '广州市XXX区XXXXX街道XXX号',
-        time: '2017-10-21 15:31'
-      },
-      {
-        id: 2,
-        name: '曾先生',
-        phone: 18451346125,
-        address: '广州市XXX区XXXXX街道XXX号',
-        time: '2017-10-26 16:41'
-      }
-    ],
   },
 
   onLoad() {

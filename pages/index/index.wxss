@@ -69,13 +69,8 @@
   color: #fff;
   width: 90%;
   border-radius: 50rpx;
-  margin-top: 10rpx;
   border: 0 !important;
-  /* position: absolute; */
-  /* bottom: 30rpx;
-  left: 0;
-  right: 0; */
-  margin: 100rpx auto 0;
+  margin: 30rpx auto 0;
 }
 
 .submit-hover {

@@ -12,7 +12,7 @@ Page({
     operations: [
       {
         id: 1,
-        name: '我的下单',
+        name: '我的预约',
         url: '/images/icon/reservation.png',
         fnc: 'goTomyReservation'
       },
