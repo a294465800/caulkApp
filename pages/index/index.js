@@ -5,6 +5,19 @@ const demo = new QQMapWX({
   key: 'EUNBZ-MIEKW-LPMR7-ODGYY-IKEIH-Y3B4O'
 });
 Page({
+
+  onShareAppMessage(res) {
+    return {
+      title: '美家美缝服务中心',
+      path: '/pages/index/index',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  },
   data: {
     imgUrls: [],
 
@@ -24,19 +37,19 @@ Page({
 
   getLocation() {
     app.getLocation(res => {
-      this.setData({
-        address: res.address,
-        // address: res.provinceName + res.cityName + res.countyName + res.detailInfo,
-        // 'location.city': res.provinceName + res.cityName + res.countyName,
-        // 'location.latitude': res.latitude,
-        // 'location.longitude': res.longitude
-      })
+      // this.setData({
+      // address: res.address,
+      // address: res.provinceName + res.cityName + res.countyName + res.detailInfo,
+      // 'location.city': res.provinceName + res.cityName + res.countyName,
+      // 'location.latitude': res.latitude,
+      // 'location.longitude': res.longitude
+      // })
       demo.reverseGeocoder({
         location: {
           latitude: res.latitude,
           longitude: res.longitude
         },
-        success:(rs) => {
+        success: (rs) => {
           const cityData = rs.result.address_component
           this.setData({
             address: res.address,
@@ -53,10 +66,23 @@ Page({
 
   //提交
   submit(e) {
+    if (!app.globalData._token) {
+      wx.showModal({
+        title: '提示',
+        content: '请先登录',
+        success: ok => {
+          if (ok.confirm) {
+            app.getUserInfo()
+          }
+        }
+      })
+      return false
+    }
     let dataForm = e.detail.value
     dataForm.address = dataForm.address + dataForm.detail
     dataForm.detail = "nouse"
     const submitForm = Object.assign(dataForm, this.data.location, { token: app.globalData._token })
+    console.log(submitForm)
     for (let it in submitForm) {
       if (!submitForm[it]) {
         wx.showModal({
