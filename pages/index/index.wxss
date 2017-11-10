@@ -35,10 +35,14 @@
 
 .order-form-item {
   justify-content: space-between;
-  font-size: 32rpx;
+  font-size: 30rpx;
   padding: 20rpx 30rpx;
   border-bottom: 1px solid #e0dede;
   background-color: #fff;
+}
+
+.order-form-item .input-title {
+  font-size: 30rpx;
 }
 
 .order-form-item:last-child {
@@ -52,8 +56,8 @@
 }
 
 .location-icon {
-  width: 18px;
-  height: 24px;
+  width: 14px;
+  height: 18px;
 }
 
 .order-textarea {

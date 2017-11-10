@@ -1,0 +1,76 @@
+/* pages/contact/contact.wxss */
+
+.container {
+  background-color: #eee;
+}
+
+.contact-wrap {
+  background-color: #fff;
+  border: 1px solid #eee;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+}
+
+.contact-item {
+  padding-bottom: 30rpx;
+  padding-top: 30rpx;
+  border-bottom: 1px dashed #999;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10rpx;
+}
+
+.contact-item .flex-row {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact-item:last-child {
+  border-bottom: 0;
+}
+
+.contact-title {
+  color: #999;
+  width: 100px;
+}
+
+.contact-name {
+  flex: 1;
+}
+
+/* 联系二维码 */
+
+.contact-qrcode-wrap {
+  height: 0;
+  transition: height 0.5s;
+}
+
+.contact-qrcode {
+  width: 400rpx;
+  height: 400rpx;
+}
+
+.contact-tips {
+  color: #999;
+  font-size: 0;
+}
+
+.contact-qrcode-wrap.active {
+  height: 480rpx;
+  transition: height 0.5s;
+}
+
+.contact-qrcode-wrap.active .contact-tips {
+  font-size: 13px;
+  margin-top: 20rpx;
+}
+
+.location-icon {
+  width: 14px;
+  height: 18px;
+}
+
+.master-item-img {
+  width: 18px;
+  height: 23px;
+}

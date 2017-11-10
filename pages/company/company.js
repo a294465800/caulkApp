@@ -9,7 +9,7 @@ Page({
     tabText: [
       {
         id: 1,
-        name: '公司展示'
+        name: '荣誉资质'
       },
       {
         id: 2,

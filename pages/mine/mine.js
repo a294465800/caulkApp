@@ -155,5 +155,12 @@ Page({
     wx.navigateTo({
       url: '/pages/company/company',
     })
+  },
+
+  //客服
+  goToKefu() {
+    wx.navigateTo({
+      url: '/pages/contact/contact',
+    })
   }
 })

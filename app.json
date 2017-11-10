@@ -12,7 +12,8 @@
     "pages/book/book",
     "pages/company/company",
     "pages/shop/shop",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/contact/contact"
   ],
   "window": {
     "backgroundTextStyle": "light",

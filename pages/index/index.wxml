@@ -13,7 +13,7 @@
   <!--form表单  -->
   <view class='order-form-wrap'>
     <view class='order-from-title flex-row flex-center'>
-      <image mode='aspectFit' src='/images/icon/order-icon.png'></image>预约
+      <image mode='aspectFit' src='/images/icon/order-icon.png'></image>填写信息 免费预约
     </view>
     <view class='order-form'>
       <form report-submit bindsubmit='submit'>
@@ -31,8 +31,8 @@
           <image class='location-icon' mode='aspectFit' src='/images/icon/location.png'></image>
         </view>
         <label class='order-form-item block'>
-          <view>详细位置补充：</view>
-          <textarea auto-height maxlength='200' value='{{detail}}' name="detail" class='order-textarea'></textarea>
+          <view>备注：</view>
+          <textarea auto-height maxlength='200' placeholder='请填写备注' value='{{detail}}' name="detail" class='order-textarea'></textarea>
         </label>
         <button form-type="submit" class='order-submit' hover-class='submit-hover'>预约美缝</button>
       </form>

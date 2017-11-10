@@ -1,0 +1,44 @@
+<!--pages/contact/contact.wxml-->
+<view class='container'>
+  <view class='contact-wrap'>
+    <view class='contact-item flex-row'>
+      <view class='contact-text flex-row'>
+        <view class='contact-title'>公司名称</view>
+        <view class='contact-name'>东莞市美家实业有限公司</view>
+      </view>
+    </view>
+    <view class='contact-item flex-row' data-phone='400 6020 288' catchtap='call' hover-class='hover-class' hover-stay-time='150'>
+      <view class='contact-text flex-row'>
+        <view class='contact-title'>全国免费热线</view>
+        <view class='contact-name'>400 6020 288</view>
+      </view>
+      <!-- <image data-phone='400 6020 288' class='master-item-img' mode='aspectFit' src='/images/icon/call.png'></image> -->
+    </view>
+    <view class='contact-item flex-row' data-phone='0769-83889901' catchtap='call' hover-class='hover-class' hover-stay-time='150'>
+      <view class='contact-text flex-row'>
+        <view class='contact-title'>电话</view>
+        <view class='contact-name'>0769-83889901/83889902</view>
+      </view>
+      <!-- <image data-phone='0769-83889901' class='master-item-img' mode='aspectFit' src='/images/icon/call.png'></image> -->
+    </view>
+    <view class='contact-item flex-row'>
+      <view class='contact-text flex-row'>
+        <view class='contact-title'>传真</view>
+        <view class='contact-name'>0769-83889903</view>
+      </view>
+    </view>
+    <view class='contact-item flex-row'>
+      <view class='contact-text flex-row'>
+        <view class='contact-title'>邮箱</view>
+        <view class='contact-name'>gdmeika@163.com</view>
+      </view>
+    </view>
+    <view class='contact-item flex-row' catchtap='locate' hover-class='hover-class' hover-stay-time='150'>
+      <view class='contact-text flex-row'>
+        <view class='contact-title'>地址</view>
+        <view class='contact-name'>东莞市东坑镇初坑村杨梅岭38号博榄科技园</view>
+      </view>
+      <!-- <image class='location-icon' mode='aspectFit' src='/images/icon/location.png'></image> -->
+    </view>
+  </view>
+</view>
