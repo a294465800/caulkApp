@@ -13,23 +13,24 @@
   <!--form表单  -->
   <view class='order-form-wrap'>
     <view class='order-from-title flex-row flex-center'>
-      <image mode='aspectFit' src='/images/icon/order-icon.png'></image>填写信息 免费预约
+      <!-- <image mode='aspectFit' src='/images/icon/order-icon.png'></image> -->
+      同城美缝 码上预约
     </view>
     <view class='order-form'>
       <form report-submit bindsubmit='submit'>
         <label class='input-label order-form-item'>
-          <view class='input-title'>您的称呼：</view>
-          <input class='input-view' maxlength='4' placeholder='请输入您的称呼' name="name" value="{{name}}"></input>
+          <view class='input-title'>您的姓名：</view>
+          <input class='input-view' maxlength='4' placeholder='请输入您的姓名' name="name" value="{{name}}"></input>
         </label>
         <label class='input-label order-form-item'>
-          <view class='input-title'>联系方式：</view>
-          <input class='input-view' maxlength='11' placeholder='请输入您联系方式' type='number' value='{{number}}' name="number"></input>
+          <view class='input-title'>您的电话：</view>
+          <input class='input-view' maxlength='11' placeholder='请输入您的电话' type='number' value='{{number}}' name="number"></input>
         </label>
-        <view class='flex-row order-form-item' bindtap='getLocation'>
+        <label class='flex-row order-form-item' bindtap='getLocation'>
           <view class='input-title'>您的位置：</view>
-          <input disabled class='order-form-address text-flow' placeholder='请输入您位置' name="address" value='{{address}}'></input>
+          <input disabled class='order-form-address text-flow' placeholder='请输入您的位置' name="address" value='{{address}}'></input>
           <image class='location-icon' mode='aspectFit' src='/images/icon/location.png'></image>
-        </view>
+        </label>
         <label class='order-form-item block'>
           <view>备注：</view>
           <textarea auto-height maxlength='200' placeholder='请填写备注' value='{{detail}}' name="detail" class='order-textarea'></textarea>

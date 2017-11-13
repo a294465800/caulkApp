@@ -75,6 +75,7 @@
   border-radius: 50rpx;
   border: 0 !important;
   margin: 30rpx auto 0;
+  letter-spacing: 5px;
 }
 
 .submit-hover {

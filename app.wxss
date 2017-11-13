@@ -51,19 +51,28 @@ view {
 /* 通用轮播 */
 
 .swiper-images-wrap {
-  height: 200px;
+  height: 400rpx;
 }
 
 .order-img-item {
   width: 100%;
-  height: 200px;
+  height: 400rpx;
 }
 
 /* flex 通用  */
 
+.flex-1 {
+  flex: 1;
+}
+
 .flex-column {
   display: flex;
   flex-direction: column;
+}
+
+.flex-wrap {
+  position: relative;
+  flex: 1;
 }
 
 .flex-row {

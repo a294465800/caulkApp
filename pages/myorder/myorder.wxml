@@ -33,9 +33,9 @@
               </view>
             </view>
             <view class='order-item-price'>合计：￥{{orderItem.price}}（含运费￥{{orderItem.delivery_price || 0}}）</view>
-            <view class='order-item-btns'>
+            <!-- <view class='order-item-btns'>
               <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' catchtap='confirmOrder' data-id='{{orderItem.id}}'>付款</view>
-            </view>
+            </view> -->
           </view>
         </block>
         <block wx:else>

@@ -58,7 +58,7 @@
       <view class='commodity-item-content'>
         <view class='commodity-item-content-item flex-row' wx:for="{{commodity.standards}}" wx:for-item="typeItem" wx:key="id">
           <view class='commodity-item-content-item-type'>{{typeItem.title}}</view>
-          <view>
+          <view class='flex-1'>
             <block wx:for="{{typeItem.attrs}}" wx:for-item="attr" wx:key="id">{{attr.title}}、</block>
           </view>
         </view>
@@ -98,7 +98,7 @@
     <!--商品购买弹窗  -->
     <view class='commodity-box-wrap {{buyNow?"active":""}}' catchtap='closeBox'>
       <view class='commodity-box {{buyNow?"active":""}} flex-column' catchtap='showBox'>
-        <view class='commodity-box-top'>
+        <view class='commodity-box-top flex-column flex-1'>
           <view class='commodity-box-title flex-row'>
             <view class='commodity-box-title-info flex-row'>
               <image class='commodity-box-title-img' mode='aspectFill' src='{{currentCommdity?currentCommdity.picture[0].thumb_url:commodity.pictures[0].thumb_url}}'></image>
@@ -115,12 +115,16 @@
             </view>
             <view class='commodity-box-close' catchtap='closeBox'>X</view>
           </view>
-          <view class='commodity-box-type-wrap'>
-            <view class='commodity-box-type' wx:for="{{commodity.standards}}" wx:key="id" wx:for-item="standard">
-              <view class='commodity-box-type-title'>{{standard.title}}</view>
-              <view class='commodity-box-type-items flex-row'>
-                <view class='commodity-box-type-item {{standardList[standard.id] == attr.id?"active": ""}}' catchtap='chooseStandard' data-standard_id='{{standard.id}}' data-title='{{attr.title}}' data-id='{{attr.id}}' wx:for="{{standard.attrs}}" wx:for-item="attr" wx:key="id">{{attr.title}}</view>
-              </view>
+          <view class='flex-wrap'>
+            <view class='flex-bug'>
+              <scroll-view scroll-y class='scroll'>
+                <view class='commodity-box-type' wx:for="{{commodity.standards}}" wx:key="id" wx:for-item="standard">
+                  <view class='commodity-box-type-title'>{{standard.title}}</view>
+                  <view class='commodity-box-type-items flex-row'>
+                    <view class='commodity-box-type-item {{standardList[standard.id] == attr.id?"active": ""}}' catchtap='chooseStandard' data-standard_id='{{standard.id}}' data-title='{{attr.title}}' data-id='{{attr.id}}' wx:for="{{standard.attrs}}" wx:for-item="attr" wx:key="id">{{attr.title}}</view>
+                  </view>
+                </view>
+              </scroll-view>
             </view>
           </view>
           <view class='commodity-box-num flex-row'>

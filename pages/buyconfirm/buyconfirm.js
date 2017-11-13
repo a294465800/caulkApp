@@ -76,7 +76,7 @@ Page({
     }
     wx.showModal({
       title: '提示',
-      content: '你选中了' + this.data.carts.length + '件商品，总计' + price + '元，确认付款吗？',
+      content: '你选中了' + this.data.carts.length + '种商品，总计' + price + '元，确认付款吗？',
       success(res) {
         if (res.confirm) {
           app._api.postPorduct(endForm, res => {
@@ -93,6 +93,11 @@ Page({
                 wx.removeStorage({
                   key: this.data.currentType,
                 })
+                setTimeout(() => {
+                  wx.switchTab({
+                    url: '/paegs/shop/shop',
+                  })
+                }, 300)
               },
               fail: fail => {
                 wx.showToast({

@@ -10,6 +10,7 @@
   display: none;
   background-color: #fff;
   flex: 1;
+  padding: 30rpx 10rpx;
 }
 
 /* 导航条 */

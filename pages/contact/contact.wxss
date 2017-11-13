@@ -1,7 +1,7 @@
 /* pages/contact/contact.wxss */
 
 .container {
-  background-color: #eee;
+  background-color: #fff;
 }
 
 .contact-wrap {

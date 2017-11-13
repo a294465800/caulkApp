@@ -1,5 +1,26 @@
 <!--pages/contact/contact.wxml-->
 <view class='container'>
+  <swiper indicator-dots autoplay interval="5000" duration="1000" class='swiper-images-wrap' indicator-active-color='#047911'>
+    <!-- <block wx:if="{{currentCommdity && currentCommdity.picture.length}}">
+      <block wx:for="{{currentCommdity.picture}}">
+        <swiper-item>
+          <image catchtap='preImg' data-img='{{item.url}}' mode='aspectFill' src="{{item.url}}" class="slide-image" class='order-img-item' />
+        </swiper-item>
+      </block>
+    </block>
+    <block wx:else>
+      <block wx:for="{{commodity.pictures}}">
+        <swiper-item>
+          <image catchtap='preImg' data-img='{{item.url}}' mode='aspectFill' src="{{item.url}}" class="slide-image" class='order-img-item' />
+        </swiper-item>
+      </block>
+    </block> -->
+
+    <swiper-item wx:for="{{imgUrls}}" wx:key="id">
+      <image mode='aspectFill' src="{{item.url}}" class='order-img-item' />
+    </swiper-item>
+  </swiper>
+
   <view class='contact-wrap'>
     <view class='contact-item flex-row'>
       <view class='contact-text flex-row'>
