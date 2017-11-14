@@ -50,6 +50,7 @@ Page({
           longitude: res.longitude
         },
         success: (rs) => {
+          console.log(rs)
           const cityData = rs.result.address_component
           this.setData({
             address: res.address,

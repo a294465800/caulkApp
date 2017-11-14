@@ -1,5 +1,9 @@
 // pages/bemaster/bemaster.js
 const app = getApp()
+const QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
+const demo = new QQMapWX({
+  key: 'EUNBZ-MIEKW-LPMR7-ODGYY-IKEIH-Y3B4O'
+});
 let timer = null
 Page({
 
@@ -24,10 +28,27 @@ Page({
 
   //获取地址
   getLocation() {
-    app.getAddress(res => {
-      this.setData({
-        address: res.provinceName + res.cityName + res.countyName + res.detailInfo,
-        'submitForm.city': res.provinceName + res.cityName + res.countyName
+    // app.getLocation(res => {
+    //   this.setData({
+    //     address: res.provinceName + res.cityName + res.countyName + res.detailInfo,
+    //     'submitForm.city': res.provinceName + res.cityName + res.countyName
+    //   })
+    // })
+
+    app.getLocation(res => {
+      demo.reverseGeocoder({
+        location: {
+          latitude: res.latitude,
+          longitude: res.longitude
+        },
+        success: (rs) => {
+          console.log(rs)
+          const cityData = rs.result.address_component
+          this.setData({
+            address: res.address,
+            'submitForm.city': cityData.province + cityData.city + cityData.district
+          })
+        },
       })
     })
   },
