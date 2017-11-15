@@ -24,11 +24,11 @@
           </swiper-item>
         </block>
       </block> -->
-        <block wx:for="{{commodity.pictures}}">
-          <swiper-item>
-            <image mode='aspectFill' catchtap='preImg' data-img='{{item.url}}' src="{{item.url}}" class="slide-image" class='order-img-item' />
-          </swiper-item>
-        </block>
+      <block wx:for="{{commodity.pictures}}">
+        <swiper-item>
+          <image mode='aspectFill' catchtap='preImg' data-img='{{item.url}}' src="{{item.url}}" class="slide-image" class='order-img-item' />
+        </swiper-item>
+      </block>
     </swiper>
     <!--/轮播  -->
 
@@ -95,6 +95,10 @@
       <view>客服</view>
     </view> -->
       <view class='commodity-price'>价格：￥{{commodity.price}}</view>
+      <view class='shop-btn' catchtap='goToSwitchShop'>
+        <image class='buy-shop-icon' mode='aspectFit' src='/images/icon/buy_shop.png'></image>
+        <view>店铺</view>
+      </view>
       <view class='commodity-buy-btn' catchtap='addToCartText'>加入购物车</view>
       <view class='commodity-buy-btn' catchtap='singleBuyText'>立即购买</view>
     </view>

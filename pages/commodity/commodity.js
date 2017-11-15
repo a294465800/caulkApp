@@ -269,5 +269,11 @@ Page({
     wx.showToast({
       title: '加入成功',
     })
+  },
+
+  goToSwitchShop(){
+    wx.switchTab({
+      url: '/pages/shop/shop',
+    })
   }
 })

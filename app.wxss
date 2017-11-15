@@ -154,3 +154,8 @@ view {
   width: 16px;
   height: 16px;
 }
+
+.buy-shop-icon {
+  width: 22px;
+  height: 20px;
+}

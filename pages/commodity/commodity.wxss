@@ -288,3 +288,13 @@
 .orange {
   background-color: #ffac36;
 }
+
+.shop-btn {
+  font-size: 28rpx;
+  text-align: center;
+  margin-right: 30rpx;
+}
+
+.shop-btn>view {
+  color: #666;
+}
