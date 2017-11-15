@@ -1,5 +1,5 @@
-// const host = 'http://119.23.255.177:8090/api/v1/'
-const host = 'http://xcx.gdmeika.com/api/v1/'
+const host = 'http://119.23.255.177:8090/api/v1/'
+// const host = 'http://xcx.gdmeika.com/api/v1/'
 
 // 请求 promise 封装
 const _http = {
