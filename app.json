@@ -1,18 +1,17 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/myorder/myorder",
     "pages/bemaster/bemaster",
     "pages/buyconfirm/buyconfirm",
     "pages/commodity/commodity",
     "pages/mine/mine",
     "pages/mymaster/mymaster",
-    "pages/myorder/myorder",
     "pages/myreservation/myreservation",
     "pages/mycart/mycart",
     "pages/book/book",
     "pages/company/company",
     "pages/shop/shop",
-    "pages/logs/logs",
     "pages/contact/contact"
   ],
   "window": {

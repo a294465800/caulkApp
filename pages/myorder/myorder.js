@@ -6,6 +6,7 @@ Page({
     //导航
     currentNav: 0,
     currentType: 1,
+    showComment: false,
     navs: [
       {
         type: 1,
@@ -74,10 +75,34 @@ Page({
   },
 
   //确认收货
-  confirmOrder(e) {
+  showComment(e) {
     const id = e.currentTarget.dataset.id
     const index = e.currentTarget.dataset.index
+    this.setData({
+      currentConfirmId: id,
+      currentConfirmIndex: index,
+      showComment: true
+    })
+  },
+
+  hideComment() {
+    this.setData({
+      showComment: false
+    })
+  },
+
+  onlyShowComment() {
+    this.setData({
+      showComment: true
+    })
+  },
+
+  //确认收货
+  confirmOrder(e) {
+    const id = this.data.currentConfirmId
+    const index = this.data.currentConfirmIndex
     let list = this.data.orders[2]
+    const textarea = e.detail.value.comment
     wx.showModal({
       title: '提示',
       content: '确认收货吗？',
@@ -86,11 +111,12 @@ Page({
           app._api.confirmOrder(id, { token: app.globalData._token }, res => {
             list.splice(index, 1)
             this.setData({
-              'orders[2]': list
+              'orders[2]': list,
+              showComment: false
             })
-          })
-          wx.showToast({
-            title: '已确认',
+            wx.showToast({
+              title: '已确认',
+            })
           })
         }
       }

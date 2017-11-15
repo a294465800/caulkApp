@@ -120,3 +120,40 @@
 .confirm-text {
   color: #fc2a57;
 }
+
+/* 评论框 */
+
+.comment-add-wrap {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.comment-add-item {
+  width: 90%;
+  background-color: #fff;
+  padding: 30rpx;
+  border-radius: 5px;
+}
+
+.comment-add-title {
+  font-size: 36rpx;
+  text-align: center;
+}
+
+.label-title {
+  font-size: 32rpx;
+  margin: 20rpx 0;
+}
+
+.textarea {
+  box-sizing: border-box;
+  font-size: 30rpx;
+  padding: 20rpx;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 30rpx;
+}

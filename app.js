@@ -38,6 +38,7 @@ App({
               this.globalData._token = token.data.data.token
               wx.setStorageSync('worker', token.data.data.worker)
               wx.setStorageSync('apply', token.data.data.worker)
+              wx.setStorageSync('enable', token.data.data.enable)
               wx.showToast({
                 title: '登录成功',
               })

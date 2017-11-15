@@ -2,9 +2,6 @@
 const app = getApp()
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     userInfo: null,
 
@@ -119,19 +116,22 @@ Page({
 
   //我是师傅
   // apply = 1 ;审核中
+  // enable = 1 停用
   // worker = 0 未入驻
   // worker = 1 已入驻
   goToMaster() {
     const worker = wx.getStorageSync('worker')
     const apply = wx.getStorageSync('apply')
-    if (apply == 1 && worker != 1) {
-      wx.showModal({
-        title: '提示',
-        content: '您的信息正在审核中，请耐心等待',
-        showCancel: false
-      })
-      return false
-    } else if (worker == 0) {
+    const enable = wx.getStorageSync('enable')
+    if (worker == 0) {
+      if (apply == 1) {
+        wx.showModal({
+          title: '提示',
+          content: '您的信息正在审核中，请耐心等待',
+          showCancel: false
+        })
+        return false
+      }
       wx.showModal({
         title: '提示',
         content: '您还没成为入驻师傅，要入驻吗？',
@@ -144,10 +144,43 @@ Page({
         }
       })
     } else {
+      if (enable == 0) {
+        wx.showModal({
+          title: '提示',
+          content: '您的帐号已被暂停使用',
+          showCancel: false
+        })
+        return false
+      }
+
       wx.navigateTo({
         url: '/pages/mymaster/mymaster',
       })
     }
+    // if (apply == 1 && worker != 1) {
+    //   wx.showModal({
+    //     title: '提示',
+    //     content: '您的信息正在审核中，请耐心等待',
+    //     showCancel: false
+    //   })
+    //   return false
+    // } else if (worker == 0) {
+    //   wx.showModal({
+    //     title: '提示',
+    //     content: '您还没成为入驻师傅，要入驻吗？',
+    //     success: res => {
+    //       if (res.confirm) {
+    //         wx.navigateTo({
+    //           url: '/pages/bemaster/bemaster',
+    //         })
+    //       }
+    //     }
+    //   })
+    // } else {
+    //   wx.navigateTo({
+    //     url: '/pages/mymaster/mymaster',
+    //   })
+    // }
   },
 
   //关于我们

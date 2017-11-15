@@ -6,7 +6,7 @@
 
 .contact-wrap {
   background-color: #fff;
-  border: 1px solid #eee;
+  /* border: 1px solid #eee; */
   padding: 0 20rpx;
   font-size: 28rpx;
 }
@@ -14,7 +14,7 @@
 .contact-item {
   padding-bottom: 30rpx;
   padding-top: 30rpx;
-  border-bottom: 1px dashed #999;
+  /* border-bottom: 1px dashed #999;ww */
   justify-content: space-between;
   align-items: center;
   padding-right: 10rpx;

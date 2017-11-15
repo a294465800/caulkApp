@@ -72,8 +72,12 @@
               </view>
             </view>
             <view class='order-item-price'>合计：￥{{orderFinishItem.price}}（含运费￥{{orderFinishItem.delivery_price || 0}}）</view>
+            <view class='order-item-price flex-row'>
+              <view class='confirm-text'>{{orderFinishItem.express.name}}</view>
+              <view>快递单号{{orderFinishItem.express.track_number}}</view>
+            </view>
             <view class='order-item-btns'>
-              <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' catchtap='confirmOrder' data-index='{{index}}' data-id='{{orderFinishItem.id}}'>确认收货</view>
+              <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' catchtap='showComment' data-index='{{index}}' data-id='{{orderFinishItem.id}}'>确认收货</view>
             </view>
           </view>
         </block>
@@ -123,4 +127,19 @@
     </view>
   </view>
   <!--/订单列表  -->
+
+  <!--评价填写  -->
+  <view class='comment-add-wrap flex-column flex-center' hidden='{{!showComment}}' catchtap='hideComment'>
+    <view class='comment-add-item' catchtap='onlyShowComment'>
+      <view class='comment-add-title'>填写评论</view>
+      <form bindsubmit='confirmOrder'>
+        <label class='label-control'>
+          <view class='label-title'>您的评论：</view>
+          <textarea class='textarea' name="comment" maxlength='200' placeholder='请填写评论（200字以内）'></textarea>
+          <button type='primary' form-type='submit'>提交</button>
+        </label>
+      </form>
+    </view>
+  </view>
+  <!--/评价填写  -->
 </view>
