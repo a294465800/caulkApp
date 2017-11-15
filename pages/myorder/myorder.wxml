@@ -53,7 +53,7 @@
         <block wx:if="{{orders[2] && orders[2].length}}">
           <view class='order-item-wrap' wx:for="{{orders[2]}}" wx:for-item="orderFinishItem" wx:key="id">
             <view class='order-item-title'>
-              <view class='order-item-title-id'>编号：{{orderFinishItem.order_id}}</view>
+              <view class='order-item-title-id'>编号：{{orderFinishItem.number}}</view>
               <view class='order-item-title-time'>{{orderFinishItem.created_at}}</view>
             </view>
             <view class='order-item-content flex-row' wx:for="{{orderFinishItem.snapshots}}" wx:for-item="commodityItem" wx:key="id">
@@ -73,8 +73,8 @@
             </view>
             <view class='order-item-price'>合计：￥{{orderFinishItem.price}}（含运费￥{{orderFinishItem.delivery_price || 0}}）</view>
             <view class='order-item-price flex-row'>
-              <view class='confirm-text'>{{orderFinishItem.express.name}}</view>
-              <view>快递单号{{orderFinishItem.express.track_number}}</view>
+              <view>{{orderFinishItem.express.name}}</view>
+              <view>快递单号：{{orderFinishItem.express.track_number}}</view>
             </view>
             <view class='order-item-btns'>
               <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' catchtap='showComment' data-index='{{index}}' data-id='{{orderFinishItem.id}}'>确认收货</view>
@@ -94,7 +94,7 @@
     <view class='flex-bug'>
       <scroll-view class='scroll' scroll-y bindscrolltolower="getMore">
         <block wx:if="{{orders[3] && orders[3].length}}">
-          <view class='order-item-wrap' wx:for="{{orders[3]}}" wx:for-item="orderFinishItem" wx:key="id">
+          <view class='order-item-wrap' wx:for="{{orders[3]}}" wx:for-item="orderFinishItem" wx:key="id" catchtap='showYourComment' data-index='{{index}}'>
             <view class='order-item-title'>
               <view class='order-item-title-id'>编号：{{orderFinishItem.number}}</view>
               <view class='order-item-title-time'>{{orderFinishItem.created_at}}</view>
@@ -117,6 +117,10 @@
             <view class='order-item-price flex-row'>
               <view class='confirm-text'>已确认收货</view>
               <view>合计：￥{{orderFinishItem.price}}（含运费￥{{orderFinishItem.delivery_price || 0}}）</view>
+            </view>
+            <view class='order-item-price flex-row'>
+              <view>{{orderFinishItem.express.name}}</view>
+              <view>快递单号：{{orderFinishItem.express.track_number}}</view>
             </view>
           </view>
         </block>
@@ -142,4 +146,17 @@
     </view>
   </view>
   <!--/评价填写  -->
+
+  <!--查看评价  -->
+  <view class='comment-add-wrap flex-column flex-center' hidden='{{!showYourComment}}' catchtap='hideYourComment'>
+    <view class='comment-add-item' catchtap='onlyShowYourComment'>
+      <view class='comment-add-title'>查看评论</view>
+      <label class='label-control'>
+        <view class='label-title'>您的评论：</view>
+        <view class='textarea-comment'>{{orders[3][currentFinishIndex].comment || '您没有评价~'}}</view>
+      </label>
+    </view>
+  </view>
+  <!--/查看评价  -->
+
 </view>

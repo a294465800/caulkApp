@@ -63,6 +63,7 @@ Page({
 
   //付款
   payForIt(e) {
+    const that = this
     const price = e.currentTarget.dataset.price
     const submitForm = this.data.submitForm
     let endForm = Object.assign(submitForm, { token: app.globalData._token })
@@ -91,11 +92,11 @@ Page({
                   title: '购买成功',
                 })
                 wx.removeStorage({
-                  key: this.data.currentType,
+                  key: that.data.currentType,
                 })
                 setTimeout(() => {
                   wx.switchTab({
-                    url: '/paegs/shop/shop',
+                    url: '/pages/shop/shop',
                   })
                 }, 300)
               },

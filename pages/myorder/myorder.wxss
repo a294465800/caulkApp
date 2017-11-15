@@ -157,3 +157,8 @@
   border-radius: 5px;
   margin-bottom: 30rpx;
 }
+
+.textarea-comment {
+  font-size: 30rpx;
+  text-indent: 2em;
+}

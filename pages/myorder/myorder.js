@@ -7,6 +7,7 @@ Page({
     currentNav: 0,
     currentType: 1,
     showComment: false,
+    showYourComment: false,
     navs: [
       {
         type: 1,
@@ -34,6 +35,10 @@ Page({
       3: 1
     },
 
+    currentConfirmId: 0,
+    currentConfirmIndex: 0,
+    currentFinishIndex: 0,
+
     //接口数据
     orders: {
       1: [],
@@ -55,23 +60,34 @@ Page({
     const index = e.target.dataset.index
     const type = e.target.dataset.type
     const tmp = `orders[${type}]`
+    const tmpPage = `pages[${type}]`
+    const tmpFlag = `bottomFlag[${type}]`
     if (index === this.data.currentNav) {
       return false
     }
-    if (this.data.orders[type] && this.data.orders[type].length > 0) {
+    // if (this.data.orders[type] && this.data.orders[type].length > 0) {
+    //   this.setData({
+    //     currentNav: index,
+    //     currentType: type,
+    //   })
+    // } else {
+    //   app._api.getMyOrder({ token: app.globalData._token, state: type }, res => {
+    //     this.setData({
+    //       [tmp]: res.data.data,
+    //       currentNav: index,
+    //       currentType: type,
+    //     })
+    //   })
+    // }
+    app._api.getMyOrder({ token: app.globalData._token, state: type }, res => {
       this.setData({
+        [tmp]: res.data.data,
         currentNav: index,
         currentType: type,
+        [tmpPage]: 1,
+        [tmpFlag]: false
       })
-    } else {
-      app._api.getMyOrder({ token: app.globalData._token, state: type }, res => {
-        this.setData({
-          [tmp]: res.data.data,
-          currentNav: index,
-          currentType: type,
-        })
-      })
-    }
+    })
   },
 
   //确认收货
@@ -97,6 +113,26 @@ Page({
     })
   },
 
+  showYourComment(e){
+    const index = e.currentTarget.dataset.index
+    this.setData({
+      showYourComment: true,
+      currentFinishIndex: index
+    })
+  },
+
+  hideYourComment(){
+    this.setData({
+      showYourComment: false
+    })
+  },
+
+  onlyShowYourComment(){
+    this.setData({
+      showYourComment: true
+    })
+  },
+
   //确认收货
   confirmOrder(e) {
     const id = this.data.currentConfirmId
@@ -108,7 +144,7 @@ Page({
       content: '确认收货吗？',
       success: confirm => {
         if (confirm.confirm) {
-          app._api.confirmOrder(id, { token: app.globalData._token }, res => {
+          app._api.confirmOrder(id, { token: app.globalData._token, comment: textarea }, res => {
             list.splice(index, 1)
             this.setData({
               'orders[2]': list,
