@@ -284,6 +284,17 @@ const api = {
       .catch(err => {
         errFnc(err)
       })
+  },
+
+  //获取现在预约单数
+  getCurrentOrderCount(data, cb) {
+    _http.get(`${host}accept/count`, data)
+      .then(res => {
+        typeof cb === 'function' && cb(res)
+      })
+      .catch(err => {
+        errFnc(err)
+      })
   }
 }
 

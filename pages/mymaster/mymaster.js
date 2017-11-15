@@ -48,26 +48,39 @@ Page({
     const index = e.target.dataset.index
     const type = e.target.dataset.type
     const orders = this.data.orders[type]
+    const tmp = `orders[${type}]`
+    const tmpPage = `pages[${type}]`
+    const tmpFlag = `bottomFlag[${type}]`
 
     if (index === this.data.currentNav) {
       return false
     }
 
-    if (orders && orders.length > 0) {
+    // if (orders && orders.length > 0) {
+    //   this.setData({
+    //     currentNav: index,
+    //     currentType: type
+    //   })
+    // } else {
+    //   const tmp = `orders[${type}]`
+    //   app._api.getWorkerReserves({ type: type, token: app.globalData._token }, res => {
+    //     this.setData({
+    //       [tmp]: res.data.data,
+    //       currentNav: index,
+    //       currentType: type
+    //     })
+    //   })
+    // }
+
+    app._api.getWorkerReserves({ type: type, token: app.globalData._token }, res => {
       this.setData({
+        [tmp]: res.data.data,
         currentNav: index,
-        currentType: type
+        currentType: type,
+        [tmpPage]: 1,
+        [tmpFlag]: false
       })
-    } else {
-      const tmp = `orders[${type}]`
-      app._api.getWorkerReserves({ type: type, token: app.globalData._token }, res => {
-        this.setData({
-          [tmp]: res.data.data,
-          currentNav: index,
-          currentType: type
-        })
-      })
-    }
+    })
   },
 
   //接单
@@ -77,6 +90,13 @@ Page({
       wx.hideLoading()
       wx.showToast({
         title: '接单成功',
+      })
+      app._api.getWorkerReserves({ type: 1, token: app.globalData._token }, res => {
+        this.setData({
+          'orders[1]': res.data.data,
+          'pages[1]': 1,
+          'bottomFlag[1]': false
+        })
       })
     })
   },

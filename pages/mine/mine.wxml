@@ -20,6 +20,7 @@
         <view class='operation-text'>{{operationItem.name}}</view>
       </view>
       <image mode='aspectFit' src='/images/icon/more.png' class='operation-icon-arrow'></image>
+      <view class='red-point' wx:if="{{operationItem.id == 4 && orderCount > 0}}">{{orderCount>99?99:orderCount}}</view>
     </view>
   </view>
   <!--/功能部分  -->

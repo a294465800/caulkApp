@@ -5,6 +5,8 @@ Page({
   data: {
     userInfo: null,
 
+    orderCount: 0,
+
     // 操作列表
     operations: [
       {
@@ -37,6 +39,14 @@ Page({
   onLoad() {
     this.setData({
       userInfo: app.globalData.userInfo
+    })
+  },
+
+  onShow() {
+    app._api.getCurrentOrderCount({ token: app.globalData._token }, res => {
+      this.setData({
+        orderCount: res.data.data.count
+      })
     })
   },
 

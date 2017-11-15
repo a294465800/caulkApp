@@ -74,3 +74,23 @@
   width: 18px;
   height: 23px;
 }
+
+/* test */
+
+.contact-wrap {
+  padding: 30rpx;
+}
+
+.contact-test-title {
+  font-size: 18px;
+  color: #047911;
+  padding-bottom: 20rpx;
+  margin-bottom: 30rpx;
+  border-bottom: 1px solid #ddd;
+  font-weight: 600;
+}
+
+.contact-test-item {
+  font-size: 15px;
+  margin: 10rpx 0;
+}

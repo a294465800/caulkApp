@@ -52,6 +52,7 @@
   padding: 30rpx;
   border-bottom: 1px solid #efefef;
   background-color: #fff;
+  position: relative;
 }
 
 .operation-item-left {
@@ -86,4 +87,18 @@
 .special::after {
   border: 0;
   border-radius: 0;
+}
+
+.red-point {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 24rpx;
+  border-radius: 50%;
+  color: #fff;
+  background-color: #fa5555;
+  position: absolute;
+  right: 30rpx;
+  top: 20rpx;
 }

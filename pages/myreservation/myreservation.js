@@ -58,24 +58,35 @@ Page({
     const index = e.target.dataset.index
     const type = e.target.dataset.type
     const temp = `reservations[${type}]`
+    const tmpPage = `pages[${type}]`
+    const tmpFlag = `reservationFlag[${type}]`
     if (index === this.data.currentNav) {
       return false
     }
-    if (this.data.reservations[type] && this.data.reservations[type].length > 0) {
+    // if (this.data.reservations[type] && this.data.reservations[type].length > 0) {
+    //   this.setData({
+    //     currentNav: index,
+    //     currentType: type
+    //   })
+    // }
+    // else {
+    //   app._api.getMyReserve({ token: app.globalData._token, state: type }, res => {
+    //     this.setData({
+    //       [temp]: res.data.data,
+    //       currentNav: index,
+    //       currentType: type
+    //     })
+    //   })
+    // }
+    app._api.getMyReserve({ token: app.globalData._token, state: type }, res => {
       this.setData({
+        [temp]: res.data.data,
         currentNav: index,
-        currentType: type
+        currentType: type,
+        [tmpPage]: 1,
+        [tmpFlag]: false
       })
-    }
-    else {
-      app._api.getMyReserve({ token: app.globalData._token, state: type }, res => {
-        this.setData({
-          [temp]: res.data.data,
-          currentNav: index,
-          currentType: type
-        })
-      })
-    }
+    })
   },
 
   //触底加载

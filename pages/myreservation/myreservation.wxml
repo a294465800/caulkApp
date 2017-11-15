@@ -69,7 +69,7 @@
               <view class='reservation-info-btns flex-row' data-id='{{notSentItem.id}}' catchtap='operationFnc' data-type='sent'>
                 <!-- <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='checkMaster' data-master='{{notSentItem}}'>查看师傅</view> -->
                 <view class='none-master flex-row'>
-                  <icon size='13' type='info' color='#fb2956'></icon>
+                  <!-- <icon size='13' type='info' color='#fb2956'></icon> -->
                   <view>正在指派师傅</view>
                 </view>
                 <!-- <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='cancel'>取消订单</view> -->
@@ -127,7 +127,7 @@
       <view class='reservation-master-title'>指派师傅联系方式</view>
       <view class='reservation-master-content'>
         <view class='reservation-master-item'>姓名：{{currentMaster.name}}</view>
-        <view class='reservation-master-item'>联系电话：{{currentMaster.phone}}</view>
+        <view class='reservation-master-item'>联系电话：{{currentMaster.number}}</view>
       </view>
       <view class='reservation-master-btns flex-row'>
         <view class='flex-row flex-center' hover-class='hover-class' catchtap='callMaster' data-phone='{{currentMaster.phone}}'>拨打电话</view>
