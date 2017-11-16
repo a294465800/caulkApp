@@ -127,7 +127,7 @@
       <view class='reservation-master-title'>指派师傅联系方式</view>
       <view class='reservation-master-content'>
         <view class='reservation-master-item'>姓名：{{currentMaster.name}}</view>
-        <view class='reservation-master-item'>联系电话：{{currentMaster.number}}</view>
+        <view class='reservation-master-item'>联系电话：{{currentMaster.phone}}</view>
       </view>
       <view class='reservation-master-btns flex-row'>
         <view class='flex-row flex-center' hover-class='hover-class' catchtap='callMaster' data-phone='{{currentMaster.phone}}'>拨打电话</view>

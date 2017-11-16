@@ -141,7 +141,7 @@ Page({
     const master = e.target.dataset.master
     this.setData({
       showMaster: true,
-      currentMaster: master
+      currentMaster: master.worker
     })
   },
 

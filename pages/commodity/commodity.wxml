@@ -37,7 +37,7 @@
       <view class='commodity-content-info'>
         <view class='commodity-content-info-title'>{{commodity.title}}</view>
         <view class='commodity-content-info-suinfo flex-row'>
-          <view class='commodity-content-info-price'>￥{{commodity.price}}</view>
+          <view class='commodity-content-info-price'>￥{{commodity.price}} / 平方</view>
           <view class='commodity-content-info-sell'>已售{{commodity.sales}}件</view>
         </view>
       </view>
@@ -94,7 +94,7 @@
       <image class='service-icon' mode='aspectFit' src='/images/icon/service.png'></image>
       <view>客服</view>
     </view> -->
-      <view class='commodity-price'>价格：￥{{commodity.price}}</view>
+      <view class='commodity-price'>￥{{commodity.price}}元 / 平方</view>
       <view class='shop-btn' catchtap='goToSwitchShop'>
         <image class='buy-shop-icon' mode='aspectFit' src='/images/icon/buy_shop.png'></image>
         <view>店铺</view>
