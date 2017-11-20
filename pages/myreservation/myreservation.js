@@ -6,6 +6,12 @@ Page({
 
     showMaster: false,
     currentMaster: null,
+    showComment: false,
+    showYourComment: false,
+
+    currentConfirmId: 0,
+    currentConfirmIndex: 0,
+    currentFinishIndex: 0,
 
     //导航
     currentNav: 0,
@@ -129,8 +135,8 @@ Page({
       case 'checkMaster':
         that.checkMaster(e)
         break
-      case 'cancel':
-        that.cancel()
+      case 'confirm':
+        that.confirm()
         break
       default: return false
     }
@@ -159,8 +165,69 @@ Page({
     })
   },
 
-  cancel() {
+  hideComment() {
+    this.setData({
+      showComment: false
+    })
+  },
+
+  onlyShowComment() {
+    this.setData({
+      showComment: true
+    })
+  },
+
+  showYourComment(e) {
+    const index = e.currentTarget.dataset.index
+    this.setData({
+      showYourComment: true,
+      currentFinishIndex: index
+    })
+  },
+
+  hideYourComment() {
+    this.setData({
+      showYourComment: false
+    })
+  },
+
+  onlyShowYourComment() {
+    this.setData({
+      showYourComment: true
+    })
+  },
+
+  confirm() {
     // console.log('cancel')
+    this.setData({
+      showComment: true,
+    })
+  },
+
+  //确认收货
+  confirmReservation(e) {
+    const id = this.data.currentConfirmId
+    const index = this.data.currentConfirmIndex
+    let list = this.data.reservations[0]
+    const textarea = e.detail.value.comment
+    wx.showModal({
+      title: '提示',
+      content: '确认收货吗？',
+      success: confirm => {
+        if (confirm.confirm) {
+          app._api.confirmOrder(id, { token: app.globalData._token, comment: textarea }, res => {
+            list.splice(index, 1)
+            this.setData({
+              'reservations[0]': list,
+              showComment: false
+            })
+            wx.showToast({
+              title: '已确认',
+            })
+          })
+        }
+      }
+    })
   },
 
 

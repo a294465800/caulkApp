@@ -33,15 +33,15 @@ Page({
         imgUrls: res.data.data
       })
     })
-    app._api.getArticle({ type: 1 }, res => {
-      const article = res.data.data ? res.data.data.content : '<h1 style="text-align:center;">暂无内容</h1>'
-      const that = this
-      WxParse.wxParse('article', 'html', article, that, 10)
-    })
     app._api.getArticle({ type: 2 }, res => {
       const article2 = res.data.data ? res.data.data.content : '<h1 style="text-align:center;">暂无内容</h1>'
       const that = this
       WxParse.wxParse('article2', 'html', article2, that, 10)
+    })
+    app._api.getArticle({ type: 1 }, res => {
+      const article1 = res.data.data ? res.data.data.content : '<h1 style="text-align:center;">暂无内容</h1>'
+      const that = this
+      WxParse.wxParse('article1', 'html', article1, that, 10)
     })
   },
 

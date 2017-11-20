@@ -19,7 +19,7 @@
 
   <!--公司展示页面  -->
   <view class='text-content {{currentPage == 1? "block": ""}}'>
-    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    <template is="wxParse" data="{{wxParseData:article1.nodes}}" />
   </view>
   <!--/公司展示页面  -->
 

@@ -31,7 +31,7 @@
               <view class='reservation-info-time'>{{sentItem.time}}</view>
               <view class='reservation-info-btns flex-row' data-id='{{sentItem.id}}' catchtap='operationFnc' data-type='sent'>
                 <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='checkMaster' data-master='{{sentItem}}'>查看师傅</view>
-                <!-- <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='cancel'>取消订单</view> -->
+                <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='confirm'>确认完成</view>
               </view>
             </view>
           </view>
@@ -136,4 +136,30 @@
     </view>
   </view>
   <!--/查看师傅  -->
+
+  <!--评价填写  -->
+  <view class='comment-add-wrap flex-column flex-center' hidden='{{!showComment}}' catchtap='hideComment'>
+    <view class='comment-add-item' catchtap='onlyShowComment'>
+      <view class='comment-add-title'>填写评论</view>
+      <form bindsubmit='confirmReservation'>
+        <label class='label-control'>
+          <view class='label-title'>您的评论：</view>
+          <textarea class='textarea' name="comment" maxlength='200' placeholder='请填写评论（200字以内）'></textarea>
+          <button type='primary' form-type='submit'>提交</button>
+        </label>
+      </form>
+    </view>
+  </view>
+  <!--/评价填写  -->
+  <!--查看评价  -->
+  <view class='comment-add-wrap flex-column flex-center' hidden='{{!showYourComment}}' catchtap='hideYourComment'>
+    <view class='comment-add-item' catchtap='onlyShowYourComment'>
+      <view class='comment-add-title'>查看评论</view>
+      <label class='label-control'>
+        <view class='label-title'>您的评论：</view>
+        <view class='textarea-comment'>{{reservations[2][currentFinishIndex].comment || '您没有评价~'}}</view>
+      </label>
+    </view>
+  </view>
+  <!--/查看评价  -->
 </view>
