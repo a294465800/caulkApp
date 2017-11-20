@@ -37,13 +37,6 @@ Page({
 
   getLocation() {
     app.getLocation(res => {
-      // this.setData({
-      // address: res.address,
-      // address: res.provinceName + res.cityName + res.countyName + res.detailInfo,
-      // 'location.city': res.provinceName + res.cityName + res.countyName,
-      // 'location.latitude': res.latitude,
-      // 'location.longitude': res.longitude
-      // })
       demo.reverseGeocoder({
         location: {
           latitude: res.latitude,
@@ -54,10 +47,6 @@ Page({
           const cityData = rs.result.address_component
           this.setData({
             address: res.address,
-            // address: res.provinceName + res.cityName + res.countyName + res.detailInfo,
-            // 'location.city': res.provinceName + res.cityName + res.countyName,
-            // 'location.latitude': res.latitude,
-            // 'location.longitude': res.longitude
             'location.city': cityData.province + cityData.city + cityData.district
           })
         },
@@ -67,6 +56,7 @@ Page({
 
   //提交
   submit(e) {
+    console.log(e)
     if (!app.globalData._token) {
       wx.showModal({
         title: '提示',
@@ -81,9 +71,9 @@ Page({
     }
     let dataForm = e.detail.value
     dataForm.address = dataForm.address + dataForm.detail
+    dataForm.formId = e.detail.formId
     dataForm.detail = "nouse"
     const submitForm = Object.assign(dataForm, this.data.location, { token: app.globalData._token })
-    console.log(submitForm)
     for (let it in submitForm) {
       if (!submitForm[it]) {
         wx.showModal({
