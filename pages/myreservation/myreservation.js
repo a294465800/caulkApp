@@ -136,7 +136,7 @@ Page({
         that.checkMaster(e)
         break
       case 'confirm':
-        that.confirm()
+        that.confirm(e)
         break
       default: return false
     }
@@ -197,10 +197,12 @@ Page({
     })
   },
 
-  confirm() {
-    // console.log('cancel')
+  confirm(e) {
+    console.log(e)
     this.setData({
       showComment: true,
+      currentConfirmId: e.currentTarget.dataset.id,
+      currentConfirmIndex: e.currentTarget.dataset.index
     })
   },
 
@@ -208,17 +210,17 @@ Page({
   confirmReservation(e) {
     const id = this.data.currentConfirmId
     const index = this.data.currentConfirmIndex
-    let list = this.data.reservations[0]
+    let list = this.data.reservations[1]
     const textarea = e.detail.value.comment
     wx.showModal({
       title: '提示',
-      content: '确认收货吗？',
+      content: '确认完成吗？',
       success: confirm => {
         if (confirm.confirm) {
-          app._api.confirmOrder(id, { token: app.globalData._token, comment: textarea }, res => {
+          app._api.confirmReserve(id, { token: app.globalData._token, comment: textarea }, res => {
             list.splice(index, 1)
             this.setData({
-              'reservations[0]': list,
+              'reservations[1]': list,
               showComment: false
             })
             wx.showToast({

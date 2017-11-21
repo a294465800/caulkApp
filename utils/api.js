@@ -175,6 +175,22 @@ const api = {
   },
 
   /**
+   * 确认已完成
+   * @param {string} id
+   * @param {object} data {token, comment}
+   * @param cb 回调
+   */
+  confirmReserve(id, data, cb) {
+    _http.post(`${host}finish/reserve/${id}`, data)
+      .then(res => {
+        typeof cb === 'function' && cb(res)
+      })
+      .catch(err => {
+        errFnc(err)
+      })
+  },
+
+  /**
    * 获取我的订单
    * @param {object} data {token, state, (page), (limit)}
    * @param {function} cb 回调

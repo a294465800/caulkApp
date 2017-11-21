@@ -29,7 +29,7 @@
             </view>
             <view class='reservation-info flex-row'>
               <view class='reservation-info-time'>{{sentItem.time}}</view>
-              <view class='reservation-info-btns flex-row' data-id='{{sentItem.id}}' catchtap='operationFnc' data-type='sent'>
+              <view class='reservation-info-btns flex-row' data-id='{{sentItem.id}}' data-index='{{index}}' catchtap='operationFnc' data-type='sent'>
                 <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='checkMaster' data-master='{{sentItem}}'>查看师傅</view>
                 <view class='reservation-info-btn' hover-class='reservation-info-btn-hover' hover-stay-time='150' data-operation='confirm'>确认完成</view>
               </view>
@@ -85,12 +85,12 @@
   </view>
   <!--/未响应  -->
 
-  <!--未响应  -->
+  <!--已完成  -->
   <view class='reservation-wrap {{2 == currentNav?"block":""}}'>
     <view class='flex-bug'>
       <scroll-view scroll-y class='scroll' bindscrolltolower="getMoreReservation">
         <block wx:if="{{reservations[2] && reservations[2].length}}">
-          <view class='reservation-item' wx:for="{{reservations[2]}}" wx:for-item="overSentItem" wx:key="id">
+          <view class='reservation-item' catchtap='showYourComment' data-index='{{index}}' wx:for="{{reservations[2]}}" wx:for-item="overSentItem" wx:key="id">
             <view class='reservation-content'>
               <view class='reservation-content-item flex-row'>
                 <image class='people-icon' mode='aspectFit' src='/images/icon/people.png'></image>
@@ -119,7 +119,7 @@
       </scroll-view>
     </view>
   </view>
-  <!--/未响应  -->
+  <!--/已完成  -->
 
   <!--查看师傅  -->
   <view class='reservation-master-wrap' catchtap='hideMaster' hidden='{{!showMaster}}'>

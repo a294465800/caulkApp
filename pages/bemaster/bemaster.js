@@ -28,12 +28,6 @@ Page({
 
   //获取地址
   getLocation() {
-    // app.getLocation(res => {
-    //   this.setData({
-    //     address: res.provinceName + res.cityName + res.countyName + res.detailInfo,
-    //     'submitForm.city': res.provinceName + res.cityName + res.countyName
-    //   })
-    // })
 
     app.getLocation(res => {
       demo.reverseGeocoder({
@@ -73,13 +67,15 @@ Page({
   //获取验证码
   getSms() {
     let second = 60
+    this.setData({
+      btnOK: false
+    })
     app._api.postSms({ phone: this.data.phone }, res => {
       timer = setInterval(() => {
         if (second > 0) {
           second--
           this.setData({
-            btnText: `${second}秒重新获取`,
-            btnOK: false
+            btnText: `${second}秒重新获取`
           })
         } else {
           this.setData({
