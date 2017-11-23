@@ -4,7 +4,8 @@ App({
 
   globalData: {
     _token: '',
-    userInfo: null
+    userInfo: null,
+    app_id: 'wx367cd3e4c052b742'
   },
 
   _api: _api.api,

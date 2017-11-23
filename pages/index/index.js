@@ -72,6 +72,7 @@ Page({
     let dataForm = e.detail.value
     dataForm.address = dataForm.address + dataForm.detail
     dataForm.formId = e.detail.formId
+    dataForm.app_id = app.globalData.app_id
     dataForm.detail = "nouse"
     const submitForm = Object.assign(dataForm, this.data.location, { token: app.globalData._token })
     for (let it in submitForm) {
