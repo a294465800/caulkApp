@@ -28,7 +28,7 @@
           <view class='shop-item-info flex-row'>
             <view class='shop-item-sell flex-row'>
               <view class='shop-item-price'>{{shopItem.price || ''}}</view>
-              <view class='shop-item-sold'>已售{{shopItem.sales>999?999:shopItem.sales}}</view>
+              <view class='shop-item-sold'>已售{{shopItem.sales>999?'999+':shopItem.sales}}</view>
             </view>
             <image class='cart-icon' mode='aspectFit' src='/images/icon/cart.png'></image>
           </view>

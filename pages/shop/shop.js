@@ -37,7 +37,11 @@ Page({
     if (flag) {
       return false
     }
+    wx.showLoading({
+      title: '加载中',
+    })
     app._api.getCommodities({ title: this.data.searchTitle, page: page + 1 }, res => {
+      wx.hideLoading()
       const data = res.data.data
       if (data.length) {
         this.setData({
@@ -45,6 +49,9 @@ Page({
           page: page + 1
         })
       } else {
+        wx.showToast({
+          title: '没有了',
+        })
         this.setData({
           page: page + 1,
           flag: true
